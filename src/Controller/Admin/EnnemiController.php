@@ -5,6 +5,7 @@ use App\Entity\Arme;
 use App\Entity\Armure;
 use App\Entity\Ennemi;
 use App\Entity\Potion;
+use App\Form\EnnemiType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +20,6 @@ class EnnemiController extends AbstractController
     public function showEnnemis(Request $request)
     {
         $ennemis = $this->getDoctrine()->getRepository(Ennemi::class)->findAll();
-
         return $this->render('admin/bdd/showEnnemis.html.twig', ['ennemis' => $ennemis]);
     }
 
@@ -27,42 +27,39 @@ class EnnemiController extends AbstractController
      * @Route("/ennemi/add", name="ennemi_add", methods={"GET", "POST"})
      */
     public function addEnnemi(Request $request) {
-        $entityManager = $this->getDoctrine()->getManager();
-        $armes= $this->getDoctrine()->getRepository(Arme::class)->findAll();
-        $armures= $this->getDoctrine()->getRepository(Armure::class)->findAll();
-        $potions= $this->getDoctrine()->getRepository(Potion::class)->findAll();
-        if($request->getMethod() == 'GET'){
-            return $this->render('INSERE TA PAGE ICI', ['armes' => $armes, 'armures' => $armures, 'potions' => $potions]);
-        }
-        $donnees['nom']=$_POST['nom'];
-        $donnees['degats']=$_POST['degats'];
-        $donnees['pv']=$_POST['pv'];
-        $donnees['sprite']=$_POST['sprite'];
-        $donnees['arme_id']=$_POST['arme_id'];
-        $donnees['armure_id']=$_POST['armure_id'];
-        $donnees['potion_id']=$_POST['potion_id'];
-
-        $erreurs=$this->validatorEnnemi($donnees);
         $ennemi = new Ennemi();
-        if(empty($erreurs))
+        $form = $this->createForm(EnnemiType::class, $ennemi);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
         {
-            $ennemi->setNom($donnees['nom']);
-            $ennemi->setDegats($donnees['degats']);
-            $ennemi->setPv($donnees['pv']);
-            if($donnees['sprite'] != "")
-                $ennemi->setSprite($donnees['sprite']);
-            $arme = $this->getDoctrine()->getRepository(Arme::class)->find($donnees['arme_id']);
-            $armure = $this->getDoctrine()->getRepository(Armure::class)->find($donnees['armure_id']);
-            $potion = $this->getDoctrine()->getRepository(Potion::class)->find($donnees['potion_id']);
-            $ennemi->setArme($arme);
-            $ennemi->setArmure($armure);
-            $ennemi->setPotion($potion);
+            $this->getDoctrine()->getManager()->persist($ennemi);
+            $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('notice', 'Ennemi ' . $ennemi->getNom() . ' ajouté');
+            return $this->redirectToRoute('ennemi_index');
+        }
+        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Créer','element' => 'un Ennemi']);
+    }
+
+    /**
+     * @Route("/ennemi/edit/{id}", name="ennemi_edit", methods={"GET","PUT"})
+     */
+    public function editEnnemi(Request $request, $id=null, SerializerInterface $serializer)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $ennemi = $this->getDoctrine()->getRepository(Ennemi::class)->find($id);
+        if (!$ennemi) throw $this->createNotFoundException('No enemy found for id '.$id);
+        $form = $this->createForm(EnnemiType::class, $ennemi, [
+            'action' => $this->generateUrl('ennemi_edit',['id'=>$id]),
+            'method' => 'PUT',]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($ennemi);
             $entityManager->flush();
-            return $this->redirectToRoute('INSERE TA ROUTE ICI');
+            $this->addFlash('notice', 'Ennemi ' . $ennemi->getNom() . ' modifié');
+            return $this->redirectToRoute('ennemi_index');
         }
-
-        return $this->render('INSERE TA PAGE ICI', ['donnees'=>$donnees,'erreurs'=>$erreurs, 'armes' => $armes, 'armures' => $armures, 'potions' => $potions]);
+        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Modifier','element' => 'un Ennemi']);
     }
 
     /**
@@ -76,52 +73,18 @@ class EnnemiController extends AbstractController
 
         $entityManager->remove($ennemi);
         $entityManager->flush();
-        return $this->redirectToRoute('INSERE TA ROUTE ICI');
+        $this->addFlash('notice', 'Ennemi ' . $ennemi->getNom() . ' supprimé');
+        return $this->redirectToRoute('ennemi_index');
     }
 
-    /**
-     * @Route("/ennemi/edit/{id}", name="ennemi_edit", methods={"GET"})
-     * @Route("/ennemi/edit", name="ennemi_edit_valid", methods={"PUT"})
-     */
-    public function editEnnemi(Request $request, $id=null, SerializerInterface $serializer)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $armes= $this->getDoctrine()->getRepository(Arme::class)->findAll();
-        $armures= $this->getDoctrine()->getRepository(Armure::class)->findAll();
-        $potions= $this->getDoctrine()->getRepository(Potion::class)->findAll();
-        if($request->getMethod() == 'GET') {
-            $ennemi = $entityManager->getRepository(Ennemi::class)->find($id);
-            if (!$ennemi) throw $this->createNotFoundException('No enemy found for id '.$id);
-            return $this->render('INSERE TA PAGE ICI', ['donnees' => $ennemi, 'armes' => $armes, 'armures' => $armures, 'potions' => $potions]);
-        }
-        $donnees['nom']=$_POST['nom'];
-        $donnees['degats']=$_POST['degats'];
-        $donnees['pv']=$_POST['pv'];
-        $donnees['sprite']=$_POST['sprite'];
-        $donnees['arme_id']=$_POST['arme_id'];
-        $donnees['armure_id']=$_POST['armure_id'];
-        $donnees['potion_id']=$_POST['potion_id'];
 
-        $erreurs=$this->validatorEnnemi($donnees);
-        if (empty($erreurs)) {
-            $ennemi = $entityManager->getRepository(Ennemi::class)->find($donnees['id']);
-            $ennemi->setNom($donnees['nom']);
-            $ennemi->setDegats($donnees['degats']);
-            $ennemi->setPv($donnees['pv']);
-            if($donnees['sprite'] != "")
-                $ennemi->setSprite($donnees['sprite']);
-            $arme = $this->getDoctrine()->getRepository(Arme::class)->find($donnees['arme_id']);
-            $armure = $this->getDoctrine()->getRepository(Armure::class)->find($donnees['armure_id']);
-            $potion = $this->getDoctrine()->getRepository(Potion::class)->find($donnees['potion_id']);
-            $ennemi->setArme($arme);
-            $ennemi->setArmure($armure);
-            $ennemi->setPotion($potion);
-            $entityManager->persist($ennemi);
-            $entityManager->flush();
-            return $this->redirectToRoute('INSERE TA ROUTE ICI');
-        }
-        return $this->render('INSERE TA PAGE ICI', ['donnees' => $donnees, 'erreurs' => $erreurs, 'armes' => $armes, 'armures' => $armures, 'potions' => $potions]);
-    }
+
+
+
+
+
+
+
 
     public function validatorEnnemi($donnees)
     {

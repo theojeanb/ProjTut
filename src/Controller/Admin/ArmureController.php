@@ -47,7 +47,7 @@ class ArmureController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $armure = $this->getDoctrine()->getRepository(Armure::class)->find($id);
-        if (!$armure) throw $this->createNotFoundException('No weapon found for id '.$id);
+        if (!$armure) throw $this->createNotFoundException('No armor found for id '.$id);
         $form = $this->createForm(ArmureType::class, $armure, [
             'action' => $this->generateUrl('armure_edit',['id'=>$id]),
             'method' => 'PUT',]);
