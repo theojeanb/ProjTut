@@ -2,6 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Potion;
+use App\Form\PotionType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,36 +25,40 @@ class PotionController extends AbstractController
      * @Route("/potion/add", name="potion_add", methods={"GET", "POST"})
      */
     public function addPotion(Request $request) {
-        $entityManager = $this->getDoctrine()->getManager();
-
-        if($request->getMethod() == 'GET'){
-            return $this->render('INSERE TA PAGE ICI');
-        }
-
-        $donnees['nom']=$_POST['nom'];
-        $donnees['effet']=$_POST['effet'];
-        $donnees['valeur']=$_POST['valeur'];
-        $donnees['rarete']=$_POST['rarete'];
-        $donnees['estEquipe']=false; // Valeur uniquement modifiée en jeu
-        $donnees['sprite']=$_POST['sprite'];
-
-        $erreurs=$this->validatorPotion($donnees);
         $potion = new Potion();
-        if(empty($erreurs))
+        $form = $this->createForm(PotionType::class, $potion);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
         {
-            $potion->setNom($donnees['nom']);
-            $potion->setEffet($donnees['effet']);
-            $potion->setValeur($donnees['valeur']);
-            $potion->setRarete($donnees['rarete']);
-            $potion->setEstEquipe($donnees['estEquipe']);
-            if($donnees['sprite'] != "")
-                $potion->setSprite($donnees['sprite']);
+            $this->getDoctrine()->getManager()->persist($potion);
+            $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('notice', 'Potion ' . $potion->getNom() . ' ajoutée');
+            return $this->redirectToRoute('potion_index');
+        }
+        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Créer','element' => 'une Potion']);
+    }
+
+
+    /**
+     * @Route("/potion/edit/{id}", name="potion_edit", methods={"GET","PUT"})
+     */
+    public function editPotion(Request $request, $id=null, SerializerInterface $serializer)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $potion = $this->getDoctrine()->getRepository(Potion::class)->find($id);
+        if (!$potion) throw $this->createNotFoundException('No enemy found for id '.$id);
+        $form = $this->createForm(PotionType::class, $potion, [
+            'action' => $this->generateUrl('potion_edit',['id'=>$id]),
+            'method' => 'PUT',]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($potion);
             $entityManager->flush();
-            return $this->redirectToRoute('INSERE TA ROUTE ICI');
+            $this->addFlash('notice', 'Potion ' . $potion->getNom() . ' modifiée');
+            return $this->redirectToRoute('potion_index');
         }
-
-        return $this->render('INSERE TA PAGE ICI', ['donnees'=>$donnees,'erreurs'=>$erreurs]);
+        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Modifier','element' => 'une Potion']);
     }
 
     /**
@@ -67,45 +72,14 @@ class PotionController extends AbstractController
 
         $entityManager->remove($potion);
         $entityManager->flush();
+        $this->addFlash('notice', 'Potion ' . $potion->getNom() . ' supprimée');
         return $this->redirectToRoute('INSERE TA ROUTE ICI');
     }
 
-    /**
-     * @Route("/potion/edit/{id}", name="potion_edit", methods={"GET"})
-     * @Route("/potion/edit", name="potion_edit_valid", methods={"PUT"})
-     */
-    public function editPotion(Request $request, $id=null, SerializerInterface $serializer)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        if($request->getMethod() == 'GET') {
-            $potion = $entityManager->getRepository(Potion::class)->find($id);
-            if (!$potion) throw $this->createNotFoundException('No potion found for id '.$id);
-            return $this->render('INSERE TA PAGE ICI', ['donnees' => $potion]);
-        }
 
-        $donnees['nom']=$_POST['nom'];
-        $donnees['effet']=$_POST['effet'];
-        $donnees['valeur']=$_POST['valeur'];
-        $donnees['rarete']=$_POST['rarete'];
-        $donnees['estEquipe']=false; // Valeur uniquement modifiée en jeu
-        $donnees['sprite']=$_POST['sprite'];
 
-        $erreurs=$this->validatorPotion($donnees);
-        if (empty($erreurs)) {
-            $potion = $entityManager->getRepository(Potion::class)->find($donnees['id']);
-            if (!$potion) throw $this->createNotFoundException('No potion found for id '.$donnees['id']);
-            $potion->setNom($donnees['nom']);
-            $potion->setEffet($donnees['effet']);
-            $potion->setValeur($donnees['valeur']);
-            $potion->setRarete($donnees['rarete']);
-            if($donnees['sprite'] != "")
-                $potion->setSprite($donnees['sprite']);
-            $entityManager->persist($potion);
-            $entityManager->flush();
-            return $this->redirectToRoute('INSERE TA ROUTE ICI');
-        }
-        return $this->render('INSERE TA PAGE ICI', ['donnees' => $donnees, 'erreurs' => $erreurs]);
-    }
+
+
 
     public function validatorPotion($donnees)
     {
