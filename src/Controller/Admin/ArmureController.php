@@ -17,8 +17,7 @@ class ArmureController extends AbstractController
     public function showArmures(Request $request)
     {
         $armures = $this->getDoctrine()->getRepository(Armure::class)->findAll();
-
-        return $this->render('INSERE TA PAGE ICI', ['armures' => $armures]);
+        return $this->render('admin/bdd/armures/showArmures.html.twig', ['armures' => $armures]);
     }
 
     /**

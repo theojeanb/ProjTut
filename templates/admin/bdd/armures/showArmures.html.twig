@@ -1,0 +1,46 @@
+{% extends "admin/layout.html.twig" %}
+{% block body %}
+    <div class="container">
+        <br>
+        <h1>Armures</h1>
+        <br>
+        <div class="row">
+            <a href="{{ path('armure_add') }}" class="btn btn-primary m-1 p-2"> Ajouter une armure </a>
+        </div>
+        <br>
+        <div>
+            <table class="table">
+                <caption>Récapitulatif des armures</caption>
+                <thead class="thead-dark">
+                <tr><th>nom</th><th>id</th><th>type</th><th>defense</th><th>rareté</th><th>nom sprite</th><th>sprite</th>
+                    <th>opération</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if armures is not empty %}
+                    {% for armure in armures  %}
+                        <tr>
+                            <td>{{armure.nom}}</td>
+                            <td>{{armure.id}}</td><td>{{armure.type.nom | default('pas de type')}}</td><td>{{armure.defense}}</td><td>{{armure.rarete}}</td><td>
+                                {{armure.sprite}}</td><td>
+                                <img style="width:40px;height:40px" src="{{asset('images/')}}{{armure.sprite}}" alt="image du produit" >
+                            </td>
+                            <td>
+                                <a href="{{ path('armure_edit', {id: armure.id}) }}" class="btn btn-primary">modifier</a>
+                                <form action="{{ path('armure_delete') }}" method="POST" style="display:inline">
+                                    <input type="hidden" name="token" value="{{ csrf_token('armure_delete') }}">
+                                    <input type="hidden" name="id" value="{{ armure.id }}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-warning">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr class="table-warning"><td>Pas d'armures</td></tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

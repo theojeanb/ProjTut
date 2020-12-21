@@ -17,7 +17,7 @@ class PotionController extends AbstractController
     {
         $potions = $this->getDoctrine()->getRepository(Potion::class)->findAll();
 
-        return $this->render('INSERE TA PAGE ICI', ['potions' => $potions]);
+        return $this->render('admin/bdd/potions/showPotions.html.twig', ['potions' => $potions]);
     }
 
     /**

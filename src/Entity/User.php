@@ -12,6 +12,16 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
+ *  * @UniqueEntity(
+ * fields={"username"},
+ * errorPath="username",
+ * message="username already taken")
+ * )
+ *  * @UniqueEntity(
+ * fields={"email"},
+ * errorPath="email",
+ * message="email already taken")
+ * )
  */
 class User implements UserInterface
 {

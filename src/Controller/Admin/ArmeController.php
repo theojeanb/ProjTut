@@ -17,7 +17,7 @@ class ArmeController extends AbstractController
     {
         $armes = $this->getDoctrine()->getRepository(Arme::class)->findAll();
 
-        return $this->render('INSERE TA PAGE ICI', ['armes' => $armes]);
+        return $this->render('admin/bdd/armes/showArmes.html.twig', ['armes' => $armes]);
     }
 
     /**

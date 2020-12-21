@@ -11,13 +11,13 @@
 <body>
 
 
-{#{% if is_granted('ROLE_ADMIN') %}
-    {% include "_nav_home.html.twig" %}
+{% if is_granted('ROLE_ADMIN') %}
+    {% include "admin/_nav.html.twig" %}
 {% elseif  is_granted('ROLE_CLIENT') %}
     {% include "client/_nav_client.html.twig" %}
-{% else %}#}
+{% else %}
     {% include "_nav_home.html.twig" %}
-{# {% endif%}#}
+ {% endif %}
 {% for message in app.flashes('notice') %}
     <div class="alert alert-info">
         <strong>Info!</strong> {{ message }}

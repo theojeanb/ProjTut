@@ -20,7 +20,7 @@ class EnnemiController extends AbstractController
     {
         $ennemis = $this->getDoctrine()->getRepository(Ennemi::class)->findAll();
 
-        return $this->render('INSERE TA PAGE ICI', ['ennemis' => $ennemis]);
+        return $this->render('admin/bdd/ennemis/showEnnemis.html.twig', ['ennemis' => $ennemis]);
     }
 
     /**

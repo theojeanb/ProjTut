@@ -1,0 +1,27 @@
+{% extends "admin/layout.html.twig" %}
+{% block body %}
+    <div class="container">
+        <br>
+        <h1>Types</h1>
+        <br>
+        <div>
+            <table class="table">
+                <caption>Récapitulatif des types</caption>
+                <thead class="thead-light">
+                    <tr><th>nom</th><th>id</th></tr>
+                </thead>
+                <tbody>
+                {% if types is not empty %}
+                    {% for type in types  %}
+                        <tr>
+                            <td>{{type.nom}}</td><td>{{type.id}}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr class="table-warning"><td>Pas de types</td></tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

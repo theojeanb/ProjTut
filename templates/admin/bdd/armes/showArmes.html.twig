@@ -1,0 +1,46 @@
+{% extends "admin/layout.html.twig" %}
+{% block body %}
+    <div class="container">
+        <br>
+        <h1>Armes</h1>
+        <br>
+        <div class="row">
+            <a href="{{ path('arme_add') }}" class="btn btn-primary m-1 p-2"> Ajouter une arme </a>
+        </div>
+        <br>
+        <div>
+            <table class="table">
+                <caption>Récapitulatif des armes</caption>
+                <thead class="thead-dark">
+                <tr><th>nom</th><th>id</th><th>degats</th><th>rareté</th><th>nom sprite</th><th>sprite</th>
+                    <th>opération</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if armes is not empty %}
+                    {% for arme in armes  %}
+                        <tr>
+                            <td>{{arme.nom}}</td>
+                            <td>{{arme.id}}</td><td>{{arme.degats}}</td><td>{{arme.rarete}}</td><td>
+                                {{arme.sprite}}</td><td>
+                                <img style="width:40px;height:40px" src="{{asset('images/')}}{{arme.sprite}}" alt="image du produit" >
+                            </td>
+                            <td>
+                                <a href="{{ path('arme_edit', {id: arme.id}) }}" class="btn btn-primary">modifier</a>
+                                <form action="{{ path('arme_delete') }}" method="POST" style="display:inline">
+                                    <input type="hidden" name="token" value="{{ csrf_token('arme_delete') }}">
+                                    <input type="hidden" name="id" value="{{ arme.id }}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-warning">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr class="table-warning"><td>Pas d'armes</td></tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
