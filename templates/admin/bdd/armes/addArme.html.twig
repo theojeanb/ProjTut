@@ -1,0 +1,6 @@
+{% extends "admin/layout.html.twig" %}
+{% block body %}
+    <div class="container">
+        {{ include('admin/bdd/armes/_formArme.html.twig', {action: 'Créer'}) }}
+    </div>
+{% endblock %}

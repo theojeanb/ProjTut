@@ -10,14 +10,17 @@
 </head>
 <body>
 {% include('admin/_nav.html.twig') %}
-{% block body %}
-    <h2 style="color:blue">layout.html.twig</h2>
-{% endblock %}
 {% for message in app.flashes('notice') %}
     <div class="alert alert-info">
         <strong>Info!</strong> {{ message }}
     </div>
 {% endfor %}
+<div class="container">
+    {% block body %}
+        <h2 style="color:blue">layout.html.twig</h2>
+        Site du jeu Projet Tuteuré
+    {% endblock %}
+</div><!-- /.container -->
 {% block javascripts %}
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

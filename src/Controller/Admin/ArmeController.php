@@ -2,9 +2,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Arme;
+use App\Form\ArmeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class ArmeController extends AbstractController
@@ -24,34 +26,40 @@ class ArmeController extends AbstractController
      * @Route("/arme/add", name="arme_add", methods={"GET", "POST"})
      */
     public function addArme(Request $request) {
-        $entityManager = $this->getDoctrine()->getManager();
-
-        if($request->getMethod() == 'GET'){
-            return $this->render('INSERE TA PAGE ICI');
-        }
-
-        $donnees['nom']=$_POST['nom'];
-        $donnees['degats']=$_POST['degats'];
-        $donnees['rarete']=$_POST['rarete'];
-        $donnees['estEquipe']=false; // Valeur uniquement modifiée en jeu
-        $donnees['sprite']=$_POST['sprite'];
-
-        $erreurs=$this->validatorArme($donnees);
         $arme = new Arme();
-        if(empty($erreurs))
+        $form = $this->createForm(ArmeType::class, $arme);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
         {
-            $arme->setNom($donnees['nom']);
-            $arme->setDegats($donnees['degats']);
-            $arme->setRarete($donnees['rarete']);
-            $arme->setEstEquipe($donnees['estEquipe']);
-            if($donnees['sprite'] != "")
-                $arme->setSprite($donnees['sprite']);
+            $arme->setEstEquipe(true);
+            $this->getDoctrine()->getManager()->persist($arme);
+            $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('notice', 'Arme ' . $arme->getNom() . ' ajoutée');
+            return $this->redirectToRoute('arme_index');
+        }
+        return $this->render('admin/bdd/armes/addArme.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/arme/edit/{id}", name="arme_edit", methods={"GET","PUT"})
+     */
+    public function editArme(Request $request, $id=null, SerializerInterface $serializer)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $arme = $this->getDoctrine()->getRepository(Arme::class)->find($id);
+        if (!$arme) throw $this->createNotFoundException('No weapon found for id '.$id);
+        $form = $this->createForm(ArmeType::class, $arme, [
+            'action' => $this->generateUrl('arme_edit',['id'=>$id]),
+            'method' => 'PUT',]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($arme);
             $entityManager->flush();
-            return $this->redirectToRoute('INSERE TA ROUTE ICI');
+            $this->addFlash('notice', 'Arme ' . $arme->getNom() . ' modifiée');
+            return $this->redirectToRoute('arme_index');
         }
-
-        return $this->render('INSERE TA PAGE ICI', ['donnees'=>$donnees,'erreurs'=>$erreurs]);
+        return $this->render('admin/bdd/armes/editArme.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -62,65 +70,20 @@ class ArmeController extends AbstractController
         $id= $request->request->get('id');
         $arme = $entityManager->getRepository(Arme::class)->find($id);
         if (!$arme)  throw $this->createNotFoundException('No weapon found for id '.$id);
-
         $entityManager->remove($arme);
         $entityManager->flush();
-        return $this->redirectToRoute('INSERE TA ROUTE ICI');
-    }
-
-    /**
-     * @Route("/arme/edit/{id}", name="arme_edit", methods={"GET"})
-     * @Route("/arme/edit", name="arme_edit_valid", methods={"PUT"})
-     */
-    public function editArme(Request $request, $id=null, SerializerInterface $serializer)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        if($request->getMethod() == 'GET') {
-            $arme = $entityManager->getRepository(Arme::class)->find($id);
-            if (!$arme) throw $this->createNotFoundException('No weapon found for id '.$id);
-            return $this->render('INSERE TA PAGE ICI', ['donnees' => $arme]);
-        }
-
-        $donnees['nom']=$_POST['nom'];
-        $donnees['degats']=$_POST['degats'];
-        $donnees['rarete']=$_POST['rarete'];
-        $donnees['estEquipe']=false; // Valeur uniquement modifiée en jeu
-        $donnees['sprite']=$_POST['sprite'];
-
-        $erreurs=$this->validatorArme($donnees);
-        if (empty($erreurs)) {
-            $arme = $entityManager->getRepository(Arme::class)->find($donnees['id']);
-            if (!$arme) throw $this->createNotFoundException('No weapon found for id '.$donnees['id']);
-            $arme->setNom($donnees['nom']);
-            $arme->setDegats($donnees['degats']);
-            $arme->setRarete($donnees['rarete']);
-            if($donnees['sprite'] != "")
-                $arme->setSprite($donnees['sprite']);
-            $entityManager->persist($arme);
-            $entityManager->flush();
-            return $this->redirectToRoute('INSERE TA ROUTE ICI');
-        }
-        return $this->render('INSERE TA PAGE ICI', ['donnees' => $donnees, 'erreurs' => $erreurs]);
+        $this->addFlash('notice', 'Arme ' . $arme->getNom() . ' supprimée');
+        return $this->redirectToRoute('arme_index');
     }
 
     public function validatorArme($donnees)
     {
         $erreurs=array();
-
-        if (! preg_match("/^[A-Za-z ]{1,}/",$donnees['nom'])) $erreurs['nom']='nom composé de 2 lettres minimum';
-
-        if(! is_numeric($donnees['degats'])) $erreurs['degats'] = 'saisir une valeur numérique';
-        else if ($donnees['degats'] < 0) $erreurs['degats'] = "Les dégâts ne doivent pas être négatifs";
-
-        if(! is_numeric($donnees['rarete'])) $erreurs['rarete'] = 'saisir une valeur numérique';
-        else if ($donnees['rarete'] < 0) $erreurs['rarete'] = "La rareté ne doit pas être négative";
-
         if (! preg_match("/[A-Za-z0-9]{2,}.(jpeg|jpg|png)/",$donnees['sprite']))
             $erreurs['sprite']='nom de fichier incorrect (extension jpeg , jpg ou png)';
 
         return $erreurs;
     }
-
     /**
      * @Route("/arme/addUser/{id}", name="arme_addUser", methods={"POST"})
      */
