@@ -3,6 +3,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Armure;
 use App\Entity\Type;
+use App\Form\ArmureType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,44 +18,48 @@ class ArmureController extends AbstractController
     public function showArmures(Request $request)
     {
         $armures = $this->getDoctrine()->getRepository(Armure::class)->findAll();
-        return $this->render('admin/bdd/armures/showArmures.html.twig', ['armures' => $armures]);
+        return $this->render('admin/bdd/showArmures.html.twig', ['armures' => $armures]);
     }
 
     /**
      * @Route("/armure/add", name="armure_add", methods={"GET", "POST"})
      */
     public function addArmure(Request $request) {
-        $entityManager = $this->getDoctrine()->getManager();
-        $types= $this->getDoctrine()->getRepository(Type::class)->findAll();
-
-        if($request->getMethod() == 'GET'){
-            return $this->render('INSERE TA PAGE ICI', ['types'=> $types]);
-        }
-        $donnees['nom']=$_POST['nom'];
-        $donnees['defense']=$_POST['defense'];
-        $donnees['rarete']=$_POST['rarete'];
-        $donnees['estEquipe']=false; // Valeur uniquement modifiée en jeu
-        $donnees['sprite']=$_POST['sprite'];
-        $donnees['type_id'] = $_POST['type_id'];
-
-        $erreurs=$this->validatorArmure($donnees);
         $armure = new Armure();
-        if(empty($erreurs))
+        $form = $this->createForm(ArmureType::class, $armure);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
         {
-            $armure->setNom($donnees['nom']);
-            $armure->setDefense($donnees['defense']);
-            $armure->setRarete($donnees['rarete']);
-            $armure->setEstEquipe($donnees['estEquipe']);
-            if($donnees['sprite'] != "")
-                $armure->setSprite($donnees['sprite']);
-            $type = $this->getDoctrine()->getRepository(Type::class)->find($donnees['type_id']);
-            $armure->setType($type);
+            $armure->setEstEquipe(true);
+            $this->getDoctrine()->getManager()->persist($armure);
+            $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('notice', 'Armure ' . $armure->getNom() . ' ajoutée');
+            return $this->redirectToRoute('armure_index');
+        }
+        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Créer','element' => 'une Armure']);
+    }
+
+
+    /**
+     * @Route("/armure/edit/{id}", name="armure_edit", methods={"GET","PUT"})
+     */
+    public function editArmure(Request $request, $id=null, SerializerInterface $serializer)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $armure = $this->getDoctrine()->getRepository(Armure::class)->find($id);
+        if (!$armure) throw $this->createNotFoundException('No weapon found for id '.$id);
+        $form = $this->createForm(ArmureType::class, $armure, [
+            'action' => $this->generateUrl('armure_edit',['id'=>$id]),
+            'method' => 'PUT',]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($armure);
             $entityManager->flush();
-            return $this->redirectToRoute('INSERE TA ROUTE ICI');
+            $this->addFlash('notice', 'Armure ' . $armure->getNom() . ' modifiée');
+            return $this->redirectToRoute('armure_index');
         }
-
-        return $this->render('INSERE TA PAGE ICI', ['donnees'=>$donnees,'erreurs'=>$erreurs, 'types'=> $types]);
+        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Modifier','element' => 'une Armure']);
     }
 
     /**
@@ -68,48 +73,13 @@ class ArmureController extends AbstractController
 
         $entityManager->remove($armure);
         $entityManager->flush();
-        return $this->redirectToRoute('INSERE TA ROUTE ICI');
+        $this->addFlash('notice', 'Armure ' . $armure->getNom() . ' supprimée');
+        return $this->redirectToRoute('armure_index');
     }
 
-    /**
-     * @Route("/armure/edit/{id}", name="armure_edit", methods={"GET"})
-     * @Route("/armure/edit", name="armure_edit_valid", methods={"PUT"})
-     */
-    public function editArmure(Request $request, $id=null, SerializerInterface $serializer)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $types= $this->getDoctrine()->getRepository(Type::class)->findAll();
-        if($request->getMethod() == 'GET') {
-            $armure = $entityManager->getRepository(Armure::class)->find($id);
-            if (!$armure) throw $this->createNotFoundException('No armor found for id '.$id);
-            return $this->render('INSERE TA PAGE ICI', ['donnees' => $armure, 'types'=> $types]);
-        }
 
-        $donnees['nom']=$_POST['nom'];
-        $donnees['defense']=$_POST['defense'];
-        $donnees['rarete']=$_POST['rarete'];
-        $donnees['estEquipe']=false; // Valeur uniquement modifiée en jeu
-        $donnees['sprite']=$_POST['sprite'];
-        $donnees['type_id'] = $_POST['type_id'];
 
-        $erreurs=$this->validatorArmure($donnees);
-        if (empty($erreurs)) {
-            $armure = $entityManager->getRepository(Armure::class)->find($donnees['id']);
-            if (!$armure) throw $this->createNotFoundException('No armor found for id '.$donnees['id']);
-            $armure->setNom($donnees['nom']);
-            $armure->setDefense($donnees['defense']);
-            $armure->setRarete($donnees['rarete']);
-            if($donnees['sprite'] != "")
-                $armure->setSprite($donnees['sprite']);
-            $type = $this->getDoctrine()->getRepository(Type::class)->find($donnees['type_id']);
-            $armure->setType($type);
-            $entityManager->persist($armure);
-            $entityManager->flush();
-            return $this->redirectToRoute('INSERE TA ROUTE ICI');
-        }
-        return $this->render('INSERE TA PAGE ICI', ['donnees' => $donnees, 'erreurs' => $erreurs, 'types'=> $types]);
-    }
-
+    //Fonctions à supprimer :
     public function validatorArmure($donnees)
     {
         $erreurs=array();

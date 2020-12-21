@@ -16,7 +16,7 @@ class TypeController extends AbstractController
     {
         $types = $this->getDoctrine()->getRepository(Type::class)->findAll();
 
-        return $this->render('admin/bdd/types/showTypes.html.twig', ['types' => $types]);
+        return $this->render('admin/bdd/showTypes.html.twig', ['types' => $types]);
     }
 
 }

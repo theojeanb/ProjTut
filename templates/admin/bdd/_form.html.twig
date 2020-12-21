@@ -1,0 +1,12 @@
+{% extends "admin/layout.html.twig" %}
+{% block body %}
+        <div class="container">
+                <br><h1>{{ action }} {{ element }}</h1><br>
+                {% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'col-lg-5' }}) }}
+                        {{ form_widget(form) }}
+                <button type="submit" class="btn btn-primary">{{ action|default('Valider') }}</button>
+                {{ form_end(form) }}
+        </div>
+{% endblock %}
