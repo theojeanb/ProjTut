@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Arme;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

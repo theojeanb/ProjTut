@@ -21,7 +21,7 @@ class UserController extends AbstractController
      * @Route("/home", name="home", methods={"GET"})
      */
     public function postLogin(Request $request) {
-        return $this->render('INSERE TA PAGE ICI');
+        return $this->render('accueil.html.twig');
     }
 
     /**

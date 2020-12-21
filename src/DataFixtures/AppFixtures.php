@@ -2,13 +2,15 @@
 
 namespace App\DataFixtures;
 
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
+
 use App\Entity\Arme;
 use App\Entity\Armure;
 use App\Entity\Ennemi;
 use App\Entity\Potion;
 use App\Entity\Type;
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
+
 use App\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -42,7 +44,6 @@ class AppFixtures extends Fixture
         foreach ($types as $type) {
             $type_new = new Type();
             $type_new->setNom($type['nom']);
-            echo $type_new . "\n";
             $manager->persist($type_new);
             $manager->flush();
         }
@@ -62,7 +63,6 @@ class AppFixtures extends Fixture
             $arme_new->setDegats($arme['degats']);
             $arme_new->setRarete($arme['rarete']);
             $arme_new->setEstEquipe($arme['estEquipe']);
-            echo $arme_new . "\n";
             $manager->persist($arme_new);
             $manager->flush();
         }
@@ -84,7 +84,6 @@ class AppFixtures extends Fixture
             $armure_new->setEstEquipe($armure['estEquipe']);
             $type = $manager->getRepository(Type::class)->findOneBy(["nom" => $armure['type']]);
             $armure_new->setType($type);
-            echo $armure_new . "\n";
             $manager->persist($armure_new);
             $manager->flush();
         }
@@ -103,7 +102,6 @@ class AppFixtures extends Fixture
             $ennemi_new->setNom($ennemi['nom']);
             $ennemi_new->setDegats($ennemi['degats']);
             $ennemi_new->setPv($ennemi['pv']);
-            echo $ennemi_new . "\n";
             $manager->persist($ennemi_new);
             $manager->flush();
         }
@@ -124,7 +122,6 @@ class AppFixtures extends Fixture
             $potion_new->setValeur($potion['valeur']);
             $potion_new->setRarete($potion['rarete']);
             $potion_new->setEstEquipe($potion['estEquipe']);
-            echo $potion_new . "\n";
             $manager->persist($potion_new);
             $manager->flush();
         }
@@ -139,7 +136,8 @@ class AppFixtures extends Fixture
         $admin = new User();
         $password = $this->passwordEncoder->encodePassword($admin, 'admin');
         $admin->setPassword($password);
-        $admin->setRoles(['ROLE_ADMIN'])->setEmail('admin');
+        $admin->setRoles(['ROLE_ADMIN'])->setUsername('admin');
+        $admin->setEmail('admin');
         $admin->setAttaque(10);
         $admin->setDefense(10);
         $admin->setArgent(0);
@@ -148,12 +146,13 @@ class AppFixtures extends Fixture
         $admin->setNiveau(1);
         $admin->setExperience(0);
         $manager->persist($admin);
-        echo $admin . "\n";
+
 
         $user1 = new User();
         $password = $this->passwordEncoder->encodePassword($user1, 'user');
         $user1->setPassword($password);
-        $user1->setRoles(['ROLE_USER'])->setEmail('user');
+        $user1->setRoles(['ROLE_USER'])->setUsername('user');
+        $user1->setEmail('user');
         $user1->setAttaque(10);
         $user1->setDefense(10);
         $user1->setArgent(0);
@@ -162,7 +161,7 @@ class AppFixtures extends Fixture
         $user1->setNiveau(1);
         $user1->setExperience(0);
         $manager->persist($user1);
-        echo $user1 . "\n";
+
 
         $manager->flush();
     }

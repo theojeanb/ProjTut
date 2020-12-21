@@ -1,0 +1,16 @@
+{% extends "client/layout_client.html.twig" %}
+{% block body %}
+    <div class="container">
+        <div class="bg-light p-3 mt-4">
+            <h1>Mes coordonnées</h1>
+        </div>
+            <h2>Username : {{ coords.username }}</h2>
+            <div>Mail : {{ coords.email }}<br>-<br>Nom : {{ coords.nom }}<br>-<br>Adresse :{{ coords.adresse }}, {{ coords.codePostal }} {{ coords.ville }}</div>
+        <a href="{{ path('user.edit', {id: coords.id})}}" class="btn btn-success float-right">
+            Modifier les Infos
+        </a>
+        <a href="{{ path('user.changePassword', {id: coords.id})}}" class="btn btn-success float-right">
+            Modifier le Mot de passe
+        </a>
+    </div>
+{% endblock %}
