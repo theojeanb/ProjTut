@@ -30,6 +30,7 @@ class PotionController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
+            $potion->setEstEquipe(true);
             $this->getDoctrine()->getManager()->persist($potion);
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notice', 'Potion ' . $potion->getNom() . ' ajoutée');
@@ -73,14 +74,14 @@ class PotionController extends AbstractController
         $entityManager->remove($potion);
         $entityManager->flush();
         $this->addFlash('notice', 'Potion ' . $potion->getNom() . ' supprimée');
-        return $this->redirectToRoute('INSERE TA ROUTE ICI');
+        return $this->redirectToRoute('potion_index');
     }
 
 
 
 
 
-
+    //Fonctions à supprimer :
     public function validatorPotion($donnees)
     {
         $erreurs=array();
