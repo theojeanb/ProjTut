@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1948fdae-9a2c-4ecf-9b67-45d115ab9a37" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/PotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/PotionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/IndexController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_nav_home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_nav_home.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/_nav_client.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/_nav_client.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/infos_client.html.twig" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,11 +156,11 @@
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd\armes" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\public\download_src" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Security" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Controller" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Controller\Admin" />
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Controller\Admin\DatabaseControllers" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -184,7 +188,7 @@
       <updated>1608392814487</updated>
       <workItem from="1608392815649" duration="16163000" />
       <workItem from="1608557083342" duration="4365000" />
-      <workItem from="1608562062219" duration="18658000" />
+      <workItem from="1608562062219" duration="20294000" />
     </task>
     <task id="LOCAL-00001" summary="Début Affichage (login non fonctionnel)">
       <created>1608565457400</created>
@@ -235,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608590277019</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="forms terminés et testés">
+      <created>1608590522879</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1608590522879</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,29 +271,35 @@
     <MESSAGE value="Form Armures + remaniement pages html" />
     <MESSAGE value="Form ennemi" />
     <MESSAGE value="Form potion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Form potion" />
+    <MESSAGE value="forms terminés et testés" />
+    <option name="LAST_COMMIT_MESSAGE" value="forms terminés et testés" />
   </component>
   <component name="WindowStateProjectService">
     <state x="518" y="221" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1608587579025">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="518" y="221" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1608587579025" />
-    <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1608590219106">
+    <state x="479" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1608592114281">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1608590219106" />
+    <state x="479" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1608592114281" />
+    <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1608590966647">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1608590966647" />
     <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608413162617" />
-    <state x="393" y="12" key="CommitChangelistDialog2" timestamp="1608590491485">
+    <state x="393" y="12" key="CommitChangelistDialog2" timestamp="1608590522162">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="393" y="12" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1608590491485" />
+    <state x="393" y="12" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1608590522162" />
     <state x="549" y="173" key="FileChooserDialogImpl" timestamp="1608561317691">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="173" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1608561317691" />
-    <state x="730" y="243" key="NewPhpClassDialog" timestamp="1608412262558">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="584" y="195" key="NewPhpClassDialog" timestamp="1608590928962">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state x="584" y="195" key="NewPhpClassDialog/0.0.1536.834@0.0.1536.834" timestamp="1608590928962" />
     <state x="730" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608412262558" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1608409425651">
       <screen x="0" y="0" width="1920" height="1040" />
