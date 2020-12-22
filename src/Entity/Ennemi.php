@@ -6,6 +6,7 @@ use App\Repository\EnnemiRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EnnemiRepository::class)
@@ -20,22 +21,31 @@ class Ennemi
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\Regex(pattern="/^[A-Za-z ]{1,}/")
+     * @Assert\Length(min = 2,max = 50,message = "Nom composé de 2 à 50 lettres")
      */
     private $nom;
 
     /**
+     * @Assert\PositiveOrZero(message = "Les dégâts ne doivent pas être négatifs")
+     * @Assert\NotBlank(message = "Saisir une valeur numérique")
      * @ORM\Column(type="integer")
      */
     private $degats;
 
     /**
+     * @Assert\PositiveOrZero(message = "Les PV ne doivent pas être négatifs")
+     * @Assert\NotBlank(message = "Saisir une valeur numérique")
      * @ORM\Column(type="integer")
      */
     private $pv;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Regex(pattern="/[A-Za-z0-9]{2,}.(jpeg|jpg|png)/" message="Nom de fichier incorrect (extension jpeg, jpg ou png)")
      */
     private $sprite;
 

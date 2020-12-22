@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -34,11 +35,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Length(min = 2,max = 50,message = "Username composé de 2 à 50 caractères")
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Length(min = 2,max = 50,message = "Email composé de 2 à 50 caractères")
      */
     private $email;
 
@@ -69,36 +72,50 @@ class User implements UserInterface
     private $potions;
 
     /**
+     * @Assert\PositiveOrZero(message = "L'attaque ne doit pas être négative")
+     * @Assert\NotBlank(message = "Saisir une valeur numérique")
      * @ORM\Column(type="integer")
      */
     private $attaque;
 
     /**
+     * @Assert\PositiveOrZero(message = "La défense ne doit pas être négative")
+     * @Assert\NotBlank(message = "Saisir une valeur numérique")
      * @ORM\Column(type="integer")
      */
     private $defense;
 
     /**
+     * @Assert\PositiveOrZero(message = "L'argent ne doit pas être négatif")
+     * @Assert\NotBlank(message = "Saisir une valeur numérique")
      * @ORM\Column(type="integer")
      */
     private $argent;
 
     /**
+     * @Assert\Positive(message = "Les PV Max doivent être positifs")
+     * @Assert\NotBlank(message = "Saisir une valeur numérique")
      * @ORM\Column(type="integer")
      */
     private $pvMax;
 
     /**
+     * @Assert\Positive(message = "Le niveau doit être positif")
+     * @Assert\NotBlank(message = "Saisir une valeur numérique")
      * @ORM\Column(type="integer")
      */
     private $niveau;
 
     /**
+     * @Assert\PositiveOrZero(message = "L'expérience ne doit pas être négative")
+     * @Assert\NotBlank(message = "Saisir une valeur numérique")
      * @ORM\Column(type="integer")
      */
     private $experience;
 
     /**
+     * @Assert\Positive(message = "Les PV doivent être positifs")
+     * @Assert\NotBlank(message = "Saisir une valeur numérique")
      * @ORM\Column(type="integer")
      */
     private $pv;

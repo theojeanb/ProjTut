@@ -74,28 +74,4 @@ class ArmeController extends AbstractController
         $this->addFlash('notice', 'Arme ' . $arme->getNom() . ' supprimée');
         return $this->redirectToRoute('arme_index');
     }
-
-
-
-
-
-    //Fonctions à supprimer :
-    public function validatorArme($donnees)
-    {
-        //Tout ça se fait en Assert direct sur l'entité directement
-        $erreurs=array();
-
-        if (! preg_match("/^[A-Za-z ]{1,}/",$donnees['nom'])) $erreurs['nom']='nom composé de 2 lettres minimum';
-
-        if(! is_numeric($donnees['degats'])) $erreurs['degats'] = 'saisir une valeur numérique';
-        else if ($donnees['degats'] < 0) $erreurs['degats'] = "Les dégâts ne doivent pas être négatifs";
-
-        if(! is_numeric($donnees['rarete'])) $erreurs['rarete'] = 'saisir une valeur numérique';
-        else if ($donnees['rarete'] < 0) $erreurs['rarete'] = "La rareté ne doit pas être négative";
-
-        if (! preg_match("/[A-Za-z0-9]{2,}.(jpeg|jpg|png)/",$donnees['sprite']))
-            $erreurs['sprite']='nom de fichier incorrect (extension jpeg , jpg ou png)';
-
-        return $erreurs;
-    }
 }

@@ -76,30 +76,4 @@ class PotionController extends AbstractController
         $this->addFlash('notice', 'Potion ' . $potion->getNom() . ' supprimée');
         return $this->redirectToRoute('potion_index');
     }
-
-
-
-
-
-    //Fonctions à supprimer :
-    public function validatorPotion($donnees)
-    {
-        $erreurs=array();
-
-        if (! preg_match("/^[A-Za-z ]{1,}/",$donnees['nom'])) $erreurs['nom']='nom composé de 2 lettres minimum';
-
-        if (! preg_match("/^[A-Za-z ]{1,}/",$donnees['effet'])) $erreurs['effet']='nom composé de 2 lettres minimum';
-
-
-        if(! is_numeric($donnees['valeur'])) $erreurs['valeur'] = 'saisir une valeur numérique';
-        else if ($donnees['valeur'] < 0) $erreurs['valeur'] = "La valeur ne doit pas être négative";
-
-        if(! is_numeric($donnees['rarete'])) $erreurs['rarete'] = 'saisir une valeur numérique';
-        else if ($donnees['rarete'] < 0) $erreurs['rarete'] = "La rareté ne doit pas être négative";
-
-        if (! preg_match("/[A-Za-z0-9]{2,}.(jpeg|jpg|png)/",$donnees['sprite']))
-            $erreurs['sprite']='nom de fichier incorrect (extension jpeg , jpg ou png)';
-
-        return $erreurs;
-    }
 }

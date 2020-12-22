@@ -6,6 +6,7 @@ use App\Repository\ArmureRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArmureRepository::class)
@@ -20,16 +21,23 @@ class Armure
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\Regex(pattern="/^[A-Za-z ]{1,}/")
+     * @Assert\Length(min = 2,max = 50,message = "Nom composé de 2 à 50 lettres")
      */
     private $nom;
 
     /**
+     * @Assert\PositiveOrZero(message = "La défense ne doit pas être négative")
+     * @Assert\NotBlank(message = "Saisir une valeur numérique")
      * @ORM\Column(type="integer")
      */
     private $defense;
 
     /**
+     * @Assert\PositiveOrZero(message = "La rareté ne doit pas être négative")
+     * @Assert\NotBlank(message = "Saisir une valeur numérique")
      * @ORM\Column(type="integer")
      */
     private $rarete;
@@ -45,7 +53,9 @@ class Armure
     private $joueurs;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Regex(pattern="/[A-Za-z0-9]{2,}.(jpeg|jpg|png)/" message="Nom de fichier incorrect (extension jpeg, jpg ou png)")
      */
     private $sprite;
 
