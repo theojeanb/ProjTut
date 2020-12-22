@@ -52,17 +52,16 @@ class AppFixtures extends Fixture
     private function loadArmes(ObjectManager $manager)
     {
         $armes = [
-            ['id' => 1, 'nom' => 'Master Sword', 'degats' => 300, 'rarete' => 4, 'estEquipe' => false],
-            ['id' => 2, 'nom' => 'Masamune', 'degats' => 200, 'rarete' => 3, 'estEquipe' => false],
-            ['id' => 3, 'nom' => 'Buster Sword', 'degats' => 200, 'rarete' => 3, 'estEquipe' => false],
-            ['id' => 4, 'nom' => 'Monado', 'degats' => 100, 'rarete' => 2, 'estEquipe' => false]
+            ['id' => 1, 'nom' => 'Master Sword', 'degats' => 300, 'rarete' => 4],
+            ['id' => 2, 'nom' => 'Masamune', 'degats' => 200, 'rarete' => 3],
+            ['id' => 3, 'nom' => 'Buster Sword', 'degats' => 200, 'rarete' => 3],
+            ['id' => 4, 'nom' => 'Monado', 'degats' => 100, 'rarete' => 2]
         ];
         foreach ($armes as $arme) {
             $arme_new = new Arme();
             $arme_new->setNom($arme['nom']);
             $arme_new->setDegats($arme['degats']);
             $arme_new->setRarete($arme['rarete']);
-            $arme_new->setEstEquipe($arme['estEquipe']);
             $manager->persist($arme_new);
             $manager->flush();
         }
@@ -71,17 +70,16 @@ class AppFixtures extends Fixture
     private function loadArmures(ObjectManager $manager)
     {
         $armures = [
-            ['id' => 1, 'nom' => 'Thunder Helmet', 'defense' => 10, 'rarete' => 2, 'estEquipe' => false, 'type' => 'Casque'],
-            ['id' => 2, 'nom' => 'Magic Armor', 'defense' => 500, 'rarete' => 4, 'estEquipe' => false, 'type' => 'Plastron'],
-            ['id' => 3, 'nom' => 'SPEEEED', 'defense' => 50, 'rarete' => 3, 'estEquipe' => false, 'type' => 'Jambières'],
-            ['id' => 4, 'nom' => 'Crocs', 'defense' => 30, 'rarete' => 1, 'estEquipe' => false, 'type' => 'Chaussures']
+            ['id' => 1, 'nom' => 'Thunder Helmet', 'defense' => 10, 'rarete' => 2, 'type' => 'Casque'],
+            ['id' => 2, 'nom' => 'Magic Armor', 'defense' => 500, 'rarete' => 4, 'type' => 'Plastron'],
+            ['id' => 3, 'nom' => 'SPEEEED', 'defense' => 50, 'rarete' => 3, 'type' => 'Jambières'],
+            ['id' => 4, 'nom' => 'Crocs', 'defense' => 30, 'rarete' => 1, 'type' => 'Chaussures']
         ];
         foreach ($armures as $armure) {
             $armure_new = new Armure();
             $armure_new->setNom($armure['nom']);
             $armure_new->setDefense($armure['defense']);
             $armure_new->setRarete($armure['rarete']);
-            $armure_new->setEstEquipe($armure['estEquipe']);
             $type = $manager->getRepository(Type::class)->findOneBy(["nom" => $armure['type']]);
             $armure_new->setType($type);
             $manager->persist($armure_new);
@@ -110,10 +108,10 @@ class AppFixtures extends Fixture
     private function loadPotions(ObjectManager $manager)
     {
         $potions = [
-            ['id' => 1, 'nom' => 'Potion de rapidité', 'effet' => 'SPEED', 'valeur' => 50, 'rarete' => 2, 'estEquipe' => false],
-            ['id' => 2, 'nom' => 'Potion de force', 'effet' => 'STRENGTH', 'valeur' => 50, 'rarete' => 2, 'estEquipe' => false],
-            ['id' => 3, 'nom' => 'Potion de régénération', 'effet' => 'HP', 'valeur' => 30, 'rarete' => 1, 'estEquipe' => false],
-            ['id' => 4, 'nom' => 'Potion de renforcement', 'effet' => 'HPMAX', 'valeur' => 5, 'rarete' => 3, 'estEquipe' => false]
+            ['id' => 1, 'nom' => 'Potion de rapidité', 'effet' => 'SPEED', 'valeur' => 50, 'rarete' => 2],
+            ['id' => 2, 'nom' => 'Potion de force', 'effet' => 'STRENGTH', 'valeur' => 50, 'rarete' => 2],
+            ['id' => 3, 'nom' => 'Potion de régénération', 'effet' => 'HP', 'valeur' => 30, 'rarete' => 1],
+            ['id' => 4, 'nom' => 'Potion de renforcement', 'effet' => 'HPMAX', 'valeur' => 5, 'rarete' => 3]
         ];
         foreach ($potions as $potion) {
             $potion_new = new Potion();
@@ -121,7 +119,6 @@ class AppFixtures extends Fixture
             $potion_new->setEffet($potion['effet']);
             $potion_new->setValeur($potion['valeur']);
             $potion_new->setRarete($potion['rarete']);
-            $potion_new->setEstEquipe($potion['estEquipe']);
             $manager->persist($potion_new);
             $manager->flush();
         }
@@ -131,7 +128,6 @@ class AppFixtures extends Fixture
 
     public function loadUsers(ObjectManager $manager)
     {
-        echo " \n\nles utilisateurs : \n";
 
         $admin = new User();
         $password = $this->passwordEncoder->encodePassword($admin, 'admin');

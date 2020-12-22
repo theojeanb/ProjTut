@@ -97,32 +97,4 @@ class ArmureController extends AbstractController
 
         return $erreurs;
     }
-
-    /**
-     * @Route("/armure/addUser/{id}", name="armure_addUser", methods={"POST"})
-     */
-    public function addArmureToUser(Request $request, $id=null) {
-        $entityManager = $this->getDoctrine()->getManager();
-        $armure = $entityManager->getRepository(Armure::class)->find($id);
-        if (!$armure)  throw $this->createNotFoundException('No armor found for id '.$id);
-        $user = $this->getUser();
-        $user->addArmure($armure);
-        $entityManager->flush();
-        return $this->redirectToRoute('INSERE TA ROUTE ICI');
-    }
-
-    /**
-     * @Route("/armure/removeUser", name="armure_removeUser", methods={"GET", "DELETE"})
-     */
-    public function removeArmureFromUser(Request $request) {
-        $entityManager = $this->getDoctrine()->getManager();
-        $id= $request->request->get('id');
-        $armure = $entityManager->getRepository(Armure::class)->find($id);
-        if (!$armure)  throw $this->createNotFoundException('No armor found for id '.$id);
-
-        $user = $this->getUser();
-        $user->removeArmure($armure);
-        $entityManager->flush();
-        return $this->redirectToRoute('INSERE ICI TA ROUTE');
-    }
 }

@@ -50,19 +50,20 @@ class Potion
     private $joueurs;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $estEquipe;
-
-    /**
      * @ORM\OneToMany(targetEntity=Ennemi::class, mappedBy="potion")
      */
     private $ennemis;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Inventaire::class, mappedBy="potion")
+     */
+    private $inventaires;
 
     public function __construct()
     {
         $this->joueurs = new ArrayCollection();
         $this->ennemis = new ArrayCollection();
+        $this->inventaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -154,18 +155,6 @@ class Potion
         return $this;
     }
 
-    public function getEstEquipe(): ?bool
-    {
-        return $this->estEquipe;
-    }
-
-    public function setEstEquipe(bool $estEquipe): self
-    {
-        $this->estEquipe = $estEquipe;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Ennemi[]
      */
@@ -190,6 +179,36 @@ class Potion
             // set the owning side to null (unless already changed)
             if ($ennemi->getPotion() === $this) {
                 $ennemi->setPotion(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Inventaire[]
+     */
+    public function getInventaires(): Collection
+    {
+        return $this->inventaires;
+    }
+
+    public function addInventaire(Inventaire $inventaire): self
+    {
+        if (!$this->inventaires->contains($inventaire)) {
+            $this->inventaires[] = $inventaire;
+            $inventaire->setPotion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInventaire(Inventaire $inventaire): self
+    {
+        if ($this->inventaires->removeElement($inventaire)) {
+            // set the owning side to null (unless already changed)
+            if ($inventaire->getPotion() === $this) {
+                $inventaire->setPotion(null);
             }
         }
 

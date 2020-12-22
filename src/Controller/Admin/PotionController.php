@@ -102,32 +102,4 @@ class PotionController extends AbstractController
 
         return $erreurs;
     }
-
-    /**
-     * @Route("/potion/addUser/{id}", name="potion_addUser", methods={"POST"})
-     */
-    public function addPotionToUser(Request $request, $id=null) {
-        $entityManager = $this->getDoctrine()->getManager();
-        $potion = $entityManager->getRepository(Potion::class)->find($id);
-        if (!$potion)  throw $this->createNotFoundException('No potion found for id '.$id);
-        $user = $this->getUser();
-        $user->addPotion($potion);
-        $entityManager->flush();
-        return $this->redirectToRoute('INSERE TA ROUTE ICI');
-    }
-
-    /**
-     * @Route("/potion/removeUser", name="potion_removeUser", methods={"GET", "DELETE"})
-     */
-    public function removePotionFromUser(Request $request) {
-        $entityManager = $this->getDoctrine()->getManager();
-        $id= $request->request->get('id');
-        $potion = $entityManager->getRepository(Potion::class)->find($id);
-        if (!$potion)  throw $this->createNotFoundException('No potion found for id '.$id);
-
-        $user = $this->getUser();
-        $user->removePotion($potion);
-        $entityManager->flush();
-        return $this->redirectToRoute('INSERE ICI TA ROUTE');
-    }
 }

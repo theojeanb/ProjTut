@@ -9,42 +9,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="DropdownCommandes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Commandes
-                </a>
-                <div class="dropdown-menu" aria-labelledby="DropdownCommandes">
-                    {% if app.session.get('mesFiltres') %}
-                    <a class="dropdown-item" href="{{  path('panier.showFiltre') }}">Faire une commande(Produits/panier)</a>
-                    {% else %}
-                        <a class="dropdown-item" href="{{  path('panier.show') }}">Faire une commande(Produits/panier)</a>
-                    {% endif %}
-                </div>
-
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="DropdownClient" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Produits
-                </a>
-                <div class="dropdown-menu" aria-labelledby="DropdownStage">
-                    <a class="dropdown-item" href="{# path('panier.filtre') }#}">Filtrer par catégorie de produits</a>
-                </div>
-            </li>
-
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="DropdownComptes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    mon compte
-                </a>
-                <div class="dropdown-menu" aria-labelledby="DropdownComptes">
-                    <a class="dropdown-item" href="{{ path('commande.show') }}">mes commandes</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ path('user.showUserDetails') }}">mes coordonnées</a>
-
-                </div>
-            </li>
+            <li>Test</li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

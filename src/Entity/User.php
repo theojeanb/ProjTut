@@ -103,11 +103,17 @@ class User implements UserInterface
      */
     private $pv;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Inventaire::class, mappedBy="joueur")
+     */
+    private $inventaires;
+
     public function __construct()
     {
         $this->armures = new ArrayCollection();
         $this->armes = new ArrayCollection();
         $this->potions = new ArrayCollection();
+        $this->inventaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -186,87 +192,6 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    /**
-     * @return Collection|Arme[]
-     */
-    public function getArmes(): Collection
-    {
-        return $this->armes;
-    }
-
-    public function addArme(Arme $arme): self
-    {
-        if (!$this->armes->contains($arme)) {
-            $this->armes[] = $arme;
-            $arme->addJoueur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeArme(Arme $arme): self
-    {
-        if ($this->armes->removeElement($arme)) {
-            $arme->removeJoueur($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Armure[]
-     */
-    public function getArmures(): Collection
-    {
-        return $this->armures;
-    }
-
-    public function addArmure(Armure $armure): self
-    {
-        if (!$this->armures->contains($armure)) {
-            $this->armures[] = $armure;
-            $armure->addJoueur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeArmure(Armure $armure): self
-    {
-        if ($this->armures->removeElement($armure)) {
-            $armure->removeJoueur($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Potion[]
-     */
-    public function getPotions(): Collection
-    {
-        return $this->potions;
-    }
-
-    public function addPotion(Potion $potion): self
-    {
-        if (!$this->potions->contains($potion)) {
-            $this->potions[] = $potion;
-            $potion->addJoueur($this);
-        }
-
-        return $this;
-    }
-
-    public function removePotion(Potion $potion): self
-    {
-        if ($this->potions->removeElement($potion)) {
-            $potion->removeJoueur($this);
-        }
-
-        return $this;
     }
 
     public function getAttaque(): ?int
@@ -356,6 +281,36 @@ class User implements UserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Inventaire[]
+     */
+    public function getInventaires(): Collection
+    {
+        return $this->inventaires;
+    }
+
+    public function addInventaire(Inventaire $inventaire): self
+    {
+        if (!$this->inventaires->contains($inventaire)) {
+            $this->inventaires[] = $inventaire;
+            $inventaire->setJoueur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInventaire(Inventaire $inventaire): self
+    {
+        if ($this->inventaires->removeElement($inventaire)) {
+            // set the owning side to null (unless already changed)
+            if ($inventaire->getJoueur() === $this) {
+                $inventaire->setJoueur(null);
+            }
+        }
 
         return $this;
     }
