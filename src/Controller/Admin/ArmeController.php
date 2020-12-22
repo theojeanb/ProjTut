@@ -98,31 +98,4 @@ class ArmeController extends AbstractController
 
         return $erreurs;
     }
-    /**
-     * @Route("/arme/addUser/{id}", name="arme_addUser", methods={"POST"})
-     */
-    public function addArmeToUser(Request $request, $id=null) {
-        $entityManager = $this->getDoctrine()->getManager();
-        $arme = $entityManager->getRepository(Arme::class)->find($id);
-        if (!$arme)  throw $this->createNotFoundException('No weapon found for id '.$id);
-        $user = $this->getUser();
-        $user->addArme($arme);
-        $entityManager->flush();
-        return $this->redirectToRoute('INSERE TA ROUTE ICI');
-    }
-
-    /**
-     * @Route("/arme/removeUser", name="arme_removeUser", methods={"GET", "DELETE"})
-     */
-    public function removeArmeFromUser(Request $request) {
-        $entityManager = $this->getDoctrine()->getManager();
-        $id= $request->request->get('id');
-        $arme = $entityManager->getRepository(Arme::class)->find($id);
-        if (!$arme)  throw $this->createNotFoundException('No weapon found for id '.$id);
-
-        $user = $this->getUser();
-        $user->removeArme($arme);
-        $entityManager->flush();
-        return $this->redirectToRoute('INSERE ICI TA ROUTE');
-    }
 }

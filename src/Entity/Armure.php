@@ -35,11 +35,6 @@ class Armure
     private $rarete;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $estEquipe;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Type::class, inversedBy="armures")
      */
     private $type;
@@ -59,10 +54,16 @@ class Armure
      */
     private $ennemis;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Inventaire::class, mappedBy="armure")
+     */
+    private $inventaires;
+
     public function __construct()
     {
         $this->joueurs = new ArrayCollection();
         $this->ennemis = new ArrayCollection();
+        $this->inventaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -102,18 +103,6 @@ class Armure
     public function setRarete(int $rarete): self
     {
         $this->rarete = $rarete;
-
-        return $this;
-    }
-
-    public function getEstEquipe(): ?bool
-    {
-        return $this->estEquipe;
-    }
-
-    public function setEstEquipe(bool $estEquipe): self
-    {
-        $this->estEquipe = $estEquipe;
 
         return $this;
     }
@@ -190,6 +179,36 @@ class Armure
             // set the owning side to null (unless already changed)
             if ($ennemi->getArmure() === $this) {
                 $ennemi->setArmure(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Inventaire[]
+     */
+    public function getInventaires(): Collection
+    {
+        return $this->inventaires;
+    }
+
+    public function addInventaire(Inventaire $inventaire): self
+    {
+        if (!$this->inventaires->contains($inventaire)) {
+            $this->inventaires[] = $inventaire;
+            $inventaire->setArmure($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInventaire(Inventaire $inventaire): self
+    {
+        if ($this->inventaires->removeElement($inventaire)) {
+            // set the owning side to null (unless already changed)
+            if ($inventaire->getArmure() === $this) {
+                $inventaire->setArmure(null);
             }
         }
 
