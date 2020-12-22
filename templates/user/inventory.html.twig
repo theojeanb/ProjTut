@@ -1,5 +1,8 @@
 {% extends "user/layout_user.html.twig" %}
 {% block body %}
+    <script>
+        declare var event: DragEvent;
+    </script>
     <div class="container-fluid" style="background-color: lightgray">
         <br>
         <div class="container-xl" style="background-color: deepskyblue;white-space: nowrap">
@@ -34,21 +37,20 @@
                         <br>
                         <br>
                         <br>
-                        <div style="background-color: #b8daff;width:50px;height:50px" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <div id="drop" style="background-color: #b8daff;width:50px;height:50px" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                     </div>
                 </div>
             </div>
             <br><br><br><br><br>
             <div class="container-fluid" style="background-color: palevioletred;white-space: nowrap;overflow-x: scroll;overflow-y: hidden;border-radius: 10px;">
                 <br>
-                <div>
-                    <img style="width:50px;height:50px" src="{{asset('sprites/armes/epee.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">&ensp;
-                    <img style="width:50px;height:50px" src="{{asset('sprites/armes/epeeEnchant.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">&ensp;
-                    <img style="width:50px;height:50px" src="{{asset('sprites/armures/botte.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">&ensp;
-                    <img style="width:50px;height:50px" src="{{asset('sprites/armures/plastronD.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">&ensp;
-                    <img style="width:50px;height:50px" src="{{asset('sprites/potions/potion.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">&ensp;
-                    <img style="width:50px;height:50px" src="{{asset('sprites/potions/potionV.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
-                    <br>
+                <div ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img id="img1" style="width:50px;height:50px" src="{{asset('sprites/armes/epee.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">&ensp;
+                    <img id="img2" style="width:50px;height:50px" src="{{asset('sprites/armes/epeeEnchant.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">&ensp;
+                    <img id="img3" style="width:50px;height:50px" src="{{asset('sprites/armures/botte.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">&ensp;
+                    <img id="img4" style="width:50px;height:50px" src="{{asset('sprites/armures/plastronD.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">&ensp;
+                    <img id="img5" style="width:50px;height:50px" src="{{asset('sprites/potions/potion.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">&ensp;
+                    <img id="img6" style="width:50px;height:50px" src="{{asset('sprites/potions/potionV.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
                 </div>
                 <br>
             </div>
@@ -57,15 +59,12 @@
     </div>
     <script>
 
-        declare var event: DragEvent;
         function allowDrop(ev) {
             ev.preventDefault();
-            ev.dataTransfer.dropEffect = "move"
         }
 
         function drag(ev) {
             ev.dataTransfer.setData("text", ev.target.id);
-            ev.dataTransfer.dropEffect = "move";
         }
 
         function drop(ev) {
