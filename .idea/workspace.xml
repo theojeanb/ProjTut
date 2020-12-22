@@ -18,11 +18,6 @@
       <change beforePath="$PROJECT_DIR$/templates/client/_nav_client.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/_nav_user.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/client/layout_client.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/layout_user.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/layout_home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout_home.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/IndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_nav_home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_nav_home.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client/_nav_client.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/_nav_client.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client/infos_client.html.twig" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +26,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -175,15 +172,20 @@
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd\armures" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd\armes" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\public\download_src" />
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd" />
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Security" />
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Controller" />
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Controller\Admin" />
-    </key>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -198,8 +200,6 @@
       <workItem from="1608557083342" duration="4365000" />
       <workItem from="1608562062219" duration="20617000" />
       <workItem from="1608628799905" duration="7057000" />
-      <workItem from="1608562062219" duration="20294000" />
-      <workItem from="1608638190391" duration="4761000" />
     </task>
     <task id="LOCAL-00001" summary="Début Affichage (login non fonctionnel)">
       <created>1608565457400</created>
@@ -268,7 +268,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -282,7 +282,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Début Affichage (login non fonctionnel)" />
@@ -293,7 +292,8 @@
     <MESSAGE value="Form ennemi" />
     <MESSAGE value="Form potion" />
     <MESSAGE value="forms terminés et testés" />
-    <option name="LAST_COMMIT_MESSAGE" value="forms terminés et testés" />
+    <MESSAGE value="infos et download du jeu" />
+    <option name="LAST_COMMIT_MESSAGE" value="infos et download du jeu" />
   </component>
   <component name="WindowStateProjectService">
     <state x="518" y="221" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1608587579025">
@@ -304,24 +304,24 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="479" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1608592114281" />
-    <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1608590966647">
+    <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1608630566239">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1608590966647" />
+    <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1608630566239" />
     <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608413162617" />
-    <state x="393" y="12" key="CommitChangelistDialog2" timestamp="1608590522162">
+    <state x="393" y="12" key="CommitChangelistDialog2" timestamp="1608639691199">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="393" y="12" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1608590522162" />
+    <state x="393" y="12" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1608639691199" />
     <state x="549" y="173" key="FileChooserDialogImpl" timestamp="1608561317691">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="173" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1608561317691" />
-    <state x="730" y="243" key="NewPhpClassDialog" timestamp="1608638974678">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="584" y="195" key="NewPhpClassDialog" timestamp="1608630434953">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="584" y="195" key="NewPhpClassDialog/0.0.1536.834@0.0.1536.834" timestamp="1608590928962" />
-    <state x="730" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608638974678" />
+    <state x="584" y="195" key="NewPhpClassDialog/0.0.1536.834@0.0.1536.834" timestamp="1608630434953" />
+    <state x="730" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608412262558" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1608409425651">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
