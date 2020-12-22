@@ -76,31 +76,4 @@ class EnnemiController extends AbstractController
         $this->addFlash('notice', 'Ennemi ' . $ennemi->getNom() . ' supprimé');
         return $this->redirectToRoute('ennemi_index');
     }
-
-
-
-
-
-
-
-
-
-
-    public function validatorEnnemi($donnees)
-    {
-        $erreurs=array();
-
-        if (! preg_match("/^[A-Za-z ]{1,}/",$donnees['nom'])) $erreurs['nom']='nom composé de 2 lettres minimum';
-
-        if(! is_numeric($donnees['degats'])) $erreurs['degats'] = 'saisir une valeur numérique';
-        else if ($donnees['degats'] < 0) $erreurs['degats'] = "Les dégâts ne doivent pas être négatifs";
-
-        if(! is_numeric($donnees['pv'])) $erreurs['pv'] = 'saisir une valeur numérique';
-        else if ($donnees['pv'] < 0) $erreurs['pv'] = "Les PV ne doivent pas être négatifs";
-
-        if (! preg_match("/[A-Za-z0-9]{2,}.(jpeg|jpg|png)/",$donnees['sprite']))
-            $erreurs['sprite']='nom de fichier incorrect (extension jpeg , jpg ou png)';
-
-        return $erreurs;
-    }
 }

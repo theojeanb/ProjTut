@@ -116,20 +116,4 @@ class UserController extends AbstractController
         }
         return $this->render('INSERE TA PAGE ICI', ['donnees' => $donnees, 'erreurs' => $erreurs]);
     }
-
-    public function validatorUser($donnees)
-    {
-        $erreurs = array();
-
-        if (strlen($donnees['password']) < 3) $erreurs['password'] = 'password composé de 2 caractères minimum';
-        if (strlen($donnees['email']) < 3) $erreurs['email'] = 'email composé de 2 caractères minimum';
-        if ($donnees['attaque'] < 0) $erreurs['attaque'] = "L'attaque ne doit pas être négative";
-        if ($donnees['defense'] < 0) $erreurs['defense'] = "La défense ne doit pas être négative";
-        if ($donnees['argent'] < 0) $erreurs['argent'] = "L'argent ne doit pas être négatif";
-        if ($donnees['pvMax'] <= 0) $erreurs['pvMax'] = "Les PV Max doivent être positifs";
-        if ($donnees['pv'] <= 0) $erreurs['pv'] = "Les PV doivent être positifs";
-        if ($donnees['niveau'] <= 0) $erreurs['niveau'] = "Le niveau doit être positif";
-        if ($donnees['experience'] < 0) $erreurs['experience'] = "L'expérience ne doit pas être négative";
-        return $erreurs;
-    }
 }

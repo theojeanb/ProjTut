@@ -76,25 +76,4 @@ class ArmureController extends AbstractController
         $this->addFlash('notice', 'Armure ' . $armure->getNom() . ' supprimée');
         return $this->redirectToRoute('armure_index');
     }
-
-
-
-    //Fonctions à supprimer :
-    public function validatorArmure($donnees)
-    {
-        $erreurs=array();
-
-        if (! preg_match("/^[A-Za-z ]{1,}/",$donnees['nom'])) $erreurs['nom']='nom composé de 2 lettres minimum';
-
-        if(! is_numeric($donnees['defense'])) $erreurs['defense'] = 'saisir une valeur numérique';
-        else if ($donnees['defense'] < 0) $erreurs['defense'] = "La défense ne doit pas être négative";
-
-        if(! is_numeric($donnees['rarete'])) $erreurs['rarete'] = 'saisir une valeur numérique';
-        else if ($donnees['rarete'] < 0) $erreurs['rarete'] = "La rareté ne doit pas être négative";
-
-        if (! preg_match("/[A-Za-z0-9]{2,}.(jpeg|jpg|png)/",$donnees['sprite']))
-            $erreurs['sprite']='nom de fichier incorrect (extension jpeg , jpg ou png)';
-
-        return $erreurs;
-    }
 }

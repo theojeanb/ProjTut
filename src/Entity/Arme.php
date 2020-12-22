@@ -24,23 +24,20 @@ class Arme
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Assert\Regex(pattern="/^[A-Za-z ]{1,}/")
-     * @Assert\Length(min = 2,max = 50,
-     *      minMessage = "Your first name must be at least {{ limit }} characters long",
-     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
-     * )
+     * @Assert\Length(min = 2,max = 50,message = "Nom composé de 2 à 50 lettres")
      */
     private $nom;
 
     /**
-     * @Assert\Positive
-     * @Assert\NotBlank
+     * @Assert\PositiveOrZero(message = "Les dégâts ne doivent pas être négatifs")
+     * @Assert\NotBlank(message = "Saisir une valeur numérique")
      * @ORM\Column(type="integer")
      */
     private $degats;
 
     /**
-     * @Assert\Positive
-     * @Assert\NotBlank
+     * @Assert\PositiveOrZero(message = "La rareté ne doit pas être négative")
+     * @Assert\NotBlank(message = "Saisir une valeur numérique")
      * @ORM\Column(type="integer")
      */
     private $rarete;
@@ -51,7 +48,9 @@ class Arme
     private $joueurs;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Regex(pattern="/[A-Za-z0-9]{2,}.(jpeg|jpg|png)/" message="Nom de fichier incorrect (extension jpeg, jpg ou png)")
      */
     private $sprite;
 
