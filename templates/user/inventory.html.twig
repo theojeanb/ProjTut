@@ -45,12 +45,12 @@
             <div class="container-fluid" style="background-color: palevioletred;white-space: nowrap;overflow-x: scroll;overflow-y: hidden;border-radius: 10px;">
                 <br>
                 <div ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <img id="img1" style="width:50px;height:50px" src="{{asset('sprites/armes/epee.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">&ensp;
-                    <img id="img2" style="width:50px;height:50px" src="{{asset('sprites/armes/epeeEnchant.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">&ensp;
-                    <img id="img3" style="width:50px;height:50px" src="{{asset('sprites/armures/botte.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">&ensp;
-                    <img id="img4" style="width:50px;height:50px" src="{{asset('sprites/armures/plastronD.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">&ensp;
-                    <img id="img5" style="width:50px;height:50px" src="{{asset('sprites/potions/potion.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">&ensp;
-                    <img id="img6" style="width:50px;height:50px" src="{{asset('sprites/potions/potionV.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
+                    <img id="img1" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/epee.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
+                    <img id="img2" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/epeeEnchant.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
+                    <img id="img3" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/botte.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
+                    <img id="img4" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/plastronD.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
+                    <img id="img5" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/potion.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
+                    <img id="img6" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/potionV.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
                 </div>
                 <br>
             </div>
@@ -63,14 +63,26 @@
             ev.preventDefault();
         }
 
+        function drag2(ev) {
+            ev.dataTransfer.setData("image", ev.target.id);
+        }
+
+        function drop2(ev) {
+            ev.preventDefault();
+            let data = ev.dataTransfer.getData("image");
+            ev.target.appendChild(document.getElementById(data));
+        }
         function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.id);
+            ev.dataTransfer.setData("image",ev.target.id+"|"+ev.target.parentNode.id);
         }
 
         function drop(ev) {
+            let dropData = ev.dataTransfer.getData("image");
+            let dropItems = dropData.split("|");
+            let prevElem = document.getElementById(dropItems[1]);
+            prevElem.getElementsByTagName("div")[0].id = ev.target.id;
+            ev.target.appendChild(document.getElementById(dropItems[0]));
             ev.preventDefault();
-            let data = ev.dataTransfer.getData("text");
-            ev.target.appendChild(document.getElementById(data));
         }
     </script>
 {% endblock %}
