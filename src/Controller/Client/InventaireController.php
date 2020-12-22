@@ -13,7 +13,12 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class InventaireController extends AbstractController
 {
-
+    /**
+     * @Route("/inventory", name="inventory", methods={"GET"})
+     */
+    public function inventory(Request $request){
+        return $this->render('user/inventory.html.twig');
+    }
     /**
      * @Route("/inventaire", name="inventaire_index", methods={"GET"})
      */
