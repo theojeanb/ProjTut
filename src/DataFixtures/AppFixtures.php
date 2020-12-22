@@ -131,12 +131,11 @@ class AppFixtures extends Fixture
 
     public function loadUsers(ObjectManager $manager)
     {
-        echo " \n\nles utilisateurs : \n";
-
         $admin = new User();
         $password = $this->passwordEncoder->encodePassword($admin, 'admin');
         $admin->setPassword($password);
-        $admin->setRoles(['ROLE_ADMIN'])->setUsername('admin');
+        $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setUsername('admin');
         $admin->setEmail('admin');
         $admin->setAttaque(10);
         $admin->setDefense(10);
@@ -151,7 +150,8 @@ class AppFixtures extends Fixture
         $user1 = new User();
         $password = $this->passwordEncoder->encodePassword($user1, 'user');
         $user1->setPassword($password);
-        $user1->setRoles(['ROLE_USER'])->setUsername('user');
+        $user1->setRoles(['ROLE_USER']);
+        $user1->setUsername('user');
         $user1->setEmail('user');
         $user1->setAttaque(10);
         $user1->setDefense(10);

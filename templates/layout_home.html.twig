@@ -13,8 +13,8 @@
 
 {% if is_granted('ROLE_ADMIN') %}
     {% include "admin/_nav.html.twig" %}
-{% elseif  is_granted('ROLE_CLIENT') %}
-    {% include "client/_nav_client.html.twig" %}
+{% elseif  is_granted('ROLE_USER') %}
+    {% include "user/_nav_user.html.twig" %}
 {% else %}
     {% include "_nav_home.html.twig" %}
  {% endif %}

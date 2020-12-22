@@ -23,7 +23,7 @@
                             <td>{{ennemi.nom}}</td>
                             <td>{{ennemi.id}}</td><td>{{ennemi.degats}}</td><td>{{ennemi.pv}}</td><td>
                                 {{ennemi.sprite}}</td><td>
-                                <img style="width:40px;height:40px" src="{{asset('images/')}}{{ennemi.sprite}}" alt="image du produit" >
+                                <img style="width:40px;height:40px" src="{{asset('sprites/ennemis')}}{{ennemi.sprite}}" alt="image du produit" >
                             </td>
                             <td>
                                 <a href="{{ path('ennemi_edit', {id: ennemi.id}) }}" class="btn btn-primary">modifier</a>

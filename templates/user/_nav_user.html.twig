@@ -2,15 +2,31 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">TP web <span style="color:#26ff1e;">  Menu Client </span></a>
+    <a class="navbar-brand" href="#">Projet Tuteuré <span style="color:#26ff1e;">  Menu User </span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li>Test</li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="DropdownCommandes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Le jeu
+                </a>
+                <div class="dropdown-menu" aria-labelledby="DropdownCommandes">
+                    <a class="dropdown-item" href="{{ path('infos') }}">Informations sur le jeu</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="DropdownCommandes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Inventaire
+                </a>
+                <div class="dropdown-menu" aria-labelledby="DropdownCommandes">
+                    <a class="dropdown-item" href="{{ path('inventory') }}">Votre inventaire</a>
+                </div>
+            </li>
         </ul>
+
 
         <ul class="nav navbar-nav navbar-right">
             <!-- Authentication Links -->

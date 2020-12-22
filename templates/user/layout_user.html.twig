@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>S3 web</title>
+    <title>Projet Tut</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}" >
     {% endblock %}
 </head>
 <body>
-{% include('client/_nav_client.html.twig') %}
+{% include('user/_nav_user.html.twig') %}
 {% for message in app.flashes('notice') %}
     <div class="alert alert-info">
         <strong>Info!</strong> {{ message }}

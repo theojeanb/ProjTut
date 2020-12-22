@@ -2,12 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1948fdae-9a2c-4ecf-9b67-45d115ab9a37" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/sprites/personnage/personnage.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Client/InventoryController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/inventory.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/IndexController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/bootstrap.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/jquery-3.5.1.slim.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/jquery-3.5.1.slim.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/popper.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/popper.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/_nav_home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_nav_home.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client/_nav_client.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/_nav_client.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client/infos_client.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/bdd/showArmes.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/bdd/showArmes.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/bdd/showArmures.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/bdd/showArmures.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/bdd/showEnnemis.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/bdd/showEnnemis.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/bdd/showPotions.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/bdd/showPotions.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/_nav_client.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/_nav_user.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/layout_client.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/layout_user.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout_home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout_home.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,19 +158,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\public\sprites\personnage" />
+      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\public\download_src" />
+      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd" />
+      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Security" />
+      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Controller" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd\types" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd\potions" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd\ennemis" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd\armures" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd\armes" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\public\download_src" />
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd" />
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Security" />
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Controller" />
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Controller\Admin" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -188,7 +198,8 @@
       <updated>1608392814487</updated>
       <workItem from="1608392815649" duration="16163000" />
       <workItem from="1608557083342" duration="4365000" />
-      <workItem from="1608562062219" duration="20294000" />
+      <workItem from="1608562062219" duration="20617000" />
+      <workItem from="1608628799905" duration="7057000" />
     </task>
     <task id="LOCAL-00001" summary="Début Affichage (login non fonctionnel)">
       <created>1608565457400</created>
@@ -246,7 +257,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608590522879</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="infos et download du jeu">
+      <created>1608592198921</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1608592198921</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,7 +275,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -272,7 +292,8 @@
     <MESSAGE value="Form ennemi" />
     <MESSAGE value="Form potion" />
     <MESSAGE value="forms terminés et testés" />
-    <option name="LAST_COMMIT_MESSAGE" value="forms terminés et testés" />
+    <MESSAGE value="infos et download du jeu" />
+    <option name="LAST_COMMIT_MESSAGE" value="infos et download du jeu" />
   </component>
   <component name="WindowStateProjectService">
     <state x="518" y="221" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1608587579025">
@@ -283,31 +304,31 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="479" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1608592114281" />
-    <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1608590966647">
+    <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1608630566239">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1608590966647" />
+    <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1608630566239" />
     <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608413162617" />
-    <state x="393" y="12" key="CommitChangelistDialog2" timestamp="1608590522162">
+    <state x="393" y="12" key="CommitChangelistDialog2" timestamp="1608639691199">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="393" y="12" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1608590522162" />
+    <state x="393" y="12" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1608639691199" />
     <state x="549" y="173" key="FileChooserDialogImpl" timestamp="1608561317691">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="173" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1608561317691" />
-    <state x="584" y="195" key="NewPhpClassDialog" timestamp="1608590928962">
+    <state x="584" y="195" key="NewPhpClassDialog" timestamp="1608630434953">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="584" y="195" key="NewPhpClassDialog/0.0.1536.834@0.0.1536.834" timestamp="1608590928962" />
+    <state x="584" y="195" key="NewPhpClassDialog/0.0.1536.834@0.0.1536.834" timestamp="1608630434953" />
     <state x="730" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608412262558" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1608409425651">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1608409425651" />
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1608590281874">
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1608592205637">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1608590281874" />
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1608592205637" />
   </component>
 </project>

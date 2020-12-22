@@ -1,0 +1,29 @@
+{% extends "user/layout_user.html.twig" %}
+{% block body %}
+    <div class="container-fluid" style="background-color: lightgray">
+        <br>
+        <div class="container-xl" style="background-color: deepskyblue;white-space: nowrap">
+            <br><br><br><br><br><br><br>
+            <img style="width:250px;height:250px" src="{{asset('sprites/personnage/personnage.png')}}" alt="image du personnage">
+            <div class="container-xxl float-right" style="background-color: #b8daff">
+                <img style="width:50px;height:50px" src="{{asset('sprites/armes/epee.png')}}" alt="sprite">&ensp;
+            </div>
+
+            <br><br><br><br><br>
+            <div class="container-fluid" style="background-color: palevioletred;white-space: nowrap;overflow-x: scroll;overflow-y: hidden;">
+                <br>
+                <div>
+                    <img style="width:50px;height:50px" src="{{asset('sprites/armes/epee.png')}}" alt="sprite">&ensp;
+                    <img style="width:50px;height:50px" src="{{asset('sprites/armes/epeeEnchent.png')}}" alt="sprite">&ensp;
+                    <img style="width:50px;height:50px" src="{{asset('sprites/armures/botte.png')}}" alt="sprite">&ensp;
+                    <img style="width:50px;height:50px" src="{{asset('sprites/armures/plastronD.png')}}" alt="sprite">&ensp;
+                    <img style="width:50px;height:50px" src="{{asset('sprites/potions/potion.png')}}" alt="sprite">&ensp;
+                    <img style="width:50px;height:50px" src="{{asset('sprites/potions/potionV.png')}}" alt="sprite">
+                    <br>
+                </div>
+                <br>
+            </div>
+        </div>
+        <br>
+    </div>
+{% endblock %}
