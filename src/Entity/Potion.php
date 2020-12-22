@@ -24,7 +24,7 @@ class Potion
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Assert\Regex(pattern="/^[A-Za-z ]{1,}/")
-     * @Assert\Length(min = 2,max = 50,message = "Nom composé de 2 à 50 lettres")
+     * @Assert\Length(min = 2,max = 50, minMessage = "Nom composé de 2 caractères minimum")
      */
     private $nom;
 
@@ -32,7 +32,7 @@ class Potion
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Assert\Regex(pattern="/^[A-Z ]{1,}/")
-     * @Assert\Length(min = 2,max = 50,message = "Nom composé de 2 à 50 lettres capitales")
+     * @Assert\Length(min = 2,max = 50, minMessage = "Effet composé de 2 caractères minimum")
      */
     private $effet;
 
@@ -53,7 +53,7 @@ class Potion
     /**
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Regex(pattern="/[A-Za-z0-9]{2,}.(jpeg|jpg|png)/" message="Nom de fichier incorrect (extension jpeg, jpg ou png)")
+     * @Assert\Regex(pattern="/[A-Za-z0-9]{2,}.(jpeg|jpg|png)/", message="Nom de fichier incorrect (extension jpeg, jpg ou png)")
      */
     private $sprite;
 

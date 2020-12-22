@@ -35,13 +35,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Assert\Length(min = 2,max = 50,message = "Username composé de 2 à 50 caractères")
+     * @Assert\Length(min = 2,max = 50, minMessage = "Username composé de 2 caractères minimum")
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Assert\Length(min = 2,max = 50,message = "Email composé de 2 à 50 caractères")
+     * @Assert\Length(min = 2,max = 50, minMessage = "Email composé de 2 caractères minimum")
      */
     private $email;
 
