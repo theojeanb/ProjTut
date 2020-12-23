@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 use App\Entity\Potion;
 use App\Form\PotionType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -30,7 +31,20 @@ class PotionController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $potion->setEstEquipe(true);
+            if ($form->get('sprite')->getData()){
+                $photoFile = $form->get('sprite')->getData();
+                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename . '.' . $photoFile->guessExtension();
+                $potion->setSprite($newFilename);
+                try {
+                    $photoFile->move(
+                        $this->getParameter('potions_dir'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('notice', 'erreur');
+                }
+            }
             $this->getDoctrine()->getManager()->persist($potion);
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notice', 'Potion ' . $potion->getNom() . ' ajoutée');
@@ -54,6 +68,20 @@ class PotionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('sprite')->getData()){
+                $photoFile = $form->get('sprite')->getData();
+                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename . '.' . $photoFile->guessExtension();
+                $potion->setSprite($newFilename);
+                try {
+                    $photoFile->move(
+                        $this->getParameter('potions_dir'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('notice', 'erreur');
+                }
+            }
             $entityManager->persist($potion);
             $entityManager->flush();
             $this->addFlash('notice', 'Potion ' . $potion->getNom() . ' modifiée');

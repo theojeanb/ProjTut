@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\Armure;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class ArmureType extends AbstractType
 {
@@ -16,6 +18,22 @@ class ArmureType extends AbstractType
             ->add('defense')
             ->add('rarete')
             ->add('type')
+            ->add('sprite', FileType::class, [
+                'label' => 'Sprite (PNG)',
+                'mapped' => false,
+                'attr' => array(
+                    'class' => 'form-control-file'
+                ),
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid png document',
+                    ])
+                ],
+            ])
         ;
     }
 

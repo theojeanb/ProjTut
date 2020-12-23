@@ -5,6 +5,10 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     download_dir: '%kernel.project_dir%/public/download_src'
+    armes_dir: '%kernel.project_dir%/public/sprites/armes'
+    armures_dir: '%kernel.project_dir%/public/sprites/armures'
+    potions_dir: '%kernel.project_dir%/public/sprites/potions'
+    ennemis_dir: '%kernel.project_dir%/public/sprites/ennemis'
 
 services:
     # default configuration for services in *this* file

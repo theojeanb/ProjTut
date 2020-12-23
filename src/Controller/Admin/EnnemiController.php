@@ -7,6 +7,7 @@ use App\Entity\Ennemi;
 use App\Entity\Potion;
 use App\Form\EnnemiType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -32,6 +33,20 @@ class EnnemiController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
+            if ($form->get('sprite')->getData()){
+                $photoFile = $form->get('sprite')->getData();
+                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename . '.' . $photoFile->guessExtension();
+                $ennemi->setSprite($newFilename);
+                try {
+                    $photoFile->move(
+                        $this->getParameter('ennemis_dir'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('notice', 'erreur');
+                }
+            }
             $this->getDoctrine()->getManager()->persist($ennemi);
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notice', 'Ennemi ' . $ennemi->getNom() . ' ajouté');
@@ -54,6 +69,20 @@ class EnnemiController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('sprite')->getData()){
+                $photoFile = $form->get('sprite')->getData();
+                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename . '.' . $photoFile->guessExtension();
+                $ennemi->setSprite($newFilename);
+                try {
+                    $photoFile->move(
+                        $this->getParameter('ennemis_dir'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('notice', 'erreur');
+                }
+            }
             $entityManager->persist($ennemi);
             $entityManager->flush();
             $this->addFlash('notice', 'Ennemi ' . $ennemi->getNom() . ' modifié');

@@ -4,10 +4,12 @@ namespace App\Controller\Admin;
 use App\Entity\Arme;
 use App\Form\ArmeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ArmeController extends AbstractController
 {
@@ -30,7 +32,20 @@ class ArmeController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $arme->setEstEquipe(true);
+            if ($form->get('sprite')->getData()){
+                $photoFile = $form->get('sprite')->getData();
+                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename . '.' . $photoFile->guessExtension();
+                $arme->setSprite($newFilename);
+                try {
+                    $photoFile->move(
+                        $this->getParameter('armes_dir'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('notice', 'erreur');
+                }
+            }
             $this->getDoctrine()->getManager()->persist($arme);
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notice', 'Arme ' . $arme->getNom() . ' ajoutée');
@@ -51,8 +66,21 @@ class ArmeController extends AbstractController
             'action' => $this->generateUrl('arme_edit',['id'=>$id]),
             'method' => 'PUT',]);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('sprite')->getData()){
+                $photoFile = $form->get('sprite')->getData();
+                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename . '.' . $photoFile->guessExtension();
+                $arme->setSprite($newFilename);
+                try {
+                    $photoFile->move(
+                        $this->getParameter('armes_dir'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('notice', 'erreur');
+                }
+            }
             $entityManager->persist($arme);
             $entityManager->flush();
             $this->addFlash('notice', 'Arme ' . $arme->getNom() . ' modifiée');
