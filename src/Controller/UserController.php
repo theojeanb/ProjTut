@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -75,45 +76,42 @@ class UserController extends AbstractController
     /**
      * @Route("/register", name="register", methods={"GET", "POST"})
      */
-    public function addUser(Request $request) {
-        $entityManager = $this->getDoctrine()->getManager();
-
-        if($request->getMethod() == 'GET'){
-            return $this->render('INSERE TA PAGE ICI');
-        }
-
-        $donnees['password']=$_POST['password'];
-        $donnees['email']=$_POST['email'];
-        $donnees['attaque'] = 10;
-        $donnees['defense'] = 10;
-        $donnees['argent'] = 0;
-        $donnees['pvMax'] = 100;
-        $donnees['pv'] = 100;
-        $donnees['niveau'] = 1;
-        $donnees['experience'] = 0;
-
-        $erreurs=$this->validatorUser($donnees);
-
-        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(["email" => $donnees['email']]);
-        if ($user != null) {
-            $erreurs['email'] = "Ce nom d'utilisateur existe déjà !";
-        }
-        if (empty($erreurs)) {
-            $user = new User();
-            $user->setEmail($donnees['email']);
-            $password = $this->passwordEncoder->encodePassword($user, $donnees['password']);
+    public function addUser(Request $request,UserPasswordEncoderInterface $encoder) {
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
+            $data = $form->getData();
+            $arraypassword =$data->getPassword();
+            $password = $encoder->encodePassword($user, $arraypassword);
             $user->setPassword($password);
-            $user->setAttaque($donnees['attaque']);
-            $user->setDefense($donnees['defense']);
-            $user->setArgent($donnees['argent']);
-            $user->setPvMax($donnees['pvMax']);
-            $user->setPv($donnees['pv']);
-            $user->setNiveau($donnees['niveau']);
-            $user->setExperience($donnees['experience']);
-            $entityManager->persist($user);
-            $entityManager->flush();
-            return $this->redirectToRoute('INSERE TA ROUTE ICI');
+            $user->setArgent(0);
+            $user->setPvMax(100);
+            $user->setPv(100);
+            $user->setNiveau(1);
+            $user->setExperience(0);
+            $user->setAttaque(10);
+            $user->setDefense(10);
+            $this->getDoctrine()->getManager()->persist($user);
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('app_login');
         }
-        return $this->render('INSERE TA PAGE ICI', ['donnees' => $donnees, 'erreurs' => $erreurs]);
+        if($form->isSubmitted() &&  $form->isValid() && !$this->captchaverify($request->get('g-recaptcha-response'))){
+            $this->addFlash(
+                'notice',
+                'Captcha Required'
+            );
+        }
+        return $this->render('security/addUser.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+    public function captchaverify($recaptcha_response){
+        $url = "https://www.google.com/recaptcha/api/siteverify";
+        $recaptcha_secret = '6LeLhwIaAAAAALXoL4hxKtD64mo6GSuM1ZPpVQrt';
+        $recaptcha = file_get_contents($url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+        $data = json_decode($recaptcha);
+        $result = $data->success;
+        return $result;
     }
 }
