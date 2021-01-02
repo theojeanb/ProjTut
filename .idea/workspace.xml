@@ -1,24 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1948fdae-9a2c-4ecf-9b67-45d115ab9a37" name="Default Changelist" comment="problème layout">
-      <change afterPath="$PROJECT_DIR$/src/Controller/Client/MagasinController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/shop.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Projet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Projet.iml" afterDir="false" />
+    <list default="true" id="1948fdae-9a2c-4ecf-9b67-45d115ab9a37" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/ArmeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/ArmeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/ArmureController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/ArmureController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/EnnemiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/EnnemiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/PotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/PotionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Arme.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Arme.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ArmeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ArmeType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ArmureType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ArmureType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/EnnemiType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/EnnemiType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/PotionType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/PotionType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/bdd/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/bdd/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/_nav_user.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/_nav_user.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/user/inventory.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/inventory.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,19 +151,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\public\sprites\personnage" />
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\public\download_src" />
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd" />
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Security" />
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Controller" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd\types" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd\potions" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd\ennemis" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd\armures" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd\armes" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\public\sprites\personnage" />
+      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\public\download_src" />
+      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd" />
+      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Security" />
+      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Controller" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -209,7 +193,10 @@
       <workItem from="1608557083342" duration="4365000" />
       <workItem from="1608562062219" duration="20617000" />
       <workItem from="1608628799905" duration="7057000" />
-      <workItem from="1608721215084" duration="9241000" />
+      <workItem from="1608721215084" duration="10465000" />
+      <workItem from="1608810818798" duration="3920000" />
+      <workItem from="1609584814010" duration="889000" />
+      <workItem from="1609602292746" duration="1962000" />
     </task>
     <task id="LOCAL-00001" summary="Début Affichage (login non fonctionnel)">
       <created>1608565457400</created>
@@ -309,7 +296,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608651515674</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Form sprites + début shop">
+      <created>1608736538250</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1608736538250</updated>
+    </task>
+    <task id="LOCAL-00016" summary="inscription">
+      <created>1608820570622</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1608820570622</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,7 +344,9 @@
     <MESSAGE value="drag &amp; drop bancal" />
     <MESSAGE value="problème layout" />
     <MESSAGE value="drag &amp; drop (sans échange)" />
-    <option name="LAST_COMMIT_MESSAGE" value="drag &amp; drop (sans échange)" />
+    <MESSAGE value="Form sprites + début shop" />
+    <MESSAGE value="inscription" />
+    <option name="LAST_COMMIT_MESSAGE" value="inscription" />
   </component>
   <component name="WindowStateProjectService">
     <state x="518" y="221" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1608587579025">
@@ -354,15 +357,15 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="479" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1608592114281" />
-    <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1608735835214">
+    <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1608812084186">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1608735835214" />
+    <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1608812084186" />
     <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608413162617" />
-    <state x="393" y="12" key="CommitChangelistDialog2" timestamp="1608651512854">
+    <state x="393" y="12" key="CommitChangelistDialog2" timestamp="1608820568407">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="393" y="12" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1608651512854" />
+    <state x="393" y="12" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1608820568407" />
     <state x="549" y="173" key="FileChooserDialogImpl" timestamp="1608561317691">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -376,14 +379,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1608409425651" />
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1608646013857">
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1608820632572">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1608646013857" />
-    <state x="578" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1608646666279">
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1608820632572" />
+    <state x="578" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609584947374">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="578" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1608646666279" />
+    <state x="578" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1609584947374" />
     <state x="501" y="209" key="git4idea.merge.GitPullDialog" timestamp="1608646008883">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
