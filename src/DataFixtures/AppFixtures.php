@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Perso;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -134,13 +135,15 @@ class AppFixtures extends Fixture
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setUsername('admin');
         $admin->setEmail('admin');
-        $admin->setAttaque(10);
-        $admin->setDefense(10);
-        $admin->setArgent(0);
-        $admin->setPvMax(100);
-        $admin->setPv(100);
-        $admin->setNiveau(1);
-        $admin->setExperience(0);
+        $perso = new Perso();
+        $perso->setAttaque(10);
+        $perso->setDefense(10);
+        $perso->setArgent(0);
+        $perso->setPvMax(100);
+        $perso->setPv(100);
+        $perso->setNiveau(1);
+        $perso->setExperience(0);
+        $admin->setPerso($perso);
         $manager->persist($admin);
 
 
@@ -150,13 +153,15 @@ class AppFixtures extends Fixture
         $user1->setRoles(['ROLE_USER']);
         $user1->setUsername('user');
         $user1->setEmail('user');
-        $user1->setAttaque(10);
-        $user1->setDefense(10);
-        $user1->setArgent(0);
-        $user1->setPvMax(100);
-        $user1->setPv(100);
-        $user1->setNiveau(1);
-        $user1->setExperience(0);
+        $perso2 = new Perso();
+        $perso2->setAttaque(10);
+        $perso2->setDefense(10);
+        $perso2->setArgent(0);
+        $perso2->setPvMax(100);
+        $perso2->setPv(100);
+        $perso2->setNiveau(1);
+        $perso2->setExperience(0);
+        $user1->setPerso($perso2);
         $manager->persist($user1);
 
 

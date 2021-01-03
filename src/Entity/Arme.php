@@ -43,11 +43,6 @@ class Arme
     private $rarete;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="armes")
-     */
-    private $joueurs;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $sprite;

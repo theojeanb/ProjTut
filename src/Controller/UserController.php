@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Perso;
 use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,54 +27,6 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user/edit", name="user_edit", methods={"GET"})
-     * @Route("/user/valid", name="user_edit_valid", methods={"PUT"})
-     */
-    public function editUser(Request $request, SerializerInterface $serializer)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $user = $this->getUser();
-        if($request->getMethod() == 'GET') {
-            if (!$user) throw $this->createNotFoundException('No user found');
-            return $this->render('INSERE TA PAGE ICI', ['donnees' => $user]);
-        }
-
-        $donnees['password']=$_POST['password'];
-        $donnees['email']=$_POST['email'];
-        $donnees['attaque'] = $_POST['attaque'];
-        $donnees['defense'] = $_POST['defense'];
-        $donnees['argent'] = $_POST['argent'];
-        $donnees['pvMax'] = $_POST['pvMax'];
-        $donnees['pv'] = $_POST['pv'];
-        $donnees['niveau'] = $_POST['niveau'];
-        $donnees['experience'] = $_POST['experience'];
-
-        $erreurs=$this->validatorUser($donnees);
-
-        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(["email" => $donnees['email']]);
-        if ($user != null and $this->getUser()->getEmail() != $donnees['email']) {
-            $erreurs['email'] = "Ce nom d'utilisateur existe déjà !";
-        }
-
-        if (empty($erreurs)) {
-            $user->setEmail($donnees['email']);
-            $password = $this->passwordEncoder->encodePassword($user, $donnees['password']);
-            $user->setPassword($password);
-            $user->setAttaque($donnees['attaque']);
-            $user->setDefense($donnees['defense']);
-            $user->setArgent($donnees['argent']);
-            $user->setPvMax($donnees['pvMax']);
-            $user->setPv($donnees['pv']);
-            $user->setNiveau($donnees['niveau']);
-            $user->setExperience($donnees['experience']);
-            $entityManager->persist($user);
-            $entityManager->flush();
-            return $this->redirectToRoute('INSERE TA ROUTE ICI');
-        }
-        return $this->render('INSERE TA PAGE ICI', ['donnees' => $donnees, 'erreurs' => $erreurs]);
-    }
-
-    /**
      * @Route("/register", name="register", methods={"GET", "POST"})
      */
     public function addUser(Request $request,UserPasswordEncoderInterface $encoder) {
@@ -85,13 +38,15 @@ class UserController extends AbstractController
             $arraypassword =$data->getPassword();
             $password = $encoder->encodePassword($user, $arraypassword);
             $user->setPassword($password);
-            $user->setArgent(0);
-            $user->setPvMax(100);
-            $user->setPv(100);
-            $user->setNiveau(1);
-            $user->setExperience(0);
-            $user->setAttaque(10);
-            $user->setDefense(10);
+            $perso = new Perso();
+            $perso->setArgent(0);
+            $perso->setPvMax(100);
+            $perso->setPv(100);
+            $perso->setNiveau(1);
+            $perso->setExperience(0);
+            $perso->setAttaque(10);
+            $perso->setDefense(10);
+            $user->setPerso($perso);
             $this->getDoctrine()->getManager()->persist($user);
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('app_login');

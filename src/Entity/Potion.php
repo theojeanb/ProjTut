@@ -58,11 +58,6 @@ class Potion
     private $sprite;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="potions")
-     */
-    private $joueurs;
-
-    /**
      * @ORM\OneToMany(targetEntity=Ennemi::class, mappedBy="potion")
      */
     private $ennemis;

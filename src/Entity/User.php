@@ -57,59 +57,14 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Arme::class, mappedBy="joueurs")
-     */
-    private $armes;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Armure::class, mappedBy="joueurs")
-     */
-    private $armures;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Potion::class, mappedBy="joueurs")
-     */
-    private $potions;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $attaque;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $defense;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $argent;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $pvMax;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $niveau;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $experience;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $pv;
-
-    /**
      * @ORM\OneToMany(targetEntity=Inventaire::class, mappedBy="joueur")
      */
     private $inventaires;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Perso::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $perso;
 
     public function __construct()
     {
@@ -314,6 +269,28 @@ class User implements UserInterface
                 $inventaire->setJoueur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPerso(): ?Perso
+    {
+        return $this->perso;
+    }
+
+    public function setPerso(?Perso $perso): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($perso === null && $this->perso !== null) {
+            $this->perso->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($perso !== null && $perso->getUser() !== $this) {
+            $perso->setUser($this);
+        }
+
+        $this->perso = $perso;
 
         return $this;
     }
