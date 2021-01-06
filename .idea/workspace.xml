@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1948fdae-9a2c-4ecf-9b67-45d115ab9a37" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_nav_home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_nav_home.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/accueil.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accueil.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/infos.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/infos.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Client/InventaireController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Client/InventaireController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/InventaireRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/InventaireRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/_nav_user.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/_nav_user.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/inventory.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/inventory.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,6 +200,8 @@
       <workItem from="1608810818798" duration="3920000" />
       <workItem from="1609584814010" duration="889000" />
       <workItem from="1609602292746" duration="1962000" />
+      <workItem from="1609698329160" duration="631000" />
+      <workItem from="1609954833634" duration="4376000" />
     </task>
     <task id="LOCAL-00001" summary="Début Affichage (login non fonctionnel)">
       <created>1608565457400</created>
@@ -312,7 +315,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608820570622</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="présentation">
+      <created>1609698357325</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1609698357325</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,7 +358,8 @@
     <MESSAGE value="drag &amp; drop (sans échange)" />
     <MESSAGE value="Form sprites + début shop" />
     <MESSAGE value="inscription" />
-    <option name="LAST_COMMIT_MESSAGE" value="inscription" />
+    <MESSAGE value="présentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="présentation" />
   </component>
   <component name="WindowStateProjectService">
     <state x="518" y="221" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1608587579025">
@@ -364,10 +375,10 @@
     </state>
     <state x="552" y="221" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1608812084186" />
     <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608413162617" />
-    <state x="393" y="12" key="CommitChangelistDialog2" timestamp="1608820568407">
+    <state x="393" y="12" key="CommitChangelistDialog2" timestamp="1609698355482">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="393" y="12" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1608820568407" />
+    <state x="393" y="12" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1609698355482" />
     <state x="549" y="173" key="FileChooserDialogImpl" timestamp="1608561317691">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -381,14 +392,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1608409425651" />
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1608820632572">
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1609698367760">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1608820632572" />
-    <state x="578" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609584947374">
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1609698367760" />
+    <state x="578" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609955137229">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="578" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1609584947374" />
+    <state x="578" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1609955137229" />
     <state x="501" y="209" key="git4idea.merge.GitPullDialog" timestamp="1608646008883">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

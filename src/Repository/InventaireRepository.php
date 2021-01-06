@@ -23,9 +23,9 @@ class InventaireRepository extends ServiceEntityRepository
     {
         $query = $this->getEntityManager()
             ->createQuery('
-                    SELECT i.arme, estEquipe
+                    SELECT IDENTITY(i.arme)
                     FROM App:Inventaire i
-                    WHERE i.joueur =  '.$UserId.' and i.arme IS NOT NULL');
+                    WHERE i.joueur =  '.$UserId.' and IDENTITY(i.arme) IS NOT NULL');
         return $query->getResult();
     }
 
@@ -33,9 +33,9 @@ class InventaireRepository extends ServiceEntityRepository
     {
         $query = $this->getEntityManager()
             ->createQuery('
-                    SELECT i.armure, estEquipe
+                    SELECT IDENTITY(i.armure)
                     FROM App:Inventaire i
-                    WHERE i.joueur =  '.$UserId.' and i.armure IS NOT NULL');
+                    WHERE i.joueur =  '.$UserId.' and IDENTITY(i.armure) IS NOT NULL');
         return $query->getResult();
     }
 
@@ -43,9 +43,9 @@ class InventaireRepository extends ServiceEntityRepository
     {
         $query = $this->getEntityManager()
             ->createQuery('
-                    SELECT i.potion, estEquipe
+                    SELECT IDENTITY(i.potion)
                     FROM App:Inventaire i
-                    WHERE i.joueur =  '.$UserId.' and i.potion IS NOT NULL');
+                    WHERE i.joueur =  '.$UserId.' and IDENTITY(i.potion) IS NOT NULL');
         return $query->getResult();
     }
 

@@ -19,6 +19,7 @@ class InventaireController extends AbstractController
     public function inventory(Request $request){
         return $this->render('user/inventory.html.twig');
     }
+
     /**
      * @Route("/inventaire", name="inventaire_index", methods={"GET"})
      */
@@ -27,8 +28,9 @@ class InventaireController extends AbstractController
         $armes = $this->getDoctrine()->getRepository(Inventaire::class)->findAllArmes($this->getUser()->getId());
         $armures = $this->getDoctrine()->getRepository(Inventaire::class)->findAllArmures($this->getUser()->getId());
         $potions = $this->getDoctrine()->getRepository(Inventaire::class)->findAllPotions($this->getUser()->getId());
-
+        $user = $this->getUser();
         $items = $this->getUser()->getInventaires();
+        $equipe = null;
         foreach ($items as $item) {
             if (!is_null($item->getArme()) and ($item->getEstEquipe())) {
                 $equipe['arme'] = $item;
@@ -43,7 +45,7 @@ class InventaireController extends AbstractController
             }
         }
 
-        return $this->render('user/inventory.html.twig', ['armes' => $armes, 'armures' => $armures, 'potions' => $potions, 'equipe' => $equipe]);
+        return $this->render('user/inventory.html.twig', ['user' => $user,'armes' => $armes, 'armures' => $armures, 'potions' => $potions, 'equipe' => $equipe]);
     }
 
     /**

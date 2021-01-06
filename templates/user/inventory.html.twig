@@ -23,8 +23,10 @@
                         <br>
                         <div id="drop5" style="width:55px;height:55px;margin-bottom: 14px;border: solid;" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                         <div id="drop6" style="width:55px;height:55px;margin-bottom: 14px;border: solid;" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                        <h6>Argent : </h6><br><br>
+                        <h6>Argent : </h6>
+                        <div>{{ user.argent }} <img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="coin"></div><br>
                         <h6>PV :</h6>
+                        <div>{{ user.pvMax }} <img style="width:20px;height:20px;" src="{{asset('images/heart.png')}}" alt="coin"></div>
                     </div>
                 </div>
                 <div class="container-xs col-sm-1" style="background-color: #b8daff"></div>
