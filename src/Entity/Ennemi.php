@@ -43,8 +43,6 @@ class Ennemi
     private $pv;
 
     /**
-     * @Assert\NotBlank
-     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Regex(pattern="/[A-Za-z0-9]{2,}.(jpeg|jpg|png)/", message="Nom de fichier incorrect (extension jpeg, jpg ou png)")
      */
     private $sprite;

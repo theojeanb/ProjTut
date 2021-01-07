@@ -55,7 +55,7 @@ class AppFixtures extends Fixture
             ['id' => 1, 'nom' => 'Master Sword', 'degats' => 300, 'rarete' => 4,'sprite'=> 'epee.png'],
             ['id' => 2, 'nom' => 'Masamune', 'degats' => 200, 'rarete' => 3,'sprite'=> ''],
             ['id' => 3, 'nom' => 'Buster Sword', 'degats' => 200, 'rarete' => 3,'sprite'=> 'epeeEnchant.png'],
-            ['id' => 4, 'nom' => 'Monado', 'degats' => 100, 'rarete' => 2,'sprite'=> '']
+            ['id' => 4, 'nom' => 'Monado', 'degats' => 100, 'rarete' => 2]
         ];
         foreach ($armes as $arme) {
             $arme_new = new Arme();

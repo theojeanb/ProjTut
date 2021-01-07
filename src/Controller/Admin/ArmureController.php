@@ -51,7 +51,7 @@ class ArmureController extends AbstractController
             $this->addFlash('notice', 'Armure ' . $armure->getNom() . ' ajoutée');
             return $this->redirectToRoute('armure_index');
         }
-        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Créer','element' => 'une Armure']);
+        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Créer','element' => 'une Armure','element2' => 'armure']);
     }
 
 
@@ -88,7 +88,7 @@ class ArmureController extends AbstractController
             $this->addFlash('notice', 'Armure ' . $armure->getNom() . ' modifiée');
             return $this->redirectToRoute('armure_index');
         }
-        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Modifier','element' => 'une Armure']);
+        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Modifier','element' => 'une Armure','element2' => 'armure']);
     }
 
     /**

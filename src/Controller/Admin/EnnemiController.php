@@ -52,7 +52,7 @@ class EnnemiController extends AbstractController
             $this->addFlash('notice', 'Ennemi ' . $ennemi->getNom() . ' ajouté');
             return $this->redirectToRoute('ennemi_index');
         }
-        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Créer','element' => 'un Ennemi']);
+        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Créer','element' => 'un Ennemi','element2' => 'ennemi']);
     }
 
     /**
@@ -88,7 +88,7 @@ class EnnemiController extends AbstractController
             $this->addFlash('notice', 'Ennemi ' . $ennemi->getNom() . ' modifié');
             return $this->redirectToRoute('ennemi_index');
         }
-        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Modifier','element' => 'un Ennemi']);
+        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Modifier','element' => 'un Ennemi','element2' => 'ennemi']);
     }
 
     /**

@@ -1,15 +1,17 @@
 {% extends "admin/layout.html.twig" %}
 {% block body %}
-        <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-                $(document).ready(function () {
-                        bsCustomFileInput.init()
-                })
+                $(document).ready(function(){
+                        $('#{{ element2 }}_sprite').on('change',function(){
+                                let nom = document.getElementById('{{ element2 }}_sprite').value;
+                                $('label:last-child').html(nom.slice(12));
+                        });
+                });
         </script>
         <div class="container">
                 <br><h1>{{ action }} {{ element }}</h1><br>
                 {% form_theme form 'bootstrap_4_layout.html.twig' %}
-
                 {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'col-lg-5' }}) }}
                         {{ form_widget(form) }}
                 <button type="submit" class="btn btn-primary">{{ action|default('Valider') }}</button>

@@ -21,6 +21,8 @@ class EnnemiType extends AbstractType
                 'label' => 'Sprite (PNG)',
                 'mapped' => false,
                 'attr' => array(
+                    'id'=> 'fileinput',
+                    'placeholder' => 'Choose file',
                     'class' => 'form-control-file'
                 ),
                 'constraints' => [

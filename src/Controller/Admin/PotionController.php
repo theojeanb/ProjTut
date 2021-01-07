@@ -50,7 +50,7 @@ class PotionController extends AbstractController
             $this->addFlash('notice', 'Potion ' . $potion->getNom() . ' ajoutée');
             return $this->redirectToRoute('potion_index');
         }
-        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Créer','element' => 'une Potion']);
+        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Créer','element' => 'une Potion','element2' => 'potion']);
     }
 
 
@@ -87,7 +87,7 @@ class PotionController extends AbstractController
             $this->addFlash('notice', 'Potion ' . $potion->getNom() . ' modifiée');
             return $this->redirectToRoute('potion_index');
         }
-        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Modifier','element' => 'une Potion']);
+        return $this->render('admin/bdd/_form.html.twig', ['form' => $form->createView(),'action' => 'Modifier','element' => 'une Potion','element2' => 'potion']);
     }
 
     /**
