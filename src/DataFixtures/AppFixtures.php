@@ -52,9 +52,9 @@ class AppFixtures extends Fixture
     private function loadArmes(ObjectManager $manager)
     {
         $armes = [
-            ['id' => 1, 'nom' => 'Master Sword', 'degats' => 300, 'rarete' => 4],
+            ['id' => 1, 'nom' => 'Master Sword', 'degats' => 300, 'rarete' => 4,'sprite'=> 'epee.png'],
             ['id' => 2, 'nom' => 'Masamune', 'degats' => 200, 'rarete' => 3],
-            ['id' => 3, 'nom' => 'Buster Sword', 'degats' => 200, 'rarete' => 3],
+            ['id' => 3, 'nom' => 'Buster Sword', 'degats' => 200, 'rarete' => 3,'sprite'=> 'epeeEnchant.png'],
             ['id' => 4, 'nom' => 'Monado', 'degats' => 100, 'rarete' => 2]
         ];
         foreach ($armes as $arme) {
@@ -62,6 +62,7 @@ class AppFixtures extends Fixture
             $arme_new->setNom($arme['nom']);
             $arme_new->setDegats($arme['degats']);
             $arme_new->setRarete($arme['rarete']);
+            $arme_new->setSprite($arme['sprite']);
             $manager->persist($arme_new);
             $manager->flush();
         }
@@ -70,16 +71,17 @@ class AppFixtures extends Fixture
     private function loadArmures(ObjectManager $manager)
     {
         $armures = [
-            ['id' => 1, 'nom' => 'Thunder Helmet', 'defense' => 10, 'rarete' => 2, 'type' => 'Casque'],
-            ['id' => 2, 'nom' => 'Magic Armor', 'defense' => 500, 'rarete' => 4, 'type' => 'Plastron'],
-            ['id' => 3, 'nom' => 'SPEEEED', 'defense' => 50, 'rarete' => 3, 'type' => 'Jambières'],
-            ['id' => 4, 'nom' => 'Crocs', 'defense' => 30, 'rarete' => 1, 'type' => 'Chaussures']
+            ['id' => 1, 'nom' => 'Thunder Helmet', 'defense' => 10, 'rarete' => 2, 'type' => 'Casque','sprite'=> 'casque.png'],
+            ['id' => 2, 'nom' => 'Magic Armor', 'defense' => 500, 'rarete' => 4, 'type' => 'Plastron','sprite'=> 'plastronR.png'],
+            ['id' => 3, 'nom' => 'SPEEEED', 'defense' => 50, 'rarete' => 3, 'type' => 'Jambières','sprite'=> 'jambières.png'],
+            ['id' => 4, 'nom' => 'Crocs', 'defense' => 30, 'rarete' => 1, 'type' => 'Chaussures','sprite'=> 'botte.png']
         ];
         foreach ($armures as $armure) {
             $armure_new = new Armure();
             $armure_new->setNom($armure['nom']);
             $armure_new->setDefense($armure['defense']);
             $armure_new->setRarete($armure['rarete']);
+            $armure_new->setSprite($armure['sprite']);
             $type = $manager->getRepository(Type::class)->findOneBy(["nom" => $armure['type']]);
             $armure_new->setType($type);
             $manager->persist($armure_new);
@@ -108,15 +110,16 @@ class AppFixtures extends Fixture
     private function loadPotions(ObjectManager $manager)
     {
         $potions = [
-            ['id' => 1, 'nom' => 'Potion de rapidité', 'effet' => 'SPEED', 'valeur' => 50, 'rarete' => 2],
-            ['id' => 2, 'nom' => 'Potion de force', 'effet' => 'STRENGTH', 'valeur' => 50, 'rarete' => 2],
-            ['id' => 3, 'nom' => 'Potion de régénération', 'effet' => 'HP', 'valeur' => 30, 'rarete' => 1],
+            ['id' => 1, 'nom' => 'Potion de rapidité', 'effet' => 'SPEED', 'valeur' => 50, 'rarete' => 2,'sprite'=> 'potion.png'],
+            ['id' => 2, 'nom' => 'Potion de force', 'effet' => 'STRENGTH', 'valeur' => 50, 'rarete' => 2,'sprite'=> 'potion.png'],
+            ['id' => 3, 'nom' => 'Potion de régénération', 'effet' => 'HP', 'valeur' => 30, 'rarete' => 1,'sprite'=> 'potionV.png'],
             ['id' => 4, 'nom' => 'Potion de renforcement', 'effet' => 'HPMAX', 'valeur' => 5, 'rarete' => 3]
         ];
         foreach ($potions as $potion) {
             $potion_new = new Potion();
             $potion_new->setNom($potion['nom']);
             $potion_new->setEffet($potion['effet']);
+            $potion_new->setSprite($potion['sprite']);
             $potion_new->setValeur($potion['valeur']);
             $potion_new->setRarete($potion['rarete']);
             $manager->persist($potion_new);
@@ -124,7 +127,6 @@ class AppFixtures extends Fixture
         }
     }
 
-// appeler la méthode loadUsers dans la méthode load
 
     public function loadUsers(ObjectManager $manager)
     {
