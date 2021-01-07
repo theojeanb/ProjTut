@@ -92,16 +92,17 @@ class AppFixtures extends Fixture
     private function loadEnnemis(ObjectManager $manager)
     {
         $ennemis = [
-            ['id' => 1, 'nom' => 'Gobelin', 'degats' => 10, 'pv' => 5],
-            ['id' => 2, 'nom' => 'Koopa', 'degats' => 20, 'pv' => 10],
-            ['id' => 3, 'nom' => 'Sephiroth', 'degats' => 100, 'pv' => 3000],
-            ['id' => 4, 'nom' => 'NOAH', 'degats' => 30000, 'pv' => 99999]
+            ['id' => 1, 'nom' => 'Gobelin', 'degats' => 10, 'pv' => 5, 'sprite' => ''],
+            ['id' => 2, 'nom' => 'Koopa', 'degats' => 20, 'pv' => 10, 'sprite' => ''],
+            ['id' => 3, 'nom' => 'Sephiroth', 'degats' => 100, 'pv' => 3000, 'sprite' => ''],
+            ['id' => 4, 'nom' => 'NOAH', 'degats' => 30000, 'pv' => 99999, 'sprite' => 'noah.png']
         ];
         foreach ($ennemis as $ennemi) {
             $ennemi_new = new Ennemi();
             $ennemi_new->setNom($ennemi['nom']);
             $ennemi_new->setDegats($ennemi['degats']);
             $ennemi_new->setPv($ennemi['pv']);
+            $ennemi_new->setSprite($ennemi['sprite']);
             $manager->persist($ennemi_new);
             $manager->flush();
         }
