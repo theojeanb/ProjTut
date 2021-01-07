@@ -23,7 +23,7 @@
                             <td>{{armure.nom}}</td>
                             <td>{{armure.id}}</td><td>{{armure.type.nom | default('pas de type')}}</td><td>{{armure.defense}}</td><td>{{armure.rarete}}</td><td>
                                 {{armure.sprite}}</td><td>
-                                <img style="width:40px;height:40px" src="{{asset('sprites/armures')}}{{armure.sprite}}" alt="sprite" >
+                                <img style="width:40px;height:40px" src="{{asset('sprites/armures/')}}{{armure.sprite}}" alt="sprite" >
                             </td>
                             <td>
                                 <a href="{{ path('armure_edit', {id: armure.id}) }}" class="btn btn-primary">modifier</a>
