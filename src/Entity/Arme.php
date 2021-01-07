@@ -43,11 +43,6 @@ class Arme
     private $rarete;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="armes")
-     */
-    private $joueurs;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $sprite;
@@ -107,30 +102,6 @@ class Arme
     public function setRarete(int $rarete): self
     {
         $this->rarete = $rarete;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|User[]
-     */
-    public function getJoueurs(): Collection
-    {
-        return $this->joueurs;
-    }
-
-    public function addJoueur(User $joueur): self
-    {
-        if (!$this->joueurs->contains($joueur)) {
-            $this->joueurs[] = $joueur;
-        }
-
-        return $this;
-    }
-
-    public function removeJoueur(User $joueur): self
-    {
-        $this->joueurs->removeElement($joueur);
 
         return $this;
     }

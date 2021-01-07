@@ -58,11 +58,6 @@ class Potion
     private $sprite;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="potions")
-     */
-    private $joueurs;
-
-    /**
      * @ORM\OneToMany(targetEntity=Ennemi::class, mappedBy="potion")
      */
     private $ennemis;
@@ -140,30 +135,6 @@ class Potion
     public function setSprite(?string $sprite): self
     {
         $this->sprite = $sprite;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|User[]
-     */
-    public function getJoueurs(): Collection
-    {
-        return $this->joueurs;
-    }
-
-    public function addJoueur(User $joueur): self
-    {
-        if (!$this->joueurs->contains($joueur)) {
-            $this->joueurs[] = $joueur;
-        }
-
-        return $this;
-    }
-
-    public function removeJoueur(User $joueur): self
-    {
-        $this->joueurs->removeElement($joueur);
 
         return $this;
     }

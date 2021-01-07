@@ -57,21 +57,6 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Arme::class, mappedBy="joueurs")
-     */
-    private $armes;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Armure::class, mappedBy="joueurs")
-     */
-    private $armures;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Potion::class, mappedBy="joueurs")
-     */
-    private $potions;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $attaque;
@@ -113,9 +98,6 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->armures = new ArrayCollection();
-        $this->armes = new ArrayCollection();
-        $this->potions = new ArrayCollection();
         $this->inventaires = new ArrayCollection();
     }
 

@@ -48,11 +48,6 @@ class Armure
     private $type;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="armures")
-     */
-    private $joueurs;
-
-    /**
      * @Assert\NotBlank
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Regex(pattern="/[A-Za-z0-9]{2,}.(jpeg|jpg|png)/", message="Nom de fichier incorrect (extension jpeg, jpg ou png)")
@@ -125,30 +120,6 @@ class Armure
     public function setType(?Type $type): self
     {
         $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|User[]
-     */
-    public function getJoueurs(): Collection
-    {
-        return $this->joueurs;
-    }
-
-    public function addJoueur(User $joueur): self
-    {
-        if (!$this->joueurs->contains($joueur)) {
-            $this->joueurs[] = $joueur;
-        }
-
-        return $this;
-    }
-
-    public function removeJoueur(User $joueur): self
-    {
-        $this->joueurs->removeElement($joueur);
 
         return $this;
     }
