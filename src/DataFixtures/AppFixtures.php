@@ -53,9 +53,9 @@ class AppFixtures extends Fixture
     {
         $armes = [
             ['id' => 1, 'nom' => 'Master Sword', 'degats' => 300, 'rarete' => 4,'sprite'=> 'epee.png'],
-            ['id' => 2, 'nom' => 'Masamune', 'degats' => 200, 'rarete' => 3],
+            ['id' => 2, 'nom' => 'Masamune', 'degats' => 200, 'rarete' => 3,'sprite'=> ''],
             ['id' => 3, 'nom' => 'Buster Sword', 'degats' => 200, 'rarete' => 3,'sprite'=> 'epeeEnchant.png'],
-            ['id' => 4, 'nom' => 'Monado', 'degats' => 100, 'rarete' => 2]
+            ['id' => 4, 'nom' => 'Monado', 'degats' => 100, 'rarete' => 2,'sprite'=> '']
         ];
         foreach ($armes as $arme) {
             $arme_new = new Arme();
@@ -113,7 +113,7 @@ class AppFixtures extends Fixture
             ['id' => 1, 'nom' => 'Potion de rapidité', 'effet' => 'SPEED', 'valeur' => 50, 'rarete' => 2,'sprite'=> 'potion.png'],
             ['id' => 2, 'nom' => 'Potion de force', 'effet' => 'STRENGTH', 'valeur' => 50, 'rarete' => 2,'sprite'=> 'potion.png'],
             ['id' => 3, 'nom' => 'Potion de régénération', 'effet' => 'HP', 'valeur' => 30, 'rarete' => 1,'sprite'=> 'potionV.png'],
-            ['id' => 4, 'nom' => 'Potion de renforcement', 'effet' => 'HPMAX', 'valeur' => 5, 'rarete' => 3]
+            ['id' => 4, 'nom' => 'Potion de renforcement', 'effet' => 'HPMAX', 'valeur' => 5, 'rarete' => 3,'sprite'=> '']
         ];
         foreach ($potions as $potion) {
             $potion_new = new Potion();
