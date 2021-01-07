@@ -28,7 +28,7 @@ class PotionType extends AbstractType
                     new File([
                         'maxSize' => '1024k',
                         'mimeTypes' => [
-                            'image/png',
+                            'image/*',
                         ],
                         'mimeTypesMessage' => 'Please upload a valid png document',
                     ])
