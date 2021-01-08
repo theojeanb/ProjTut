@@ -23,7 +23,7 @@ class GameController extends AbstractController
      */
     public function download(Request $request)
     {
-        $exePath = $this->getParameter('download_dir').'/test(7).exe';
+        $exePath = $this->getParameter('download_dir').'/jeu.zip';
         return $this->file($exePath);
     }
 }
