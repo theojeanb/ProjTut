@@ -57,6 +57,11 @@ class Arme
      */
     private $inventaires;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $prix;
+
     public function __construct()
     {
         $this->Joueur = new ArrayCollection();
@@ -174,6 +179,18 @@ class Arme
                 $inventaire->setArme(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrix(): ?int
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(int $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }

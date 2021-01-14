@@ -150,11 +150,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\theoj\S3\ProjTut\ProjTut\public\sprites\ennemis" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\public\sprites\personnage" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\public\download_src" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd" />
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Security" />
-      <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\src\Controller" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd\types" />
@@ -164,7 +164,7 @@
       <recent name="C:\Users\natha\Desktop\S3\ProjetTut\Site\ProjTut\templates\admin\bdd\armes" />
     </key>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -186,6 +186,10 @@
       <workItem from="1609698329160" duration="631000" />
       <workItem from="1609954833634" duration="6743000" />
       <workItem from="1610012561633" duration="1274000" />
+      <workItem from="1610023991704" duration="1829000" />
+      <workItem from="1610099835968" duration="435000" />
+      <workItem from="1610121659040" duration="18000" />
+      <workItem from="1610466885670" duration="7000" />
     </task>
     <task id="LOCAL-00001" summary="Début Affichage (login non fonctionnel)">
       <created>1608565457400</created>
@@ -324,7 +328,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
