@@ -124,6 +124,8 @@ CREATE TABLE `inventaire` (
   `armure_id` int(11) DEFAULT NULL,
   `potion_id` int(11) DEFAULT NULL,
   `est_equipe` tinyint(1) NOT NULL,
+  `x` int(11) DEFAULT NULL,
+  `y` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_338920E0A9E2D76C` (`joueur_id`),
   KEY `IDX_338920E021D9C0A` (`arme_id`),

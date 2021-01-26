@@ -69,16 +69,6 @@ class Armure
      */
     private $prix;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $x;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $y;
-
     public function __construct()
     {
         $this->joueurs = new ArrayCollection();
@@ -219,30 +209,6 @@ class Armure
     public function setPrix(int $prix): self
     {
         $this->prix = $prix;
-
-        return $this;
-    }
-
-    public function getX(): ?int
-    {
-        return $this->x;
-    }
-
-    public function setX(int $x): self
-    {
-        $this->x = $x;
-
-        return $this;
-    }
-
-    public function getY(): ?int
-    {
-        return $this->y;
-    }
-
-    public function setY(int $y): self
-    {
-        $this->y = $y;
 
         return $this;
     }
