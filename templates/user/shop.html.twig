@@ -17,7 +17,8 @@
                             <img class="img-fluid rounded"  style="width:50px;height:50px"  src="{{asset('sprites/')}}{{ key }}/{{item.sprite}}"  alt="image  de {{ item.nom }}" >
                         {% endif %}
                         <hr>
-                        <a class="btn btn-success" href="{{ path('shop.buy', {id: item.id, group: key} )}}">Buy</a>
+                        <a href="{{ path('shop.buy', {id: item.id, group: key} )}}" class="btn btn-success
+                           {% if app.user.argent < item.prix %}disabled{% endif %}" >Buy</a>
                     </div>
                 </div>
                 {% endfor %}

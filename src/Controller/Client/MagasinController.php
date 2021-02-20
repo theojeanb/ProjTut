@@ -51,6 +51,7 @@ class MagasinController extends AbstractController
         $inventaire->setArme($arme);
         $inventaire->setEstEquipe(false);
         $user = $this->getUser();
+        $user->setArgent(($user->getArgent())-($arme->getPrix()));
         $user->addInventaire($inventaire);
         $entityManager->persist($inventaire);
         $entityManager->flush();
@@ -64,6 +65,7 @@ class MagasinController extends AbstractController
         $inventaire->setArmure($armure);
         $inventaire->setEstEquipe(false);
         $user = $this->getUser();
+        $user->setArgent(($user->getArgent())-($armure->getPrix()));
         $user->addInventaire($inventaire);
         $entityManager->persist($inventaire);
         $entityManager->flush();
@@ -77,6 +79,7 @@ class MagasinController extends AbstractController
         $inventaire->setPotion($potion);
         $inventaire->setEstEquipe(false);
         $user = $this->getUser();
+        $user->setArgent(($user->getArgent())-($potion->getPrix()));
         $user->addInventaire($inventaire);
         $entityManager->persist($inventaire);
         $entityManager->flush();
