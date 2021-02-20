@@ -95,7 +95,7 @@ class InventaireController extends AbstractController
     /**
      * @Route("/inventaire/addPotion/{id}", name="inventaire_addPotion", methods={"POST"})
      */
-    public function addArmeToPotion(Request $request, $id=null) {
+    public function addPotionToUser(Request $request, $id=null) {
         $entityManager = $this->getDoctrine()->getManager();
         $potion = $entityManager->getRepository(Potion::class)->find($id);
         if (!$potion)  throw $this->createNotFoundException('No potion found for id '.$id);

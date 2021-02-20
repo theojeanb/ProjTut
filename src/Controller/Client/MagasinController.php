@@ -6,6 +6,7 @@ namespace App\Controller\Client;
 
 use App\Entity\Arme;
 use App\Entity\Armure;
+use App\Entity\Inventaire;
 use App\Entity\Potion;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,4 +24,27 @@ class MagasinController extends AbstractController
         $items = ["armes" => $armes, "potions" => $potions, "armures" => $armures];
         return $this->render('user/shop.html.twig',['items'=> $items ]);
     }
+
+    /**
+     * @Route("/shop/buy", name="shop.buy", methods={"GET"})
+     */
+    public function buy(Request $request){
+        $id= $request->get('id');
+        $group= $request->get('group');
+        if($group == "Armes"){
+            $inventaire = new Inventaire();
+            #et là tu fait tes bails
+        }
+        if($group == "Armures"){
+            $inventaire = new Inventaire();
+            #et là tu fait tes bails
+        }
+        if($group == "Potions"){
+            $inventaire = new Inventaire();
+            #et là tu fait tes bails
+        }
+        $this->redirectToRoute('shop');
+    }
+
+
 }
