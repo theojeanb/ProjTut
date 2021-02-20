@@ -31,19 +31,55 @@ class MagasinController extends AbstractController
     public function buy(Request $request){
         $id= $request->get('id');
         $group= $request->get('group');
-        if($group == "Armes"){
-            $inventaire = new Inventaire();
-            #et là tu fait tes bails
+        if($group == "armes"){
+            $this->addArmeToUser($id);
         }
-        if($group == "Armures"){
-            $inventaire = new Inventaire();
-            #et là tu fait tes bails
+        if($group == "armures"){
+            $this->addArmureToUser()($id);
         }
-        if($group == "Potions"){
-            $inventaire = new Inventaire();
-            #et là tu fait tes bails
+        if($group == "potions"){
+            $this->addPotionToUser($id);
         }
-        $this->redirectToRoute('shop');
+        return $this->redirectToRoute('shop');
+    }
+
+    public function addArmeToUser($id=null) {
+        $entityManager = $this->getDoctrine()->getManager();
+        $arme = $entityManager->getRepository(Arme::class)->find($id);
+        if (!$arme)  throw $this->createNotFoundException('No weapon found for id '.$id);
+        $inventaire = new Inventaire();
+        $inventaire->setArme($arme);
+        $inventaire->setEstEquipe(false);
+        $user = $this->getUser();
+        $user->addInventaire($inventaire);
+        $entityManager->persist($inventaire);
+        $entityManager->flush();
+    }
+
+    public function addArmureToUser($id=null) {
+        $entityManager = $this->getDoctrine()->getManager();
+        $armure = $entityManager->getRepository(Armure::class)->find($id);
+        if (!$armure)  throw $this->createNotFoundException('No armor found for id '.$id);
+        $inventaire = new Inventaire();
+        $inventaire->setArmure($armure);
+        $inventaire->setEstEquipe(false);
+        $user = $this->getUser();
+        $user->addInventaire($inventaire);
+        $entityManager->persist($inventaire);
+        $entityManager->flush();
+    }
+
+    public function addPotionToUser($id=null) {
+        $entityManager = $this->getDoctrine()->getManager();
+        $potion = $entityManager->getRepository(Potion::class)->find($id);
+        if (!$potion)  throw $this->createNotFoundException('No potion found for id '.$id);
+        $inventaire = new Inventaire();
+        $inventaire->setPotion($potion);
+        $inventaire->setEstEquipe(false);
+        $user = $this->getUser();
+        $user->addInventaire($inventaire);
+        $entityManager->persist($inventaire);
+        $entityManager->flush();
     }
 
 
