@@ -10,20 +10,21 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="DropdownCommandes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Le jeu
+                <a class="nav-link dropdown-toggle" id="DropdownInventaire" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Inventaire
                 </a>
-                <div class="dropdown-menu" aria-labelledby="DropdownCommandes">
-                    <a class="dropdown-item" href="{{ path('infos') }}">Informations sur le jeu</a>
+                <div class="dropdown-menu" aria-labelledby="DropdownInventaire">
+                    <a class="dropdown-item" href="{{ path('inventaire_index') }}">Votre inventaire</a>
+                    <a class="dropdown-item" href="{{ path('shop') }}">Magasin</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="DropdownCommandes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Inventaire
+                <a class="nav-link dropdown-toggle" id="DropdownInfos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Informations
                 </a>
-                <div class="dropdown-menu" aria-labelledby="DropdownCommandes">
-                    <a class="dropdown-item" href="{{ path('inventaire_index') }}">Votre inventaire</a>
-                    <a class="dropdown-item" href="{{ path('shop') }}">Magasin</a>
+                <div class="dropdown-menu" aria-labelledby="DropdownInfos">
+                    <a class="dropdown-item" href="{{ path('infos') }}">Informations sur le jeu</a>
+                    <a class="dropdown-item" href="{{ path('data') }}">Vos informations</a>
                 </div>
             </li>
         </ul>
@@ -34,8 +35,8 @@
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <span class="navbar-text">
                     Bonjour {{ app.user.username }}
-                    {% if is_granted('ROLE_ADMIN') %} (role : Admin )
-                    {% elseif is_granted('ROLE_CLIENT') %} (role : Client ) {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %} (role : Admin)&nbsp &nbsp
+                    {% elseif is_granted('ROLE_USER') %} (role : User) &nbsp &nbsp{% endif %}
             </span>
                 <a class="btn btn-outline-success" type="button" href="{{path('app_logout') }}">
                     Se déconnecter

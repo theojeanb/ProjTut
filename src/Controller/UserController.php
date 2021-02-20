@@ -114,4 +114,10 @@ class UserController extends AbstractController
         $result = $data->success;
         return $result;
     }
+    /**
+     * @Route("/data", name="data", methods={"GET", "POST"})
+     */
+    public function getData(){
+        return $this->render('user/data.html.twig',['user'=>$this->getUser()]);
+    }
 }

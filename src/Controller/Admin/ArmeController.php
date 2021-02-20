@@ -16,6 +16,7 @@ class ArmeController extends AbstractController
 
     /**
      * @Route("/arme", name="arme_index", methods={"GET"})
+     * Permet d'ajouter, de modifier et de supprimer des armes dans la BDD
      */
     public function showArmes(Request $request)
     {
@@ -30,6 +31,7 @@ class ArmeController extends AbstractController
         $arme = new Arme();
         $form = $this->createForm(ArmeType::class, $arme);
         $form->handleRequest($request);
+
         if($form->isSubmitted() && $form->isValid())
         {
             if ($form->get('sprite')->getData()){
@@ -66,6 +68,7 @@ class ArmeController extends AbstractController
             'action' => $this->generateUrl('arme_edit',['id'=>$id]),
             'method' => 'PUT',]);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->get('sprite')->getData()){
                 $photoFile = $form->get('sprite')->getData();
@@ -81,6 +84,7 @@ class ArmeController extends AbstractController
                     $this->addFlash('notice', 'erreur');
                 }
             }
+
             $entityManager->persist($arme);
             $entityManager->flush();
             $this->addFlash('notice', 'Arme ' . $arme->getNom() . ' modifiée');
@@ -93,12 +97,16 @@ class ArmeController extends AbstractController
      * @Route("/arme/delete", name="arme_delete", methods={"GET", "DELETE"})
      */
     public function deleteArme(Request $request) {
+
         $entityManager = $this->getDoctrine()->getManager();
         $id= $request->request->get('id');
         $arme = $entityManager->getRepository(Arme::class)->find($id);
+
         if (!$arme)  throw $this->createNotFoundException('No weapon found for id '.$id);
+
         $entityManager->remove($arme);
         $entityManager->flush();
+
         $this->addFlash('notice', 'Arme ' . $arme->getNom() . ' supprimée');
         return $this->redirectToRoute('arme_index');
     }

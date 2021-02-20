@@ -1,0 +1,15 @@
+{% extends "user/layout_user.html.twig" %}
+{% block body %}
+    <div class="container">
+        <div class="bg-light p-3 mt-4">
+            <h1>Mes coordonnées</h1>
+        </div>
+    <h2>Username : {{ user.username }}</h2>
+    <div>Mail : {{ user.email }}<br>
+    <a href="#" class="btn btn-success row col-sm-2">
+        Modifier les Infos
+    </a>
+    <a href="#" class="btn btn-success row col-sm-2">
+        Modifier le Mot de passe
+    </a>
+{% endblock %}
