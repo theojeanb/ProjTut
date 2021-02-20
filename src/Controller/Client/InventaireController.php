@@ -30,22 +30,7 @@ class InventaireController extends AbstractController
         $potions = $this->getDoctrine()->getRepository(Inventaire::class)->findAllPotions($this->getUser()->getId());
         $user = $this->getUser();
         $items = $this->getUser()->getInventaires();
-        $equipe = null;
-        foreach ($items as $item) {
-            if (!is_null($item->getArme()) and ($item->getEstEquipe())) {
-                $equipe['arme'] = $item;
-            }
-
-            if (!is_null($item->getArmure()) and ($item->getEstEquipe())) {
-                $equipe[$item->getArmure()->getType()->getNom()] = $item;
-            }
-
-            if (!is_null($item->getPotion()) and ($item->getEstEquipe())) {
-                $equipe['potion'] = $item;
-            }
-        }
-
-        return $this->render('user/inventory.html.twig', ['user' => $user,'armes' => $armes, 'armures' => $armures, 'potions' => $potions, 'equipe' => $equipe]);
+        return $this->render('user/inventory.html.twig', ['user' => $user,'armes' => $armes, 'armures' => $armures, 'potions' => $potions, 'equipe' => $items]);
     }
 
     /**
