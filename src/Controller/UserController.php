@@ -25,11 +25,11 @@ class UserController extends AbstractController
         return $this->render('accueil.html.twig');
     }
 
-    /**
+    /* /**
      * @Route("/user/edit", name="user_edit", methods={"GET"})
      * @Route("/user/valid", name="user_edit_valid", methods={"PUT"})
      */
-    public function editUser(Request $request, SerializerInterface $serializer)
+    /* public function editUser(Request $request, SerializerInterface $serializer)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $user = $this->getUser();
@@ -71,6 +71,40 @@ class UserController extends AbstractController
             return $this->redirectToRoute('INSERE TA ROUTE ICI');
         }
         return $this->render('INSERE TA PAGE ICI', ['donnees' => $donnees, 'erreurs' => $erreurs]);
+    }*/
+
+    /**
+     * @Route("/user/edit", name="edit_user", methods={"GET", "POST"})
+     */
+    public function editUser(Request $request,UserPasswordEncoderInterface $encoder) {
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
+            $data = $form->getData();
+            $arraypassword =$data->getPassword();
+            $password = $encoder->encodePassword($user, $arraypassword);
+            $user->setPassword($password);
+            $user->setArgent(0);
+            $user->setPvMax(100);
+            $user->setPv(100);
+            $user->setNiveau(1);
+            $user->setExperience(0);
+            $user->setAttaque(10);
+            $user->setDefense(10);
+            $this->getDoctrine()->getManager()->persist($user);
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('app_login');
+        }
+        if($form->isSubmitted() &&  $form->isValid() && !$this->captchaverify($request->get('g-recaptcha-response'))){
+            $this->addFlash(
+                'notice',
+                'Captcha Required'
+            );
+        }
+        return $this->render('security/editUser.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**

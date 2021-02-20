@@ -1,15 +1,35 @@
 {% extends "user/layout_user.html.twig" %}
 {% block body %}
     <div class="container">
-        <div class="bg-light p-3 mt-4">
-            <h1>Mes coordonnées</h1>
+        <br>
+        <h1>Informations de l'utilisateurs</h1>
+        <br>
+        <div class="row">
+            <a href="{{ path('edit_user') }}" class="btn btn-primary m-1 p-2"> Modifier les informations </a>
         </div>
-    <h2>Username : {{ user.username }}</h2>
-    <div>Mail : {{ user.email }}<br>
-    <a href="#" class="btn btn-success row col-sm-2">
-        Modifier les Infos
-    </a>
-    <a href="#" class="btn btn-success row col-sm-2">
-        Modifier le Mot de passe
-    </a>
+        <br>
+        <div>
+            <table class="table">
+                <caption>Récapitulatif des informations</caption>
+                <thead class="thead-dark">
+                <tr><th>Type</th><th>Information</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if user is not empty %}
+                    <tr>
+                        <td>Nom</td>
+                        <td>{{ user.username }}</td>
+                    </tr>
+                    <tr>
+                        <td>Adresse Mail</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                {% else %}
+                    <tr class="table-warning"><td>Pas d'infos</td></tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
