@@ -31,38 +31,33 @@
                 </div>
                 <div class="container-xs col-sm-1" style="background-color: #b8daff"></div>
                 <div class="container-xs col-sm-4" style="background-color: #ffd3b8;border-radius:10px;">
-                    <br><h4>Informations sur l'objet</h4>
-                    <div style="margin-left: 70px;">
+                    <br><h4>Sac à dos</h4>
+                    <div class="container-fluid" style="background-color: #ffd3b8;white-space: nowrap;overflow-x: scroll;overflow-y: hidden;border-radius: 10px;">
                         <br>
+                        <div>
+                            {% if armes is not empty %}
+                                {% for arme in armes %}
+                                    <img id="arme{{ arme.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/')}}{{arme.sprite}}" alt="sprite" onclick="transferSword(event)" >
+                                {% endfor %}
+                            {% endif %}
+
+                            {% if armures is not empty %}
+                                {% for armure in armures %}
+                                    <img id="armure{{ armure.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{armure.sprite}}" alt="sprite" onclick="transferArmor(event, '{{ armure.nomType }}')" >
+                                {% endfor %}
+                            {% endif %}
+
+                            {% if potions is not empty %}
+                                {% for potion in potions %}
+                                    <img id="potion{{ potion.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/')}}{{potion.sprite}}" alt="sprite" onclick="transferPotion(event)" >
+                                {% endfor %}
+                            {% endif %}
+                        </div>
                         <br>
-                        <div id="drop" style="width:55px;height:55px;margin-bottom: 14px;border: solid;"></div>
                     </div>
                 </div>
             </div>
             <br><br><br>
-            <div class="container-fluid" style="background-color: #ffd3b8;white-space: nowrap;overflow-x: scroll;overflow-y: hidden;border-radius: 10px;">
-                <br>
-                <div>
-                    {% if armes is not empty %}
-                        {% for arme in armes %}
-                            <img id="test" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/')}}{{arme.sprite}}" alt="sprite" onclick="transferSword(event)" >
-                        {% endfor %}
-                    {% endif %}
-
-                    {% if armures is not empty %}
-                        {% for armure in armures %}
-                            <img id="test" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{armure.sprite}}" alt="sprite" onclick="transferArmor(event, '{{ armure.nomType }}')" >
-                        {% endfor %}
-                    {% endif %}
-
-                    {% if potions is not empty %}
-                        {% for potion in potions %}
-                            <img id="test" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/')}}{{potion.sprite}}" alt="sprite" onclick="transferPotion(event)" >
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                <br>
-            </div>
         </div>
         <br>
     </div>

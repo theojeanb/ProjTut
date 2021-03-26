@@ -23,7 +23,7 @@ class InventaireRepository extends ServiceEntityRepository
     {
         $query = $this->getEntityManager()
             ->createQuery('
-                    SELECT a.nom, a.degats, a.rarete, a.sprite, a.prix
+                    SELECT a.id,a.nom, a.degats, a.rarete, a.sprite, a.prix
                     FROM App:Arme a
                     JOIN App:Inventaire i
                     WHERE i.joueur =  '.$UserId.' and IDENTITY(i.arme) IS NOT NULL and a.id = IDENTITY(i.arme)');
@@ -34,7 +34,7 @@ class InventaireRepository extends ServiceEntityRepository
     {
         $query = $this->getEntityManager()
             ->createQuery('
-                    SELECT a.nom, a.defense, a.rarete, a.sprite, a.prix, t.nom AS nomType
+                    SELECT a.id,a.nom, a.defense, a.rarete, a.sprite, a.prix, t.nom AS nomType
                     FROM App:Armure a
                     JOIN App:Inventaire i
                     JOIN App:Type t
@@ -46,7 +46,7 @@ class InventaireRepository extends ServiceEntityRepository
     {
         $query = $this->getEntityManager()
             ->createQuery('
-                    SELECT p.nom, p.effet, p.valeur, p.rarete, p.sprite, p.prix
+                    SELECT p.id,p.nom, p.effet, p.valeur, p.rarete, p.sprite, p.prix
                     FROM App:Potion p
                     JOIN App:Inventaire i
                     WHERE i.joueur =  '.$UserId.' and IDENTITY(i.potion) IS NOT NULL and p.id = IDENTITY(i.potion)');

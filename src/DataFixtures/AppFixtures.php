@@ -142,7 +142,7 @@ class AppFixtures extends Fixture
         $admin->setEmail('admin');
         $admin->setAttaque(10);
         $admin->setDefense(10);
-        $admin->setArgent(0);
+        $admin->setArgent(1000);
         $admin->setPvMax(100);
         $admin->setPv(100);
         $admin->setNiveau(1);
@@ -158,7 +158,7 @@ class AppFixtures extends Fixture
         $user1->setEmail('user');
         $user1->setAttaque(10);
         $user1->setDefense(10);
-        $user1->setArgent(0);
+        $user1->setArgent(1000);
         $user1->setPvMax(100);
         $user1->setPv(100);
         $user1->setNiveau(1);
