@@ -23,9 +23,10 @@ class InventaireRepository extends ServiceEntityRepository
     {
         $query = $this->getEntityManager()
             ->createQuery('
-                    SELECT IDENTITY(i.arme)
-                    FROM App:Inventaire i
-                    WHERE i.joueur =  '.$UserId.' and IDENTITY(i.arme) IS NOT NULL');
+                    SELECT a.nom, a.degats, a.rarete, a.sprite, a.prix
+                    FROM App:Arme a
+                    JOIN App:Inventaire i
+                    WHERE i.joueur =  '.$UserId.' and IDENTITY(i.arme) IS NOT NULL and a.id = IDENTITY(i.arme)');
         return $query->getResult();
     }
 
@@ -33,9 +34,11 @@ class InventaireRepository extends ServiceEntityRepository
     {
         $query = $this->getEntityManager()
             ->createQuery('
-                    SELECT IDENTITY(i.armure)
-                    FROM App:Inventaire i
-                    WHERE i.joueur =  '.$UserId.' and IDENTITY(i.armure) IS NOT NULL');
+                    SELECT a.nom, a.defense, a.rarete, a.sprite, a.prix, t.nom AS nomType
+                    FROM App:Armure a
+                    JOIN App:Inventaire i
+                    JOIN App:Type t
+                    WHERE i.joueur =  '.$UserId.' and IDENTITY(i.armure) IS NOT NULL and IDENTITY(a.type) = t.id and a.id = IDENTITY(i.armure)');
         return $query->getResult();
     }
 
@@ -43,9 +46,10 @@ class InventaireRepository extends ServiceEntityRepository
     {
         $query = $this->getEntityManager()
             ->createQuery('
-                    SELECT IDENTITY(i.potion)
-                    FROM App:Inventaire i
-                    WHERE i.joueur =  '.$UserId.' and IDENTITY(i.potion) IS NOT NULL');
+                    SELECT p.nom, p.effet, p.valeur, p.rarete, p.sprite, p.prix
+                    FROM App:Potion p
+                    JOIN App:Inventaire i
+                    WHERE i.joueur =  '.$UserId.' and IDENTITY(i.potion) IS NOT NULL and p.id = IDENTITY(i.potion)');
         return $query->getResult();
     }
 
