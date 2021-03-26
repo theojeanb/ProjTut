@@ -1,7 +1,7 @@
 {% extends "user/layout_user.html.twig" %}
 {% block body %}
     <script>
-        declare var event: DragEvent;
+        declare var event: MouseEvent;
     </script>
     <div class="container-fluid">
         <br><br><br>
@@ -13,16 +13,16 @@
                     <div>
                         <br>
                         <div id="drop1" style="width:55px;height:55px;margin-bottom: 14px;border: solid;" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                        <div id="drop2" style="width:55px;height:55px;margin-bottom: 14px;border: solid;" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                        <div id="drop3" style="width:55px;height:55px;margin-bottom: 14px;border: solid;" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                        <div id="drop4" style="width:55px;height:55px;margin-bottom: 14px;border: solid;" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <div id="drop2" style="width:55px;height:55px;margin-bottom: 14px;border: solid;"></div>
+                        <div id="drop3" style="width:55px;height:55px;margin-bottom: 14px;border: solid;"></div>
+                        <div id="drop4" style="width:55px;height:55px;margin-bottom: 14px;border: solid;"></div>
                     </div>
                 </div>
                 <div class="container-xs col-sm-1" style="background-color: #cbb8ff;border-radius: 0 10px 10px 0;">
                     <div>
                         <br>
-                        <div id="drop5" style="width:55px;height:55px;margin-bottom: 14px;border: solid;" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                        <div id="drop6" style="width:55px;height:55px;margin-bottom: 14px;border: solid;" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <div id="drop5" style="width:55px;height:55px;margin-bottom: 14px;border: solid;"></div>
+                        <div id="drop6" style="width:55px;height:55px;margin-bottom: 14px;border: solid;"></div>
                         <h6>Argent : </h6>
                         <div>{{ user.argent }} <img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="coin"></div><br>
                         <h6>PV :</h6>
@@ -35,22 +35,22 @@
                     <div style="margin-left: 70px;">
                         <br>
                         <br>
-                        <div id="drop" style="width:55px;height:55px;margin-bottom: 14px;border: solid;" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <div id="drop" style="width:55px;height:55px;margin-bottom: 14px;border: solid;"></div>
                     </div>
                 </div>
             </div>
             <br><br><br>
             <div class="container-fluid" style="background-color: #ffd3b8;white-space: nowrap;overflow-x: scroll;overflow-y: hidden;border-radius: 10px;">
                 <br>
-                <div ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <img id="img1" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/epee.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
-                    <img id="img2" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/epeeEnchant.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
-                    <img id="img3" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/botte.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
-                    <img id="img4" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/jambières.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
-                    <img id="img5" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/casque.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
-                    <img id="img6" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/plastronD.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
-                    <img id="img7" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/potion.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
-                    <img id="img8" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/potionV.png')}}" alt="sprite" draggable="true" ondragstart="drag(event)">
+                <div>
+                    <img id="sword1" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/epee.png')}}" alt="sprite" onclick="transfer(event)">
+                    <img id="sword2" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/epeeEnchant.png')}}" alt="sprite" onclick="transfer(event)">
+                    <img id="boots" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/botte.png')}}" alt="sprite" onclick="transfer(event)">
+                    <img id="jambes" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/jambières.png')}}" alt="sprite" onclick="transfer(event)">
+                    <img id="casque" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/casque.png')}}" alt="sprite" onclick="transfer(event)">
+                    <img id="chest" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/plastronD.png')}}" alt="sprite" onclick="transfer(event)">
+                    <img id="potion1" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/potion.png')}}" alt="sprite" onclick="transfer(event)">
+                    <img id="potion2" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/potionV.png')}}" alt="sprite" onclick="transfer(event)">
                 </div>
                 <br>
             </div>
@@ -58,19 +58,13 @@
         <br>
     </div>
     <script>
-        user_pref("browser.display.use_document_colors", true);
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
+        let p = document.getElementsByClassName("item");
+        p.onclick = transfer();
 
-        function drag(ev) {
-            ev.dataTransfer.setData("image", ev.target.id);
-        }
-
-        function drop(ev) {
-            ev.preventDefault();
-            let data = ev.dataTransfer.getData("image");
-            ev.target.appendChild(document.getElementById(data));
+        function transfer(ev) {
+            let target = ev.target.id;
+            let type = target.className;
+            document.getElementById("drop5").appendChild(document.getElementById(target));
         }
 
     </script>
