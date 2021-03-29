@@ -7,7 +7,7 @@
         <br><br><br>
         <div class="container-xl" style="background-color: #b8daff;white-space: nowrap">
             <br><h1 style="color:#78ade6">&nbsp;&nbsp;Votre Inventaire</h1><br><br>
-            <div class="row">
+            <div class="row" id="inventaire">
                 <img style="width:275px;height:275px" src="{{asset('sprites/personnage/personnage.png')}}" alt="image du personnage">
                 <div class="container-xs col-sm-1" style="background-color: #cbb8ff;border-radius: 10px 0 0 10px;">
                     <div>
@@ -30,11 +30,11 @@
                     </div>
                 </div>
                 <div class="container-xs col-sm-1" style="background-color: #b8daff"></div>
-                <div class="container-xs col-sm-4" style="background-color: #ffd3b8;border-radius:10px;">
-                    <br><h4>Sac à dos</h4>
+                <div class="container-xs col-sm-5" style="background-color: #ffd3b8;border-radius:10px;">
+                    <br><h4 style="text-align: center">Sac à dos</h4>
                     <div class="container-fluid" style="background-color: #ffd3b8;white-space: nowrap;overflow-x: scroll;overflow-y: hidden;border-radius: 10px;">
                         <br>
-                        <div>
+                        <div id="sac">
                             {% if armes is not empty %}
                                 {% for arme in armes %}
                                     <img id="arme{{ arme.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/')}}{{arme.sprite}}" alt="sprite" onclick="transferSword(event)" >
@@ -63,24 +63,54 @@
     </div>
     <script>
         function transferSword(ev) {
-            document.getElementById("drop5").appendChild(document.getElementById(ev.target.id));
+            if(document.getElementById("drop5").firstChild !== null){
+                document.getElementById("sac").appendChild(document.getElementById("drop5").firstChild);
+                document.getElementById("drop5").appendChild(document.getElementById(ev.target.id));
+            } else {
+                document.getElementById("drop5").appendChild(document.getElementById(ev.target.id));
+            }
         }
         function transferPotion(ev) {
-            document.getElementById("drop6").appendChild(document.getElementById(ev.target.id));
+            if(document.getElementById("drop6").firstChild !== null ){
+                document.getElementById("sac").appendChild(document.getElementById("drop6").firstChild);
+                document.getElementById("drop6").appendChild(document.getElementById(ev.target.id));
+            } else {
+                document.getElementById("drop6").appendChild(document.getElementById(ev.target.id));
+            }
         }
         function transferArmor(ev,type) {
             switch (type) {
                 case 'Casque':
-                    document.getElementById("drop1").appendChild(document.getElementById(ev.target.id));
+                    if(document.getElementById("drop1").firstChild !== null){
+                        document.getElementById("sac").appendChild(document.getElementById("drop1").firstChild);
+                        document.getElementById("drop1").appendChild(document.getElementById(ev.target.id));
+                    } else {
+                        document.getElementById("drop1").appendChild(document.getElementById(ev.target.id));
+                    }
                     break;
                 case 'Plastron':
-                    document.getElementById("drop2").appendChild(document.getElementById(ev.target.id));
+                    if(document.getElementById("drop2").firstChild !== null){
+                        document.getElementById("sac").appendChild(document.getElementById("drop1").firstChild);
+                        document.getElementById("drop2").appendChild(document.getElementById(ev.target.id));
+                    } else {
+                        document.getElementById("drop2").appendChild(document.getElementById(ev.target.id));
+                    }
                     break;
                 case 'Jambières':
-                    document.getElementById("drop3").appendChild(document.getElementById(ev.target.id));
+                    if(document.getElementById("drop3").firstChild !== null){
+                        document.getElementById("sac").appendChild(document.getElementById("drop1").firstChild);
+                        document.getElementById("drop3").appendChild(document.getElementById(ev.target.id));
+                    } else {
+                        document.getElementById("drop3").appendChild(document.getElementById(ev.target.id));
+                    }
                     break;
                 case 'Chaussures':
-                    document.getElementById("drop4").appendChild(document.getElementById(ev.target.id));
+                    if(document.getElementById("drop4").firstChild !== null){
+                        document.getElementById("sac").appendChild(document.getElementById("drop1").firstChild);
+                        document.getElementById("drop4").appendChild(document.getElementById(ev.target.id));
+                    } else {
+                        document.getElementById("drop4").appendChild(document.getElementById(ev.target.id));
+                    }
                     break;
             }
         }
