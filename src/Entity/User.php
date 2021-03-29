@@ -314,12 +314,12 @@ class User implements UserInterface
     {
         // unset the owning side of the relation if necessary
         if ($equipement === null && $this->equipement !== null) {
-            $this->equipement->setCasque(null);
+            $this->equipement->setUser(null);
         }
 
         // set the owning side of the relation if necessary
-        if ($equipement !== null && $equipement->getCasque() !== $this) {
-            $equipement->setCasque($this);
+        if ($equipement !== null && $equipement->getUser() !== $this) {
+            $equipement->setUser($this);
         }
 
         $this->equipement = $equipement;

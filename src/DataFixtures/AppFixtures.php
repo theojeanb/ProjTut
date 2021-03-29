@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Equipement;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -134,6 +135,8 @@ class AppFixtures extends Fixture
 
     public function loadUsers(ObjectManager $manager)
     {
+        $equipementAdmin = new Equipement();
+        $manager->persist($equipementAdmin);
         $admin = new User();
         $password = $this->passwordEncoder->encodePassword($admin, 'admin');
         $admin->setPassword($password);
@@ -147,9 +150,11 @@ class AppFixtures extends Fixture
         $admin->setPv(100);
         $admin->setNiveau(1);
         $admin->setExperience(0);
+        $admin->setEquipement($equipementAdmin);
         $manager->persist($admin);
 
-
+        $equipementUser = new Equipement();
+        $manager->persist($equipementUser);
         $user1 = new User();
         $password = $this->passwordEncoder->encodePassword($user1, 'user');
         $user1->setPassword($password);
@@ -163,6 +168,7 @@ class AppFixtures extends Fixture
         $user1->setPv(100);
         $user1->setNiveau(1);
         $user1->setExperience(0);
+        $user1->setEquipement($equipementUser);
         $manager->persist($user1);
 
 
