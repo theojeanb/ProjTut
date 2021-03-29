@@ -96,6 +96,11 @@ class User implements UserInterface
      */
     private $inventaires;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Equipement::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $equipement;
+
     public function __construct()
     {
         $this->inventaires = new ArrayCollection();
@@ -296,6 +301,28 @@ class User implements UserInterface
                 $inventaire->setJoueur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEquipement(): ?Equipement
+    {
+        return $this->equipement;
+    }
+
+    public function setEquipement(?Equipement $equipement): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($equipement === null && $this->equipement !== null) {
+            $this->equipement->setCasque(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($equipement !== null && $equipement->getCasque() !== $this) {
+            $equipement->setCasque($this);
+        }
+
+        $this->equipement = $equipement;
 
         return $this;
     }
