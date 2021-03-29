@@ -30,29 +30,15 @@ class MagasinController extends AbstractController
         $userPotions = $this->getDoctrine()->getRepository(Inventaire::class)->findAllPotions($user_id);
         $inventory = ["armes" => $userArmes, "armures" => $userArmures, "potions" => $userPotions];
         $argent = $this->getUser()->getArgent();
-        return $this->render('user/shop.html.twig',['items'=> $items, 'inventory' => $inventory, 'argent' => $argent]);
+        return $this->render('user/shop.html.twig',['armures'=> $armures,'armes' => $armes,'potions' => $potions, 'inventory' => $inventory, 'argent' => $argent]);
     }
 
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/shop/buy", name="shop.buy", methods={"GET"})
+     * @Route("/shop/buyArme", name="shop.buyArme", methods={"GET"})
      */
-    public function buy(Request $request){
+    public function addArmeToUser(Request $request) {
         $id= $request->get('id');
-        $group= $request->get('group');
-        if($group == "armes"){
-            $this->addArmeToUser($id);
-        }
-        if($group == "armures"){
-            $this->addArmureToUser($id);
-        }
-        if($group == "potions"){
-            $this->addPotionToUser($id);
-        }
-        return $this->redirectToRoute('shop');
-    }
-
-    public function addArmeToUser($id=null) {
         $entityManager = $this->getDoctrine()->getManager();
         $arme = $entityManager->getRepository(Arme::class)->find($id);
         if (!$arme)  throw $this->createNotFoundException('No weapon found for id '.$id);
@@ -63,9 +49,15 @@ class MagasinController extends AbstractController
         $user->addInventaire($inventaire);
         $entityManager->persist($inventaire);
         $entityManager->flush();
+        return $this->redirectToRoute('shop');
     }
 
-    public function addArmureToUser($id=null) {
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/shop/buyArmure", name="shop.buyArmure", methods={"GET"})
+     */
+    public function addArmureToUser(Request $request) {
+        $id= $request->get('id');
         $entityManager = $this->getDoctrine()->getManager();
         $armure = $entityManager->getRepository(Armure::class)->find($id);
         if (!$armure)  throw $this->createNotFoundException('No armor found for id '.$id);
@@ -76,9 +68,15 @@ class MagasinController extends AbstractController
         $user->addInventaire($inventaire);
         $entityManager->persist($inventaire);
         $entityManager->flush();
+        return $this->redirectToRoute('shop');
     }
 
-    public function addPotionToUser($id=null) {
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/shop/buyPotion", name="shop.buyPotion", methods={"GET"})
+     */
+    public function addPotionToUser(Request $request) {
+        $id= $request->get('id');
         $entityManager = $this->getDoctrine()->getManager();
         $potion = $entityManager->getRepository(Potion::class)->find($id);
         if (!$potion)  throw $this->createNotFoundException('No potion found for id '.$id);
@@ -89,6 +87,7 @@ class MagasinController extends AbstractController
         $user->addInventaire($inventaire);
         $entityManager->persist($inventaire);
         $entityManager->flush();
+        return $this->redirectToRoute('shop');
     }
 
     /**
@@ -121,7 +120,7 @@ class MagasinController extends AbstractController
         $arme = $entityManager->getRepository(Arme::class)->find($id);
         if (!$arme)  throw $this->createNotFoundException('No weapon found for id '.$id);
         $user = $this->getUser();
-        $user->setArgent(($user->getArgent())+($arme->getPrix()));
+        $user->setArgent(($user->getArgent())+(($arme->getPrix() )-(($arme->getPrix() )*20/100) ));
         $entityManager->flush();
     }
 

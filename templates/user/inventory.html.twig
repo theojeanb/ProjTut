@@ -12,7 +12,7 @@
                 <div class="container-xs col-sm-1" style="background-color: #cbb8ff;border-radius: 10px 0 0 10px;">
                     <div>
                         <br>
-                        <div id="drop1" style="width:55px;height:55px;margin-bottom: 14px;border: solid;" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <div id="drop1" style="width:55px;height:55px;margin-bottom: 14px;border: solid;"></div>
                         <div id="drop2" style="width:55px;height:55px;margin-bottom: 14px;border: solid;"></div>
                         <div id="drop3" style="width:55px;height:55px;margin-bottom: 14px;border: solid;"></div>
                         <div id="drop4" style="width:55px;height:55px;margin-bottom: 14px;border: solid;"></div>
@@ -66,8 +66,10 @@
             if(document.getElementById("drop5").firstChild !== null){
                 document.getElementById("sac").appendChild(document.getElementById("drop5").firstChild);
                 document.getElementById("drop5").appendChild(document.getElementById(ev.target.id));
+
             } else {
                 document.getElementById("drop5").appendChild(document.getElementById(ev.target.id));
+
             }
             window.location.replace("/inventaire/equipe/" + 1 + "/" + inventaire);
 
