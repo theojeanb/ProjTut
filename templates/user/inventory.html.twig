@@ -37,19 +37,19 @@
                         <div id="sac">
                             {% if armes is not empty %}
                                 {% for arme in armes %}
-                                    <img id="arme{{ arme.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/')}}{{arme.sprite}}" alt="sprite" onclick="transferSword(event)">
+                                    <img id="arme{{ arme.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/')}}{{arme.sprite}}" alt="sprite" onclick="transferSword(event, '{{ arme.inventID }}')">
                                 {% endfor %}
                             {% endif %}
 
                             {% if armures is not empty %}
                                 {% for armure in armures %}
-                                    <img id="armure{{ armure.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{armure.sprite}}" alt="sprite" onclick="transferArmor(event, '{{ armure.nomType }}')" >
+                                    <img id="armure{{ armure.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{armure.sprite}}" alt="sprite" onclick="transferArmor(event, '{{ armure.nomType }}', '{{ armure.inventID }}')" >
                                 {% endfor %}
                             {% endif %}
 
                             {% if potions is not empty %}
                                 {% for potion in potions %}
-                                    <img id="potion{{ potion.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/')}}{{potion.sprite}}" alt="sprite" onclick="transferPotion(event)" >
+                                    <img id="potion{{ potion.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/')}}{{potion.sprite}}" alt="sprite" onclick="transferPotion(event, '{{ potion.inventID }}')" >
                                 {% endfor %}
                             {% endif %}
                         </div>
@@ -62,24 +62,26 @@
         <br>
     </div>
     <script>
-        function transferSword(ev) {
+        function transferSword(ev, inventaire) {
             if(document.getElementById("drop5").firstChild !== null){
                 document.getElementById("sac").appendChild(document.getElementById("drop5").firstChild);
                 document.getElementById("drop5").appendChild(document.getElementById(ev.target.id));
             } else {
                 document.getElementById("drop5").appendChild(document.getElementById(ev.target.id));
             }
+            window.location.replace("/inventaire/equipe/" + 1 + "/" + inventaire);
 
         }
-        function transferPotion(ev) {
+        function transferPotion(ev, inventaire) {
             if(document.getElementById("drop6").firstChild !== null ){
                 document.getElementById("sac").appendChild(document.getElementById("drop6").firstChild);
                 document.getElementById("drop6").appendChild(document.getElementById(ev.target.id));
             } else {
                 document.getElementById("drop6").appendChild(document.getElementById(ev.target.id));
             }
+            window.location.replace("inventaire_equipe", {"id" : inventaire, "type": 6});
         }
-        function transferArmor(ev,type) {
+        function transferArmor(ev, type, inventaire) {
             switch (type) {
                 case 'Casque':
                     if(document.getElementById("drop1").firstChild !== null){
@@ -88,6 +90,7 @@
                     } else {
                         document.getElementById("drop1").appendChild(document.getElementById(ev.target.id));
                     }
+                    window.location.replace("inventaire_equipe", {"id" : inventaire, "type": 2});
                     break;
                 case 'Plastron':
                     if(document.getElementById("drop2").firstChild !== null){
@@ -96,6 +99,7 @@
                     } else {
                         document.getElementById("drop2").appendChild(document.getElementById(ev.target.id));
                     }
+                    window.location.replace("inventaire_equipe", {"id" : inventaire, "type": 3});
                     break;
                 case 'Jambières':
                     if(document.getElementById("drop3").firstChild !== null){
@@ -104,6 +108,7 @@
                     } else {
                         document.getElementById("drop3").appendChild(document.getElementById(ev.target.id));
                     }
+                    window.location.replace("inventaire_equipe", {"id" : inventaire, "type": 4});
                     break;
                 case 'Chaussures':
                     if(document.getElementById("drop4").firstChild !== null){
@@ -112,6 +117,7 @@
                     } else {
                         document.getElementById("drop4").appendChild(document.getElementById(ev.target.id));
                     }
+                    window.location.replace("inventaire_equipe", {"id" : inventaire, "type": 5});
                     break;
             }
         }

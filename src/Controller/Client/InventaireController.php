@@ -16,14 +16,6 @@ class InventaireController extends AbstractController
 {
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/inventory", name="inventory", methods={"GET"})
-     */
-    public function inventory(Request $request){
-        return $this->render('user/inventory.html.twig');
-    }
-
-    /**
-     * @IsGranted("ROLE_USER")
      * @Route("/inventaire", name="inventaire_index", methods={"GET"})
      */
     public function showInventaire(Request $request)
@@ -68,100 +60,35 @@ class InventaireController extends AbstractController
 
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/inventaire/addArme/{id}", name="inventaire_addArme", methods={"POST"})
+     * @Route("/inventaire/equipe/{type}/{id}", name="inventaire_equipe", methods={"GET"})
      */
-    public function addArmeToUser(Request $request, $id=null) {
-        $entityManager = $this->getDoctrine()->getManager();
-        $arme = $entityManager->getRepository(Arme::class)->find($id);
-        if (!$arme)  throw $this->createNotFoundException('No weapon found for id '.$id);
-        $inventaire = new Inventaire();
-        $inventaire->setArme($arme);
-        $inventaire->setEstEquipe(false);
-        $user = $this->getUser();
-        $user->addInventaire($inventaire);
-        $entityManager->flush();
-        return $this->redirectToRoute('INSERE TA ROUTE ICI');
-    }
-
-    /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/inventaire/addArmure/{id}", name="inventaire_addArmure", methods={"POST"})
-     */
-    public function addArmureToUser(Request $request, $id=null) {
-        $entityManager = $this->getDoctrine()->getManager();
-        $armure = $entityManager->getRepository(Armure::class)->find($id);
-        if (!$armure)  throw $this->createNotFoundException('No armor found for id '.$id);
-        $inventaire = new Inventaire();
-        $inventaire->setArmure($armure);
-        $inventaire->setEstEquipe(false);
-        $user = $this->getUser();
-        $user->addInventaire($inventaire);
-        $entityManager->flush();
-        return $this->redirectToRoute('INSERE TA ROUTE ICI');
-    }
-
-    /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/inventaire/addPotion/{id}", name="inventaire_addPotion", methods={"POST"})
-     */
-    public function addPotionToUser(Request $request, $id=null) {
-        $entityManager = $this->getDoctrine()->getManager();
-        $potion = $entityManager->getRepository(Potion::class)->find($id);
-        if (!$potion)  throw $this->createNotFoundException('No potion found for id '.$id);
-        $inventaire = new Inventaire();
-        $inventaire->setPotion($potion);
-        $inventaire->setEstEquipe(false);
-        $user = $this->getUser();
-        $user->addInventaire($inventaire);
-        $entityManager->flush();
-        return $this->redirectToRoute('INSERE TA ROUTE ICI');
-    }
-
-    /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/inventaire/remove/", name="inventaire_remove", methods={"GET", "DELETE"})
-     */
-    public function removeInventaire(Request $request) {
-        $entityManager = $this->getDoctrine()->getManager();
-        $id= $request->request->get('id');
-        $inventaire = $entityManager->getRepository(Inventaire::class)->find($id);
-        if (!$inventaire)  throw $this->createNotFoundException('No inventory found for id '.$id);
-
-        $user = $this->getUser();
-        $user->removeInventaire($inventaire);
-        $entityManager->flush();
-        return $this->redirectToRoute('INSERE ICI TA ROUTE');
-    }
-
-    /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/inventaire/equipe/{id}", name="inventaire_equipe", methods={"POST"})
-     */
-    public function equipe(Request $request, $id=null) {
+    public function equipe($type = null, $id =null) {
         $entityManager = $this->getDoctrine()->getManager();
         $inventaire = $entityManager->getRepository(Inventaire::class)->find($id);
-        $type = 0;
-        if (is_null($inventaire->getArme())) {$type = 1;}
-        if (is_null($inventaire->getArmure())) {$type = 2;}
-        if (is_null($inventaire->getPotion())) {$type = 3;}
-        if ($type == 0) throw $this->createNotFoundException('No item for inventory id '.$id);
-        $items = $this->getUser()->getInventaires();
-        foreach ($items as $item) {
-            if (!is_null($item->getArme()) and ($item->getEstEquipe()) and ($type == 1)) {
-                $item->setEstEquipe(false);
-            }
 
-            if (!is_null($item->getArmure()) and ($item->getArmure()->getType() == $inventaire->getArmure()->getType()) and ($item->getEstEquipe()) and ($type == 2)) {
-                $item->setEstEquipe(false);
-            }
-
-            if (!is_null($item->getPotion()) and ($item->getEstEquipe()) and ($type == 3)) {
-                $item->setEstEquipe(false);
-            }
+        $equipement = $this->getUser()->getEquipement();
+        switch($type) {
+            case 1:
+                $equipement->setArme($inventaire);
+                break;
+            case 2:
+                $equipement->setCasque($inventaire);
+                break;
+            case 3:
+                $equipement->setPlastron($inventaire);
+                break;
+            case 4:
+                $equipement->setJambieres($inventaire);
+                break;
+            case 5:
+                $equipement->setBottes($inventaire);
+                break;
+            case 6:
+                $equipement->setPotion($inventaire);
+                break;
         }
-        $inventaire->setEstEquipe(true);
         $entityManager->flush();
-        return $this->redirectToRoute('INSERE ICI TA ROUTE');
+        return $this->redirectToRoute('inventaire_index');
     }
 
 }
