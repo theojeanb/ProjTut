@@ -53,9 +53,9 @@ class AppFixtures extends Fixture
     {
         $armes = [
             ['id' => 1, 'nom' => 'Master Sword', 'degats' => 300, 'rarete' => 4,'sprite'=> 'epee.png','prix'=>'999'],
-            ['id' => 2, 'nom' => 'Masamune', 'degats' => 200, 'rarete' => 3,'sprite'=> '','prix'=>'666'],
+            ['id' => 2, 'nom' => 'Masamune', 'degats' => 200, 'rarete' => 3,'sprite'=> 'masamune.png','prix'=>'666'],
             ['id' => 3, 'nom' => 'Buster Sword', 'degats' => 200, 'rarete' => 3,'sprite'=> 'epeeEnchant.png','prix'=>'555'],
-            ['id' => 4, 'nom' => 'Monado', 'degats' => 100, 'rarete' => 2,'sprite'=> '','prix'=>'50']
+            ['id' => 4, 'nom' => 'Monado', 'degats' => 100, 'rarete' => 2,'sprite'=> 'monado.png','prix'=>'50']
         ];
         foreach ($armes as $arme) {
             $arme_new = new Arme();
@@ -113,8 +113,8 @@ class AppFixtures extends Fixture
     private function loadPotions(ObjectManager $manager)
     {
         $potions = [
-            ['id' => 1, 'nom' => 'Potion de rapidité', 'effet' => 'SPEED', 'valeur' => 50, 'rarete' => 3,'sprite'=> 'potion.png','prix'=>'45'],
-            ['id' => 2, 'nom' => 'Potion de force', 'effet' => 'STRENGTH', 'valeur' => 50, 'rarete' => 3,'sprite'=> 'potion.png','prix'=>'85'],
+            ['id' => 1, 'nom' => 'Potion de rapidité', 'effet' => 'SPEED', 'valeur' => 50, 'rarete' => 3,'sprite'=> 'potionRapidite.png','prix'=>'45'],
+            ['id' => 2, 'nom' => 'Potion de force', 'effet' => 'STRENGTH', 'valeur' => 50, 'rarete' => 3,'sprite'=> 'potionForce.png','prix'=>'85'],
             ['id' => 3, 'nom' => 'Potion de régénération', 'effet' => 'HP', 'valeur' => 30, 'rarete' => 3,'sprite'=> 'potion.png','prix'=>'60'],
             ['id' => 4, 'nom' => 'Potion de renforcement', 'effet' => 'HPMAX', 'valeur' => 5, 'rarete' => 3,'sprite'=> 'potionV.png','prix'=>'50']
         ];

@@ -39,7 +39,7 @@ CREATE TABLE `arme` (
 
 LOCK TABLES `arme` WRITE;
 /*!40000 ALTER TABLE `arme` DISABLE KEYS */;
-INSERT INTO `arme` VALUES (5,'Master Sword',300,4,'epee.png',999),(6,'Masamune',200,3,'',666),(7,'Buster Sword',200,3,'epeeEnchant.png',555),(8,'Monado',100,2,'',50);
+INSERT INTO `arme` VALUES (5,'Master Sword',10,3,'epee.png',999),(6,'Masamune',200,4,'masamune.png',666),(7,'Buster Sword',15,3,'epeeEnchant.png',555),(8,'Monado',100,2,'monado.png',50);
 /*!40000 ALTER TABLE `arme` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,7 +172,7 @@ CREATE TABLE `potion` (
 
 LOCK TABLES `potion` WRITE;
 /*!40000 ALTER TABLE `potion` DISABLE KEYS */;
-INSERT INTO `potion` VALUES (5,'Potion de rapidité','SPEED',50,3,'potion.png',45),(6,'Potion de force','STRENGTH',50,3,'potion.png',85),(7,'Potion de régénération','HP',30,3,'potion.png',60),(8,'Potion de renforcement','HPMAX',5,3,'potionV.png',50);
+INSERT INTO `potion` VALUES (5,'Potion de rapidité','SPEED',50,3,'potionRapidite.png',45),(6,'Potion de force','STRENGTH',50,3,'potionForce.png',85),(7,'Potion de régénération','HP',30,3,'potion.png',60),(8,'Potion de renforcement','HPMAX',5,3,'potionV.png',50);
 /*!40000 ALTER TABLE `potion` ENABLE KEYS */;
 UNLOCK TABLES;
 

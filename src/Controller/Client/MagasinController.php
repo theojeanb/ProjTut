@@ -22,7 +22,13 @@ class MagasinController extends AbstractController
         $armures = $this->getDoctrine()->getRepository(Armure::class)->findAll();
         $potions = $this->getDoctrine()->getRepository(Potion::class)->findAll();
         $items = ["armes" => $armes, "potions" => $potions, "armures" => $armures];
-        return $this->render('user/shop.html.twig',['items'=> $items ]);
+        $user_id = $this->getUser()->getId();
+        $userArmes = $this->getDoctrine()->getRepository(Inventaire::class)->findAllArmes($user_id);
+        $userArmures = $this->getDoctrine()->getRepository(Inventaire::class)->findAllArmures($user_id);
+        $userPotions = $this->getDoctrine()->getRepository(Inventaire::class)->findAllPotions($user_id);
+        $inventory = ["armes" => $userArmes, "armures" => $userArmures, "potions" => $userPotions];
+        $argent = $this->getUser()->getArgent();
+        return $this->render('user/shop.html.twig',['items'=> $items, 'inventory' => $inventory, 'argent' => $argent]);
     }
 
     /**
@@ -35,7 +41,7 @@ class MagasinController extends AbstractController
             $this->addArmeToUser($id);
         }
         if($group == "armures"){
-            $this->addArmureToUser()($id);
+            $this->addArmureToUser($id);
         }
         if($group == "potions"){
             $this->addPotionToUser($id);
@@ -82,6 +88,57 @@ class MagasinController extends AbstractController
         $user->setArgent(($user->getArgent())-($potion->getPrix()));
         $user->addInventaire($inventaire);
         $entityManager->persist($inventaire);
+        $entityManager->flush();
+    }
+
+    /**
+     * @Route("/shop/sell", name="shop.sell", methods={"GET"})
+     */
+    public function sell(Request $request) {
+        $id = $request->get('id');
+        $group= $request->get('group');
+        $inventID = $request->get('inventID');
+        $entityManager = $this->getDoctrine()->getManager();
+        $inventaire = $entityManager->getRepository(Inventaire::class)->find($inventID);
+        $user = $this->getUser();
+        $user->removeInventaire($inventaire);
+
+        if($group == "armes"){
+            $this->sellArme($id);
+        }
+        if($group == "armures"){
+            $this->sellArmure($id);
+        }
+        if($group == "potions"){
+            $this->sellPotion($id);
+        }
+        return $this->redirectToRoute('shop');
+    }
+
+    public function sellArme($id=null) {
+        $entityManager = $this->getDoctrine()->getManager();
+        $arme = $entityManager->getRepository(Arme::class)->find($id);
+        if (!$arme)  throw $this->createNotFoundException('No weapon found for id '.$id);
+        $user = $this->getUser();
+        $user->setArgent(($user->getArgent())+($arme->getPrix()));
+        $entityManager->flush();
+    }
+
+    public function sellArmure($id=null) {
+        $entityManager = $this->getDoctrine()->getManager();
+        $armure = $entityManager->getRepository(Armure::class)->find($id);
+        if (!$armure)  throw $this->createNotFoundException('No armor found for id '.$id);
+        $user = $this->getUser();
+        $user->setArgent(($user->getArgent())+($armure->getPrix()));
+        $entityManager->flush();
+    }
+
+    public function sellPotion($id=null) {
+        $entityManager = $this->getDoctrine()->getManager();
+        $potion = $entityManager->getRepository(Potion::class)->find($id);
+        if (!$potion)  throw $this->createNotFoundException('No potion found for id '.$id);
+        $user = $this->getUser();
+        $user->setArgent(($user->getArgent())+($potion->getPrix()));
         $entityManager->flush();
     }
 
