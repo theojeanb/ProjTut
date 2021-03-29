@@ -30,7 +30,7 @@ CREATE TABLE `arme` (
   `sprite` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `prix` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `arme` (
 
 LOCK TABLES `arme` WRITE;
 /*!40000 ALTER TABLE `arme` DISABLE KEYS */;
-INSERT INTO `arme` VALUES (17,'Master Sword',300,4,'epee.png',999),(18,'Masamune',200,3,'masamune.png',666),(19,'Buster Sword',200,3,'epeeEnchant.png',555),(20,'Monado',100,2,'monado.png',50);
+INSERT INTO `arme` VALUES (33,'Master Sword',300,4,'epee.png',999),(34,'Masamune',200,3,'masamune.png',666),(35,'Buster Sword',200,3,'epeeEnchant.png',555),(36,'Monado',100,2,'monado.png',50);
 /*!40000 ALTER TABLE `arme` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +61,7 @@ CREATE TABLE `armure` (
   PRIMARY KEY (`id`),
   KEY `IDX_4ADFC535C54C8C93` (`type_id`),
   CONSTRAINT `FK_4ADFC535C54C8C93` FOREIGN KEY (`type_id`) REFERENCES `type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `armure` (
 
 LOCK TABLES `armure` WRITE;
 /*!40000 ALTER TABLE `armure` DISABLE KEYS */;
-INSERT INTO `armure` VALUES (17,17,'Thunder Helmet',10,2,'casque.png',120),(18,18,'Magic Armor',500,4,'plastronR.png',90),(19,19,'SPEEEED',50,3,'jambières.png',95),(20,20,'Crocs',30,1,'botte.png',60);
+INSERT INTO `armure` VALUES (33,33,'Thunder Helmet',10,2,'casque.png',120),(34,34,'Magic Armor',500,4,'plastronR.png',90),(35,35,'SPEEEED',50,3,'jambières.png',95),(36,36,'Crocs',30,1,'botte.png',60);
 /*!40000 ALTER TABLE `armure` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +97,7 @@ CREATE TABLE `ennemi` (
   CONSTRAINT `FK_BE21B38B21D9C0A` FOREIGN KEY (`arme_id`) REFERENCES `arme` (`id`),
   CONSTRAINT `FK_BE21B38B7126B348` FOREIGN KEY (`potion_id`) REFERENCES `potion` (`id`),
   CONSTRAINT `FK_BE21B38BE4000E4F` FOREIGN KEY (`armure_id`) REFERENCES `armure` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +106,7 @@ CREATE TABLE `ennemi` (
 
 LOCK TABLES `ennemi` WRITE;
 /*!40000 ALTER TABLE `ennemi` DISABLE KEYS */;
-INSERT INTO `ennemi` VALUES (17,NULL,NULL,NULL,'Gobelin',10,5,''),(18,NULL,NULL,NULL,'Koopa',20,10,''),(19,NULL,NULL,NULL,'Sephiroth',100,3000,''),(20,NULL,NULL,NULL,'NOAH',30000,99999,'noah.png');
+INSERT INTO `ennemi` VALUES (33,NULL,NULL,NULL,'Gobelin',10,5,''),(34,NULL,NULL,NULL,'Koopa',20,10,''),(35,NULL,NULL,NULL,'Sephiroth',100,3000,''),(36,NULL,NULL,NULL,'NOAH',30000,99999,'noah.png');
 /*!40000 ALTER TABLE `ennemi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,8 +140,8 @@ CREATE TABLE `equipement` (
   CONSTRAINT `FK_B8B4C6F37126B348` FOREIGN KEY (`potion_id`) REFERENCES `inventaire` (`id`),
   CONSTRAINT `FK_B8B4C6F39FFEB269` FOREIGN KEY (`jambieres_id`) REFERENCES `inventaire` (`id`),
   CONSTRAINT `FK_B8B4C6F3A49B5F19` FOREIGN KEY (`bottes_id`) REFERENCES `inventaire` (`id`),
-  CONSTRAINT `FK_B8B4C6F3A76ED395` FOREIGN KEY (`user_id`) REFERENCES `inventaire` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT `FK_B8B4C6F3A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,6 +150,7 @@ CREATE TABLE `equipement` (
 
 LOCK TABLES `equipement` WRITE;
 /*!40000 ALTER TABLE `equipement` DISABLE KEYS */;
+INSERT INTO `equipement` VALUES (1,NULL,NULL,NULL,NULL,NULL,NULL,11),(2,9,NULL,NULL,NULL,NULL,NULL,12);
 /*!40000 ALTER TABLE `equipement` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +178,7 @@ CREATE TABLE `inventaire` (
   CONSTRAINT `FK_338920E07126B348` FOREIGN KEY (`potion_id`) REFERENCES `potion` (`id`),
   CONSTRAINT `FK_338920E0A9E2D76C` FOREIGN KEY (`joueur_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_338920E0E4000E4F` FOREIGN KEY (`armure_id`) REFERENCES `armure` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,7 +187,7 @@ CREATE TABLE `inventaire` (
 
 LOCK TABLES `inventaire` WRITE;
 /*!40000 ALTER TABLE `inventaire` DISABLE KEYS */;
-INSERT INTO `inventaire` VALUES (6,NULL,20,NULL,NULL,NULL,NULL),(7,10,NULL,NULL,17,NULL,NULL),(8,10,20,NULL,NULL,NULL,NULL);
+INSERT INTO `inventaire` VALUES (9,12,36,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `inventaire` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,7 +209,7 @@ CREATE TABLE `potion` (
   `x` int(11) DEFAULT NULL,
   `y` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +218,7 @@ CREATE TABLE `potion` (
 
 LOCK TABLES `potion` WRITE;
 /*!40000 ALTER TABLE `potion` DISABLE KEYS */;
-INSERT INTO `potion` VALUES (17,'Potion de rapidité','SPEED',50,3,'potionRapidite.png',45,NULL,NULL),(18,'Potion de force','STRENGTH',50,3,'potionForce.png',85,NULL,NULL),(19,'Potion de régénération','HP',30,3,'potion.png',60,NULL,NULL),(20,'Potion de renforcement','HPMAX',5,3,'potionV.png',50,NULL,NULL);
+INSERT INTO `potion` VALUES (33,'Potion de rapidité','SPEED',50,3,'potionRapidite.png',45,NULL,NULL),(34,'Potion de force','STRENGTH',50,3,'potionForce.png',85,NULL,NULL),(35,'Potion de régénération','HP',30,3,'potion.png',60,NULL,NULL),(36,'Potion de renforcement','HPMAX',5,3,'potionV.png',50,NULL,NULL);
 /*!40000 ALTER TABLE `potion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -232,7 +233,7 @@ CREATE TABLE `type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -241,7 +242,7 @@ CREATE TABLE `type` (
 
 LOCK TABLES `type` WRITE;
 /*!40000 ALTER TABLE `type` DISABLE KEYS */;
-INSERT INTO `type` VALUES (17,'Casque'),(18,'Plastron'),(19,'Jambières'),(20,'Chaussures');
+INSERT INTO `type` VALUES (33,'Casque'),(34,'Plastron'),(35,'Jambières'),(36,'Chaussures');
 /*!40000 ALTER TABLE `type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,7 +269,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649F85E0677` (`username`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -277,7 +278,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (9,'admin','admin','[\"ROLE_ADMIN\"]','$argon2id$v=19$m=65536,t=4,p=1$dWhpNmZrbmMwNmJUOXV4Tw$IHrB/BJHJEvFgV0hUaDIbVVY+ATfWPexSDvx0x05yH8',10,10,1000,100,1,0,100),(10,'user','user','[\"ROLE_USER\"]','$argon2id$v=19$m=65536,t=4,p=1$bXNWRmVxSU45YXhCTjlTVw$rmLD2X134Hc6E82aP61y+wFAlpCdTbcCRPCuF7Q9Ois',10,10,955,100,1,0,100);
+INSERT INTO `user` VALUES (11,'admin','admin','[\"ROLE_ADMIN\"]','$argon2id$v=19$m=65536,t=4,p=1$NmlMemJIUlB4VmJycjV1Rw$vD4IKop9lwK72kToUtkzZk6gi6XngvE7Sf2W9A2EIVE',10,10,1000,100,1,0,100),(12,'user','user','[\"ROLE_USER\"]','$argon2id$v=19$m=65536,t=4,p=1$SC5UR0NDLk94LkVDSkFkdA$a1Zof00uTLebzQC3uOh+LR/37Hq7aGAHfilJczEklUE',10,10,950,100,1,0,100);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -290,4 +291,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-29 14:03:04
+-- Dump completed on 2021-03-29 14:52:52

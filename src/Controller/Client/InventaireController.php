@@ -24,8 +24,8 @@ class InventaireController extends AbstractController
         $armures = $this->getDoctrine()->getRepository(Inventaire::class)->findAllArmures($this->getUser()->getId());
         $potions = $this->getDoctrine()->getRepository(Inventaire::class)->findAllPotions($this->getUser()->getId());
         $user = $this->getUser();
-        $items = $this->getUser()->getInventaires();
-        return $this->render('user/inventory.html.twig', ['user' => $user,'armes' => $armes, 'armures' => $armures, 'potions' => $potions, 'equipe' => $items]);
+        $equipement = $this->getUser()->getEquipement();
+        return $this->render('user/inventory.html.twig', ['user' => $user,'armes' => $armes, 'armures' => $armures, 'potions' => $potions, 'equipement' => $equipement]);
     }
 
     /**
