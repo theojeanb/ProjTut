@@ -31,6 +31,9 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     private $csrfTokenManager;
     private $passwordEncoder;
 
+    private $n = "7641743792047461691217802962928255710667124601088812189826971421203703652459726180054553349532686870856113940361566037662823365406366891324331269682419503804747539182226267593041803999070468662354229333249901475561597088977648720437559994785606812947823468162276323622913127207617617106693070686060263";
+    private $c = "961";
+
     public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->entityManager = $entityManager;
@@ -79,7 +82,12 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+        $password = $user->getPassword();
+        if ($this->cryptRSA($credentials['password']) === $password) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -103,5 +111,15 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     protected function getLoginUrl()
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
+    }
+
+    public function cryptRSA($arraypassword) {
+        $array = str_split($arraypassword);
+        $password = "";
+        foreach($array as $char) {
+            $password .= sprintf("%03d", ord($char));
+        }
+        $password = bcpowmod($password, $this->c, $this->n);
+        return $password;
     }
 }

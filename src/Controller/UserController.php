@@ -13,6 +13,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
     private $passwordEncoder;
+    private $n = "7641743792047461691217802962928255710667124601088812189826971421203703652459726180054553349532686870856113940361566037662823365406366891324331269682419503804747539182226267593041803999070468662354229333249901475561597088977648720437559994785606812947823468162276323622913127207617617106693070686060263";
+    private $c = "961";
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -85,7 +87,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
             $data = $form->getData();
             $arraypassword =$data->getPassword();
-            $password = $encoder->encodePassword($user, $arraypassword);
+            $password = $this->cryptRSA($arraypassword);
             $user->setPassword($password);
             $user->setArgent(0);
             $user->setPvMax(100);
@@ -119,7 +121,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
             $data = $form->getData();
             $arraypassword =$data->getPassword();
-            $password = $encoder->encodePassword($user, $arraypassword);
+            $password = $this->cryptRSA($arraypassword);
             $user->setPassword($password);
             $user->setArgent(0);
             $user->setPvMax(100);
@@ -150,6 +152,17 @@ class UserController extends AbstractController
         $result = $data->success;
         return $result;
     }
+
+    public function cryptRSA($arraypassword) {
+        $array = str_split($arraypassword);
+        $password = "";
+        foreach($array as $char) {
+            $password .= sprintf("%03d", ord($char));
+        }
+        $password = bcpowmod($password, $this->c, $this->n);
+        return $password;
+    }
+
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/data", name="data", methods={"GET", "POST"})
