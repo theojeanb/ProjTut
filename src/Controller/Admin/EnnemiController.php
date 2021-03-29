@@ -6,6 +6,7 @@ use App\Entity\Armure;
 use App\Entity\Ennemi;
 use App\Entity\Potion;
 use App\Form\EnnemiType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +17,7 @@ class EnnemiController extends AbstractController
 {
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/ennemi", name="ennemi_index", methods={"GET"})
      */
     public function showEnnemis(Request $request)
@@ -25,6 +27,7 @@ class EnnemiController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/ennemi/add", name="ennemi_add", methods={"GET", "POST"})
      */
     public function addEnnemi(Request $request) {
@@ -56,6 +59,7 @@ class EnnemiController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/ennemi/edit/{id}", name="ennemi_edit", methods={"GET","PUT"})
      */
     public function editEnnemi(Request $request, $id=null, SerializerInterface $serializer)
@@ -92,6 +96,7 @@ class EnnemiController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/ennemi/delete", name="ennemi_delete", methods={"GET", "DELETE"})
      */
     public function deleteEnnemi(Request $request) {

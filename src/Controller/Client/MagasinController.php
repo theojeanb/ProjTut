@@ -8,6 +8,7 @@ use App\Entity\Arme;
 use App\Entity\Armure;
 use App\Entity\Inventaire;
 use App\Entity\Potion;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MagasinController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/shop", name="shop", methods={"GET"})
      */
     public function shop(Request $request){
@@ -32,6 +34,7 @@ class MagasinController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/shop/buy", name="shop.buy", methods={"GET"})
      */
     public function buy(Request $request){
@@ -92,6 +95,7 @@ class MagasinController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/shop/sell", name="shop.sell", methods={"GET"})
      */
     public function sell(Request $request) {

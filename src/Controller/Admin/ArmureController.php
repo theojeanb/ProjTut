@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 use App\Entity\Armure;
 use App\Entity\Type;
 use App\Form\ArmureType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,7 @@ class ArmureController extends AbstractController
 {
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/armure", name="armure_index", methods={"GET"})
      */
     public function showArmures(Request $request)
@@ -24,6 +26,7 @@ class ArmureController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/armure/add", name="armure_add", methods={"GET", "POST"})
      */
     public function addArmure(Request $request, SluggerInterface $slugger) {
@@ -56,6 +59,7 @@ class ArmureController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/armure/edit/{id}", name="armure_edit", methods={"GET","PUT"})
      */
     public function editArmure(Request $request, $id=null, SluggerInterface $slugger)
@@ -92,6 +96,7 @@ class ArmureController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/armure/delete", name="armure_delete", methods={"GET", "DELETE"})
      */
     public function deleteArmure(Request $request) {

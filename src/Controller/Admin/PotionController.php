@@ -3,6 +3,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Potion;
 use App\Form\PotionType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +14,7 @@ class PotionController extends AbstractController
 {
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/potion", name="potion_index", methods={"GET"})
      */
     public function showPotions(Request $request)
@@ -23,6 +25,7 @@ class PotionController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/potion/add", name="potion_add", methods={"GET", "POST"})
      */
     public function addPotion(Request $request) {
@@ -55,6 +58,7 @@ class PotionController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/potion/edit/{id}", name="potion_edit", methods={"GET","PUT"})
      */
     public function editPotion(Request $request, $id=null, SerializerInterface $serializer)
@@ -91,6 +95,7 @@ class PotionController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/potion/delete", name="potion_delete", methods={"GET", "DELETE"})
      */
     public function deletePotion(Request $request) {

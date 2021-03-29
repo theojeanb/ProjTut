@@ -3,6 +3,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Arme;
 use App\Form\ArmeType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,7 @@ class ArmeController extends AbstractController
 {
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/arme", name="arme_index", methods={"GET"})
      * Permet d'ajouter, de modifier et de supprimer des armes dans la BDD
      */
@@ -25,6 +27,7 @@ class ArmeController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/arme/add", name="arme_add", methods={"GET", "POST"})
      */
     public function addArme(Request $request) {
@@ -57,6 +60,7 @@ class ArmeController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/arme/edit/{id}", name="arme_edit", methods={"GET","PUT"})
      */
     public function editArme(Request $request, $id=null, SerializerInterface $serializer)
@@ -94,6 +98,7 @@ class ArmeController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/arme/delete", name="arme_delete", methods={"GET", "DELETE"})
      */
     public function deleteArme(Request $request) {

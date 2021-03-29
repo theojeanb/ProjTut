@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -74,6 +75,7 @@ class UserController extends AbstractController
     }*/
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/user/edit", name="edit_user", methods={"GET", "POST"})
      */
     public function editUser(Request $request,UserPasswordEncoderInterface $encoder) {
@@ -149,6 +151,7 @@ class UserController extends AbstractController
         return $result;
     }
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/data", name="data", methods={"GET", "POST"})
      */
     public function getData(){

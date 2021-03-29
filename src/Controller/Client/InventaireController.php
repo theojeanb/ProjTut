@@ -5,6 +5,7 @@ use App\Entity\Arme;
 use App\Entity\Armure;
 use App\Entity\Inventaire;
 use App\Entity\Potion;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,6 +15,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class InventaireController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/inventory", name="inventory", methods={"GET"})
      */
     public function inventory(Request $request){
@@ -21,6 +23,7 @@ class InventaireController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/inventaire", name="inventaire_index", methods={"GET"})
      */
     public function showInventaire(Request $request)
@@ -34,6 +37,7 @@ class InventaireController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/inventaire/armes", name="inventaire_armes", methods={"GET"})
      */
     public function showArmes(Request $request)
@@ -43,6 +47,7 @@ class InventaireController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/inventaire/armures", name="inventaire_armures", methods={"GET"})
      */
     public function showArmures(Request $request)
@@ -52,6 +57,7 @@ class InventaireController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/inventaire/potions", name="inventaire_potions", methods={"GET"})
      */
     public function showPotions(Request $request)
@@ -61,6 +67,7 @@ class InventaireController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/inventaire/addArme/{id}", name="inventaire_addArme", methods={"POST"})
      */
     public function addArmeToUser(Request $request, $id=null) {
@@ -77,6 +84,7 @@ class InventaireController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/inventaire/addArmure/{id}", name="inventaire_addArmure", methods={"POST"})
      */
     public function addArmureToUser(Request $request, $id=null) {
@@ -93,6 +101,7 @@ class InventaireController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/inventaire/addPotion/{id}", name="inventaire_addPotion", methods={"POST"})
      */
     public function addPotionToUser(Request $request, $id=null) {
@@ -109,6 +118,7 @@ class InventaireController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/inventaire/remove/", name="inventaire_remove", methods={"GET", "DELETE"})
      */
     public function removeInventaire(Request $request) {
@@ -124,6 +134,7 @@ class InventaireController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/inventaire/equipe/{id}", name="inventaire_equipe", methods={"POST"})
      */
     public function equipe(Request $request, $id=null) {

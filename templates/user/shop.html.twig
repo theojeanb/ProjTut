@@ -2,16 +2,16 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            <div class="container-xs col-sm-4" style="background-color: #ffd3b8;border-radius:10px;">
+            <div class="container-xs col-sm-8" style="background-color: #ffd3b8;border-radius:10px;">
                 <br><h4>Sac à dos</h4>
-                <div class="container-fluid" style="background-color: #ffd3b8;white-space: nowrap;overflow-x: scroll;overflow-y: hidden;border-radius: 10px;">
+                <div class="container-xl" style="background-color: #ffd3b8;white-space: nowrap;overflow-x: scroll;overflow-y: hidden;border-radius: 10px;">
                     <br>
                     <div> Argent : {{ argent }}</div>
-                    <div>
+                    <div class="row">
                         <!-- Afficher tous les objets de User + bouton pour vendre qui envoie l'id de l'objet, son groupe et aussi l'id de l'inventaire -->
                         {% for key,group in inventory %}
                             {% for item in group %}
-                                <div>
+                                <div class="col-1">
                                     {%  if item.sprite is not empty %}
                                         <img class="img-fluid rounded"  style="width:50px;height:50px"  src="{{asset('sprites/')}}{{ key }}/{{item.sprite}}"  alt="image  de {{ item.nom }}" >
                                     {% endif %}
