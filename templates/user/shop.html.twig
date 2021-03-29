@@ -6,7 +6,7 @@
                 <br><h4>Sac à dos</h4>
                 <div class="container-xl" style="background-color: #ffd3b8;white-space: nowrap;overflow-x: scroll;overflow-y: hidden;border-radius: 10px;">
                     <br>
-                    <div> Argent : {{ argent }}</div>
+                    <div> Argent : {{ argent }} <img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="coin"></div>
                     <div class="row">
                         <!-- Afficher tous les objets de User + bouton pour vendre qui envoie l'id de l'objet, son groupe et aussi l'id de l'inventaire -->
                         {% for key,group in inventory %}

@@ -58,7 +58,6 @@ class MagasinController extends AbstractController
         if (!$arme)  throw $this->createNotFoundException('No weapon found for id '.$id);
         $inventaire = new Inventaire();
         $inventaire->setArme($arme);
-        $inventaire->setEstEquipe(false);
         $user = $this->getUser();
         $user->setArgent(($user->getArgent())-($arme->getPrix()));
         $user->addInventaire($inventaire);
@@ -72,7 +71,6 @@ class MagasinController extends AbstractController
         if (!$armure)  throw $this->createNotFoundException('No armor found for id '.$id);
         $inventaire = new Inventaire();
         $inventaire->setArmure($armure);
-        $inventaire->setEstEquipe(false);
         $user = $this->getUser();
         $user->setArgent(($user->getArgent())-($armure->getPrix()));
         $user->addInventaire($inventaire);
@@ -86,7 +84,6 @@ class MagasinController extends AbstractController
         if (!$potion)  throw $this->createNotFoundException('No potion found for id '.$id);
         $inventaire = new Inventaire();
         $inventaire->setPotion($potion);
-        $inventaire->setEstEquipe(false);
         $user = $this->getUser();
         $user->setArgent(($user->getArgent())-($potion->getPrix()));
         $user->addInventaire($inventaire);

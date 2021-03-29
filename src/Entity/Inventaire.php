@@ -38,11 +38,6 @@ class Inventaire
     private $potion;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $estEquipe;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $x;
@@ -101,18 +96,6 @@ class Inventaire
     public function setPotion(?Potion $potion): self
     {
         $this->potion = $potion;
-
-        return $this;
-    }
-
-    public function getEstEquipe(): ?bool
-    {
-        return $this->estEquipe;
-    }
-
-    public function setEstEquipe(bool $estEquipe): self
-    {
-        $this->estEquipe = $estEquipe;
 
         return $this;
     }
