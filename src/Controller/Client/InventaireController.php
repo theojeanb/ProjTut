@@ -24,40 +24,11 @@ class InventaireController extends AbstractController
         $armures = $this->getDoctrine()->getRepository(Inventaire::class)->findAllArmures($this->getUser()->getId());
         $potions = $this->getDoctrine()->getRepository(Inventaire::class)->findAllPotions($this->getUser()->getId());
         $user = $this->getUser();
-        $equipement = $this->getUser()->getEquipement();
-
-        return $this->render('user/inventory.html.twig', ['user' => $user,'armes' => $armes, 'armures' => $armures, 'potions' => $potions, 'equipement' => $equipement]);
+        $equipement = $user->getEquipement();
+        $items = [$armes + $armures + $potions];
+        return $this->render('user/inventory.html.twig', ['items' => $items,'user' => $user,'armes' => $armes, 'armures' => $armures, 'potions' => $potions, 'equipement' => $equipement]);
     }
 
-    /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/inventaire/armes", name="inventaire_armes", methods={"GET"})
-     */
-    public function showArmes(Request $request)
-    {
-        $armes = $this->getDoctrine()->getRepository(Inventaire::class)->findAllArmes($this->getUser()->getId());
-        return $this->render('INSERE TA PAGE ICI', ['armes' => $armes]);
-    }
-
-    /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/inventaire/armures", name="inventaire_armures", methods={"GET"})
-     */
-    public function showArmures(Request $request)
-    {
-        $armures = $this->getDoctrine()->getRepository(Inventaire::class)->findAllArmures($this->getUser()->getId());
-        return $this->render('INSERE TA PAGE ICI', ['armures' => $armures]);
-    }
-
-    /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/inventaire/potions", name="inventaire_potions", methods={"GET"})
-     */
-    public function showPotions(Request $request)
-    {
-        $potions = $this->getDoctrine()->getRepository(Inventaire::class)->findAllPotions($this->getUser()->getId());
-        return $this->render('INSERE TA PAGE ICI', ['potions' => $potions]);
-    }
 
     /**
      * @IsGranted("ROLE_USER")

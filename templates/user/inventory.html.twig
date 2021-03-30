@@ -59,27 +59,35 @@
                 <div class="container-xs col-sm-1" style="background-color: #b8daff"></div>
                 <div class="container-xs col-sm-5" style="background-color: #ffd3b8;border-radius:10px;">
                     <br><h4 style="text-align: center">Sac à dos</h4>
-                    <div class="container-fluid" style="background-color: #ffd3b8;white-space: nowrap;overflow-x: scroll;overflow-y: hidden;border-radius: 10px;">
+                    <div id="sac" style="background-color: #ffd3b8;white-space: nowrap;overflow-x:hidden;overflow-y:scroll;border-radius: 10px;height: 225px;text-align: justify">
                         <br>
-                        <div id="sac">
                             {% if armes is not empty %}
-                                {% for arme in armes %}
+                                {% for key, arme in armes %}
+                                    {% if key != 0 and key%6 == 0 %}
+                                        <br><br>
+                                    {% endif %}
                                     {% if equipement.arme and arme.inventID != equipement.arme.id %}
                                         <img id="arme{{ arme.inventID }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/')}}{{arme.sprite}}" alt="sprite" onclick="transferSword(event, '{{ arme.inventID }}')">
                                     {% elseif not equipement.arme %}
                                         <img id="arme{{ arme.inventID }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/')}}{{arme.sprite}}" alt="sprite" onclick="transferSword(event, '{{ arme.inventID }}')">
                                     {% endif %}
                                 {% endfor %}
+                                <br><br>
                             {% endif %}
-
                             {% if armures is not empty %}
-                                {% for armure in armures %}
+                                {% for key, armure in armures %}
+                                    {% if key != 0 and key%6 == 0 %}
+                                        <br><br>
+                                    {% endif %}
                                     <img id="armure{{ armure.inventID }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{armure.sprite}}" alt="sprite" onclick="transferArmor(event, '{{ armure.nomType }}','{{ armure.inventID }}')">
                                 {% endfor %}
+                                <br><br>
                             {% endif %}
-
                             {% if potions is not empty %}
-                                {% for potion in potions %}
+                                {% for key, potion in potions %}
+                                    {% if key != 0 and key%6 == 0 %}
+                                        <br><br>
+                                    {% endif %}
                                     {% if equipement.potion and potion.inventID != equipement.potion.id %}
                                         <img id="potion{{ potion.inventID }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/')}}{{potion.sprite}}" alt="sprite" onclick="transferPotion(event, '{{ potion.inventID }}')" >
                                     {% elseif not equipement.potion %}
@@ -87,7 +95,6 @@
                                     {% endif %}
                                 {% endfor %}
                             {% endif %}
-                        </div>
                         <br>
                     </div>
                 </div>
