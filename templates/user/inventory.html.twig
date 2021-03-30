@@ -3,10 +3,15 @@
     <script>
         declare var event: MouseEvent;
     </script>
-
+    <style>
+        body {
+            background-color: #b8daff ;
+            white-space: nowrap;
+        }
+    </style>
     <div class="container-fluid">
         <br><br><br>
-        <div class="container-xl" style="background-color: #b8daff;white-space: nowrap">
+        <div class="container-xl" style="border-radius: 10px;border-style: solid">
             <br><h1 style="color:#78ade6">&nbsp;&nbsp;Votre Inventaire</h1><br><br>
             <div class="row" id="inventaire">
                 <img style="width:275px;height:275px" src="{{asset('sprites/personnage/personnage.png')}}" alt="image du personnage">
