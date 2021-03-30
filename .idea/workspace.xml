@@ -196,7 +196,7 @@
       <workItem from="1616745568709" duration="9243000" />
       <workItem from="1617015383352" duration="13045000" />
       <workItem from="1617101637945" duration="5793000" />
-      <workItem from="1617116267482" duration="689000" />
+      <workItem from="1617116267482" duration="3332000" />
     </task>
     <task id="LOCAL-00001" summary="Début Affichage (login non fonctionnel)">
       <created>1608565457400</created>
@@ -413,9 +413,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1617024987486" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1617016611837">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1617118951868">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1617016611837" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1617118951868" />
   </component>
 </project>

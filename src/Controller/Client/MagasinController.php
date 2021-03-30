@@ -41,12 +41,18 @@ class MagasinController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $arme = $entityManager->getRepository(Arme::class)->find($id);
         if (!$arme)  throw $this->createNotFoundException('No weapon found for id '.$id);
-        $inventaire = new Inventaire();
-        $inventaire->setArme($arme);
         $user = $this->getUser();
+        $inventaires = $this->getDoctrine()->getRepository(Inventaire::class)->findAllInventaires($user->getId());
+        $inventaire = null;
+        foreach ($inventaires as $i) {
+            if ($i->getArme() == null) {
+                $inventaire = $i;
+                break;
+            }
+        }
+        if ($inventaire == null) return $this->redirectToRoute('shop');
+        $inventaire->setArme($arme);
         $user->setArgent(($user->getArgent())-($arme->getPrix()));
-        $user->addInventaire($inventaire);
-        $entityManager->persist($inventaire);
         $entityManager->flush();
         return $this->redirectToRoute('shop');
     }
@@ -60,12 +66,18 @@ class MagasinController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $armure = $entityManager->getRepository(Armure::class)->find($id);
         if (!$armure)  throw $this->createNotFoundException('No armor found for id '.$id);
-        $inventaire = new Inventaire();
-        $inventaire->setArmure($armure);
         $user = $this->getUser();
+        $inventaires = $this->getDoctrine()->getRepository(Inventaire::class)->findAllInventaires($user->getId());
+        $inventaire = null;
+        foreach ($inventaires as $i) {
+            if ($i->getArmure() == null) {
+                $inventaire = $i;
+                break;
+            }
+        }
+        if ($inventaire == null) return $this->redirectToRoute('shop');
+        $inventaire->setArmure($armure);
         $user->setArgent(($user->getArgent())-($armure->getPrix()));
-        $user->addInventaire($inventaire);
-        $entityManager->persist($inventaire);
         $entityManager->flush();
         return $this->redirectToRoute('shop');
     }
@@ -79,12 +91,18 @@ class MagasinController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $potion = $entityManager->getRepository(Potion::class)->find($id);
         if (!$potion)  throw $this->createNotFoundException('No potion found for id '.$id);
-        $inventaire = new Inventaire();
-        $inventaire->setPotion($potion);
         $user = $this->getUser();
+        $inventaires = $this->getDoctrine()->getRepository(Inventaire::class)->findAllInventaires($user->getId());
+        $inventaire = null;
+        foreach ($inventaires as $i) {
+            if ($i->getPotion() == null) {
+                $inventaire = $i;
+                break;
+            }
+        }
+        if ($inventaire == null) return $this->redirectToRoute('shop');
+        $inventaire->setPotion($potion);
         $user->setArgent(($user->getArgent())-($potion->getPrix()));
-        $user->addInventaire($inventaire);
-        $entityManager->persist($inventaire);
         $entityManager->flush();
         return $this->redirectToRoute('shop');
     }

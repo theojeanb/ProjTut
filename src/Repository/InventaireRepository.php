@@ -19,6 +19,17 @@ class InventaireRepository extends ServiceEntityRepository
         parent::__construct($registry, Inventaire::class);
     }
 
+    public function findAllInventaires($UserId)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('
+                    SELECT a.id,a.nom, a.degats, a.rarete, a.sprite, a.prix, i.id AS inventID
+                    FROM App:Arme a
+                    JOIN App:Inventaire i
+                    WHERE i.joueur =  '.$UserId);
+        return $query->getResult();
+    }
+
     public function findAllArmes($UserId)
     {
         $query = $this->getEntityManager()
