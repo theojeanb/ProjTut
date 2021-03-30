@@ -1,28 +1,30 @@
 {% extends "user/layout_user.html.twig" %}
 {% block body %}
     <div class="container" style="text-align: center">
-        <div class="row">
-            <div class="container-xs col-sm-12" style="background-color: #ffd3b8;border-radius:10px;text-align: center">
-                <br><h1>Sac à dos</h1>
-                <br>
-                <div> Argent : {{ argent }} <img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="coin"></div>
-                <br>
-                <h4>Vendre des items :</h4><br>
-                <div class="container-fluid" style="background-color: #ffd3b8;white-space: nowrap;overflow-x: scroll;overflow-y: hidden;border-radius: 10px;">
-                    <div class="row">
-                        <!-- Afficher tous les objets de User + bouton pour vendre qui envoie l'id de l'objet, son groupe et aussi l'id de l'inventaire -->
-                        {% for key,group in inventory %}
-                            {% for item in group %}
-                                <div class="col-2">
-                                    {%  if item.sprite is not empty %}
-                                        <img class="img-fluid rounded"  style="width:75px;height:75px"  src="{{asset('sprites/')}}{{ key }}/{{item.sprite}}"  alt="image  de {{ item.nom }}" >
-                                    {% endif %}<br>
-                                    <a href="{{ path('shop.sell', {id: item.id, group: key, inventID: item.inventID} )}}" class="btn btn-warning">{{ item.prix - (item.prix*20/100)}} <img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="coin"></a>
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
-                    </div>
+        <div>
+            <div class="container" style="background-color: #ffd3b8;border-radius:10px;">
+                <div id="sac" class="col-sm-12" style="text-align: center">
+                    <br><h1>Sac à dos</h1>
                     <br>
+                    <div> Argent : {{ argent }} <img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="coin"></div>
+                    <br>
+                    <h4>Vendre des items :</h4><br>
+                </div>
+                <div class="container-xs col-sm-12">
+                    <div class="row" style="background-color: #ffd3b8;white-space: nowrap;overflow-x:hidden;overflow-y:scroll;border-radius: 10px;height: 225px;text-align: justify;">
+                            <!-- Afficher tous les objets de User + bouton pour vendre qui envoie l'id de l'objet, son groupe et aussi l'id de l'inventaire -->
+                            {% for key,group in inventory %}
+                                {% for item in group %}
+                                    <div style="height: 100px;width: 100px;margin-bottom: 40px">
+                                        {%  if item.sprite is not empty %}
+                                            <img class="img-fluid rounded"  style="width:50px;height:50px"  src="{{asset('sprites/')}}{{ key }}/{{item.sprite}}"  alt="image  de {{ item.nom }}" >
+                                        {% endif %}<br>
+                                        <a href="{{ path('shop.sell', {id: item.id, group: key, inventID: item.inventID} )}}" class="btn btn-warning">{{ item.prix - (item.prix*20/100) |round }} <img style="width:15px;height:13.5px;" src="{{asset('images/coin.png')}}" alt="coin"></a>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        <br>
+                    </div>
                 </div>
             </div>
         </div>
