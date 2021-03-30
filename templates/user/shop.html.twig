@@ -10,17 +10,20 @@
                 <h4>Vendre des items :</h4><br>
                 <div class="container-fluid" style="background-color: #ffd3b8;white-space: nowrap;overflow-x: scroll;overflow-y: hidden;border-radius: 10px;">
                     <div class="row">
-                        <!-- Afficher tous les objets de User + bouton pour vendre qui envoie l'id de l'objet, son groupe et aussi l'id de l'inventaire -->
-                        {% for key,group in inventory %}
-                            {% for item in group %}
-                                <div class="col-2">
-                                    {%  if item.sprite is not empty %}
-                                        <img class="img-fluid rounded"  style="width:75px;height:75px"  src="{{asset('sprites/')}}{{ key }}/{{item.sprite}}"  alt="image  de {{ item.nom }}" >
-                                    {% endif %}<br>
-                                    <a href="{{ path('shop.sell', {id: item.id, group: key, inventID: item.inventID} )}}" class="btn btn-warning">{{ item.prix - (item.prix*20/100)}} <img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="coin"></a>
-                                </div>
+                        {% if inventory.armes is not empty or inventory.armures is not empty or inventory.potions is not empty %}
+                            {% for key,group in inventory %}
+                                {% for item in group %}
+                                    <div class="col-2">
+                                        {%  if item.sprite is not empty %}
+                                            <img class="img-fluid rounded"  style="width:75px;height:75px"  src="{{asset('sprites/')}}{{ key }}/{{item.sprite}}"  alt="image  de {{ item.nom }}" >
+                                        {% endif %}<br>
+                                        <a href="{{ path('shop.sell', {id: item.id, group: key, inventID: item.inventID} )}}" class="btn btn-warning">{{ item.prix - (item.prix*20/100)}} <img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="coin"></a>
+                                    </div>
+                                {% endfor %}
                             {% endfor %}
-                        {% endfor %}
+                        {% else %}
+                            <div>Veuillez lancer le jeu une première fois pour acheter des objets et pouvoir les vendre</div>
+                        {% endif %}
                     </div>
                     <br>
                 </div>
@@ -42,7 +45,7 @@
                         {% endif %}
                         <hr>
                         <a href="{{ path('shop.buyArme', {id: item.id} )}}" class="btn btn-success
-                           {% if app.user.argent < item.prix %}disabled{% endif %}" >{{ item.prix }}<img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="gold"></a>
+                           {% if app.user.argent < item.prix or (inventory.armes is empty and inventory.armures is empty and inventory.potions is empty) %}disabled{% endif %}" >{{ item.prix }}<img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="gold"></a>
                     </div>
                 </div>
             {% endfor %}
@@ -64,7 +67,7 @@
                         {% endif %}
                         <hr>
                         <a href="{{ path('shop.buyArmure', {id: item.id} )}}" class="btn btn-success
-                           {% if app.user.argent < item.prix %}disabled{% endif %}" >{{ item.prix }}<img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="gold"></a>
+                           {% if app.user.argent < item.prix or (inventory.armes is empty and inventory.armures is empty and inventory.potions is empty) %}disabled{% endif %}" >{{ item.prix }}<img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="gold"></a>
                     </div>
                 </div>
             {% endfor %}
@@ -86,7 +89,7 @@
                         {% endif %}
                         <hr>
                         <a href="{{ path('shop.buyPotion', {id: item.id} )}}" class="btn btn-success
-                           {% if app.user.argent < item.prix %}disabled{% endif %}">{{ item.prix }}<img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="gold"></a>
+                           {% if app.user.argent < item.prix or (inventory.armes is empty and inventory.armures is empty and inventory.potions is empty) %}disabled{% endif %}">{{ item.prix }}<img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="gold"></a>
                     </div>
                 </div>
             {% endfor %}

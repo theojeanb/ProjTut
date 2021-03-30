@@ -24,7 +24,7 @@ class InventaireController extends AbstractController
         $armures = $this->getDoctrine()->getRepository(Inventaire::class)->findAllArmures($this->getUser()->getId());
         $potions = $this->getDoctrine()->getRepository(Inventaire::class)->findAllPotions($this->getUser()->getId());
         $user = $this->getUser();
-        $equipement = $user->getEquipement();
+        $equipement = $this->getUser()->getEquipement();
 
         return $this->render('user/inventory.html.twig', ['user' => $user,'armes' => $armes, 'armures' => $armures, 'potions' => $potions, 'equipement' => $equipement]);
     }
@@ -66,7 +66,6 @@ class InventaireController extends AbstractController
     public function equipe($type = null, $id =null) {
         $entityManager = $this->getDoctrine()->getManager();
         $inventaire = $entityManager->getRepository(Inventaire::class)->find($id);
-        $user = $this->getUser();
         $equipement = $this->getUser()->getEquipement();
         switch($type) {
             case 1:
