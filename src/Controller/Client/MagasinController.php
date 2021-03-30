@@ -23,7 +23,6 @@ class MagasinController extends AbstractController
         $armes = $this->getDoctrine()->getRepository(Arme::class)->findAll();
         $armures = $this->getDoctrine()->getRepository(Armure::class)->findAll();
         $potions = $this->getDoctrine()->getRepository(Potion::class)->findAll();
-        $items = ["armes" => $armes, "potions" => $potions, "armures" => $armures];
         $user_id = $this->getUser()->getId();
         $userArmes = $this->getDoctrine()->getRepository(Inventaire::class)->findAllArmes($user_id);
         $userArmures = $this->getDoctrine()->getRepository(Inventaire::class)->findAllArmures($user_id);
@@ -103,10 +102,12 @@ class MagasinController extends AbstractController
         $user = $this->getUser();
         $user->removeInventaire($inventaire);
 
+
         if($group == "armes"){
             $this->sellArme($id);
         }
         if($group == "armures"){
+            $id = $inventaire->getArmure()->getId();
             $this->sellArmure($id);
         }
         if($group == "potions"){
@@ -129,7 +130,7 @@ class MagasinController extends AbstractController
         $armure = $entityManager->getRepository(Armure::class)->find($id);
         if (!$armure)  throw $this->createNotFoundException('No armor found for id '.$id);
         $user = $this->getUser();
-        $user->setArgent(($user->getArgent())+($armure->getPrix()));
+        $user->setArgent(($user->getArgent())+(($armure->getPrix() )-(($armure->getPrix() )*20/100) ));
         $entityManager->flush();
     }
 
@@ -138,7 +139,7 @@ class MagasinController extends AbstractController
         $potion = $entityManager->getRepository(Potion::class)->find($id);
         if (!$potion)  throw $this->createNotFoundException('No potion found for id '.$id);
         $user = $this->getUser();
-        $user->setArgent(($user->getArgent())+($potion->getPrix()));
+        $user->setArgent(($user->getArgent())+(($potion->getPrix() )-(($potion->getPrix() )*20/100) ));
         $entityManager->flush();
     }
 

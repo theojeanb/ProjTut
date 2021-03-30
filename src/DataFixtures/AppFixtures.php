@@ -39,7 +39,7 @@ class AppFixtures extends Fixture
         $types = [
             ['id' => 1, 'nom' => 'Casque'],
             ['id' => 2, 'nom' => 'Plastron'],
-            ['id' => 3, 'nom' => 'Jambières'],
+            ['id' => 3, 'nom' => 'Jambieres'],
             ['id' => 4, 'nom' => 'Chaussures']
         ];
         foreach ($types as $type) {

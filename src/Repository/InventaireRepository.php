@@ -26,7 +26,8 @@ class InventaireRepository extends ServiceEntityRepository
                     SELECT a.id,a.nom, a.degats, a.rarete, a.sprite, a.prix, i.id AS inventID
                     FROM App:Arme a
                     JOIN App:Inventaire i
-                    WHERE i.joueur =  '.$UserId.' and IDENTITY(i.arme) IS NOT NULL and a.id = IDENTITY(i.arme)');
+                    WHERE i.joueur =  '.$UserId.' and IDENTITY(i.arme) IS NOT NULL and a.id = IDENTITY(i.arme)
+                    and i.id not in (SELECT IDENTITY(e.arme) FROM App:Equipement e WHERE IDENTITY(e.arme) IS NOT NULL)');
         return $query->getResult();
     }
 
@@ -34,11 +35,15 @@ class InventaireRepository extends ServiceEntityRepository
     {
         $query = $this->getEntityManager()
             ->createQuery('
-                    SELECT a.id,a.nom, a.defense, a.rarete, a.sprite, a.prix, t.nom AS nomType, i.id AS inventID
-                    FROM App:Armure a
-                    JOIN App:Inventaire i
+                    SELECT a.id,a.nom, a.defense, a.rarete, a.sprite, a.prix, t.nom AS nomType, i.id AS inventID, i.id
+                    FROM App:Inventaire i
+                    JOIN App:Armure a
                     JOIN App:Type t
-                    WHERE i.joueur =  '.$UserId.' and IDENTITY(i.armure) IS NOT NULL and IDENTITY(a.type) = t.id and a.id = IDENTITY(i.armure)');
+                    WHERE i.joueur =  '.$UserId.' and IDENTITY(i.armure) IS NOT NULL and IDENTITY(a.type) = t.id and a.id = IDENTITY(i.armure) 
+                    and i.id not in (SELECT IDENTITY(w.plastron) FROM App:Equipement w WHERE IDENTITY(w.plastron) IS NOT NULL)
+                    and i.id not in (SELECT IDENTITY(x.casque) FROM App:Equipement x WHERE IDENTITY(x.casque) IS NOT NULL)
+                    and i.id not in (SELECT IDENTITY(y.bottes) FROM App:Equipement y WHERE IDENTITY(y.bottes) IS NOT NULL)
+                    and i.id not in (SELECT IDENTITY(z.jambieres) FROM App:Equipement z WHERE IDENTITY(z.jambieres) IS NOT NULL)');
         return $query->getResult();
     }
 
@@ -49,7 +54,8 @@ class InventaireRepository extends ServiceEntityRepository
                     SELECT p.id,p.nom, p.effet, p.valeur, p.rarete, p.sprite, p.prix, i.id AS inventID
                     FROM App:Potion p
                     JOIN App:Inventaire i
-                    WHERE i.joueur =  '.$UserId.' and IDENTITY(i.potion) IS NOT NULL and p.id = IDENTITY(i.potion)');
+                    WHERE i.joueur =  '.$UserId.' and IDENTITY(i.potion) IS NOT NULL and p.id = IDENTITY(i.potion)
+                    and i.id not in (SELECT IDENTITY(e.potion) FROM App:Equipement e WHERE IDENTITY(e.potion) IS NOT NULL)');
         return $query->getResult();
     }
 
