@@ -15,22 +15,22 @@
                         <br>
                         <div id="drop1" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
                             {% if equipement.casque %}
-                                <img id="arme{{ equipement.casque.armure.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{equipement.casque.armure.sprite}}" alt="sprite" onclick="transferSword(event, '{{ equipement.casque.id }}')">
+                                <img id="arme{{ equipement.casque.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{equipement.casque.sprite}}" alt="sprite">
                             {% endif %}
                         </div>
                         <div id="drop2" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
                             {% if equipement.plastron %}
-                                <img id="arme{{ equipement.plastron.armure.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{equipement.plastron.armure.sprite}}" alt="sprite" onclick="transferSword(event, '{{ equipement.plastron.id }}')">
+                                <img id="arme{{ equipement.plastron.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{equipement.plastron.sprite}}" alt="sprite">
                             {% endif %}
                         </div>
                         <div id="drop3" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
                             {% if equipement.jambieres %}
-                                <img id="arme{{ equipement.jambieres.armure.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{equipement.jambieres.armure.sprite}}" alt="sprite" onclick="transferSword(event, '{{ equipement.jambieres.id }}')">
+                                <img id="arme{{ equipement.jambieres.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{equipement.jambieres.sprite}}" alt="sprite">
                             {% endif %}
                         </div>
                         <div id="drop4" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
                             {% if equipement.bottes %}
-                                <img id="arme{{ equipement.bottes.armure.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{equipement.bottes.armure.sprite}}" alt="sprite" onclick="transferSword(event, '{{ equipement.bottes.id }}')">
+                                <img id="arme{{ equipement.bottes.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{equipement.bottes.sprite}}" alt="sprite">
                             {% endif %}
                         </div>
                     </div>
@@ -40,12 +40,12 @@
                         <br>
                         <div id="drop5" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
                             {% if equipement.arme %}
-                                <img id="arme{{ equipement.arme.arme.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/')}}{{equipement.arme.arme.sprite}}" alt="sprite" onclick="transferSword(event, '{{ equipement.arme.id }}')">
+                                <img id="arme{{ equipement.arme.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/')}}{{equipement.arme.sprite}}" alt="sprite">
                             {% endif %}
                         </div>
                         <div id="drop6" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
                             {% if equipement.potion %}
-                                <img id="arme{{ equipement.potion.potion.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/')}}{{equipement.potion.potion.sprite}}" alt="sprite" onclick="transferPotion(event, '{{ equipement.potion.id }}')">
+                                <img id="arme{{ equipement.potion.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/')}}{{equipement.potion.sprite}}" alt="sprite">
                             {% endif %}
                         </div>
                         <div id="div-to-refresh">
@@ -64,27 +64,19 @@
                         <div id="sac">
                             {% if armes is not empty %}
                                 {% for arme in armes %}
-                                    {% if equipement.arme and arme.inventID != equipement.arme.id %}
-                                        <img id="arme{{ arme.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/')}}{{arme.sprite}}" alt="sprite" onclick="transferSword(event, '{{ arme.inventID }}')">
-                                    {% elseif not equipement.arme %}
-                                        <img id="arme{{ arme.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/')}}{{arme.sprite}}" alt="sprite" onclick="transferSword(event, '{{ arme.inventID }}')">
-                                    {% endif %}
+                                    <img id="arme{{ arme.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/')}}{{arme.sprite}}" alt="sprite" onclick="transferSword(event, '{{ arme.inventID }}')">
                                 {% endfor %}
                             {% endif %}
 
                             {% if armures is not empty %}
                                 {% for armure in armures %}
-                                    <img id="arme{{ armure.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{armure.sprite}}" alt="sprite" onclick="transferArmor(event, '{{ armure.nomType }}','{{ armure.inventID }}')">
+                                    <img id="armure{{ armure.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{armure.sprite}}" alt="sprite" onclick="transferArmor(event, '{{ armure.nomType }}','{{ armure.inventID }}')">
                                 {% endfor %}
                             {% endif %}
 
                             {% if potions is not empty %}
                                 {% for potion in potions %}
-                                    {% if equipement.potion and potion.inventID != equipement.potion.id %}
-                                        <img id="potion{{ potion.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/')}}{{potion.sprite}}" alt="sprite" onclick="transferPotion(event, '{{ potion.inventID }}')" >
-                                    {% elseif not equipement.potion %}
-                                        <img id="potion{{ potion.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/')}}{{potion.sprite}}" alt="sprite" onclick="transferPotion(event, '{{ potion.inventID }}')" >
-                                    {% endif %}
+                                    <img id="potion{{ potion.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/')}}{{potion.sprite}}" alt="sprite" onclick="transferPotion(event, '{{ potion.inventID }}')" >
                                 {% endfor %}
                             {% endif %}
                         </div>
@@ -99,16 +91,16 @@
     <script>
         function transferSword(ev, inventaire) {
             if(document.getElementById("drop5").firstChild !== null){
-                document.getElementById("sac").appendChild(document.getElementById("drop5").firstElementChild);
+                document.getElementById("sac").appendChild(document.getElementById("drop5").firstChild);
                 document.getElementById("drop5").replaceChild(document.getElementById(ev.target.id),document.getElementById("drop5").firstChild)
             } else {
                 document.getElementById("drop5").appendChild(document.getElementById(ev.target.id));
             }
-            window.location.replace("/inventaire/equipe/" + 1 + "/" + inventaire);
+            window.location.replace("/inventaire/equipe/" + 1 + "/" + inventaire + "/");
         }
         function transferPotion(ev, inventaire) {
             if(document.getElementById("drop6").firstChild !== null ){
-                document.getElementById("sac").appendChild(document.getElementById("drop6").firstElementChild);
+                document.getElementById("sac").appendChild(document.getElementById("drop6").firstChild);
                 document.getElementById("drop6").replaceChild(document.getElementById(ev.target.id),document.getElementById("drop6").firstChild)
             } else {
                 document.getElementById("drop6").appendChild(document.getElementById(ev.target.id));
@@ -119,8 +111,8 @@
             switch (type) {
                 case "Casque":
                     if(document.getElementById("drop1").firstChild !== null){
-                        document.getElementById("sac").appendChild(document.getElementById("drop1").firstElementChild);
-                        document.getElementById("drop1").replaceChild(document.getElementById(ev.target.id),document.getElementById("drop1").firstChild)
+                        document.getElementById("sac").appendChild(document.getElementById("drop1").firstChild);
+                        document.getElementById("drop1").replaceChild(document.getElementById(ev.target.id),document.getElementById("drop1").firstElementChild)
                     } else {
                         document.getElementById("drop1").appendChild(document.getElementById(ev.target.id));
                     }
@@ -128,7 +120,7 @@
                     break;
                 case "Plastron":
                     if(document.getElementById("drop2").firstChild !== null){
-                        document.getElementById("sac").appendChild(document.getElementById("drop2").firstElementChild);
+                        document.getElementById("sac").appendChild(document.getElementById("drop2").firstChild);
                         document.getElementById("drop2").replaceChild(document.getElementById(ev.target.id),document.getElementById("drop2").firstChild)
                     } else {
                         document.getElementById("drop2").appendChild(document.getElementById(ev.target.id));
@@ -137,7 +129,7 @@
                     break;
                 case 'Jambières':
                     if(document.getElementById("drop3").firstChild !== null){
-                        document.getElementById("sac").appendChild(document.getElementById("drop3").firstElementChild);
+                        document.getElementById("sac").appendChild(document.getElementById("drop3").firstChild);
                         document.getElementById("drop3").replaceChild(document.getElementById(ev.target.id),document.getElementById("drop3").firstChild)
                     } else {
                         document.getElementById("drop3").appendChild(document.getElementById(ev.target.id));
@@ -146,7 +138,7 @@
                     break;
                 case 'Chaussures':
                     if(document.getElementById("drop4").firstChild !== null){
-                        document.getElementById("sac").appendChild(document.getElementById("drop4").firstElementChild);
+                        document.getElementById("sac").appendChild(document.getElementById("drop4").firstChild);
                         document.getElementById("drop4").replaceChild(document.getElementById(ev.target.id),document.getElementById("drop4").firstChild)
                     } else {
                         document.getElementById("drop4").appendChild(document.getElementById(ev.target.id));

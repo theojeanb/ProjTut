@@ -24,7 +24,7 @@ class InventaireController extends AbstractController
         $armures = $this->getDoctrine()->getRepository(Inventaire::class)->findAllArmures($this->getUser()->getId());
         $potions = $this->getDoctrine()->getRepository(Inventaire::class)->findAllPotions($this->getUser()->getId());
         $user = $this->getUser();
-        $equipement = $this->getUser()->getEquipement();
+        $equipement = $user->getEquipement();
 
         return $this->render('user/inventory.html.twig', ['user' => $user,'armes' => $armes, 'armures' => $armures, 'potions' => $potions, 'equipement' => $equipement]);
     }
@@ -66,26 +66,38 @@ class InventaireController extends AbstractController
     public function equipe($type = null, $id =null) {
         $entityManager = $this->getDoctrine()->getManager();
         $inventaire = $entityManager->getRepository(Inventaire::class)->find($id);
-
+        $user = $this->getUser();
         $equipement = $this->getUser()->getEquipement();
         switch($type) {
             case 1:
-                $equipement->setArme($inventaire);
+                $arme = $inventaire->getArme();
+                $inventaire->setArme($equipement->getArme());
+                $equipement->setArme($arme);
                 break;
             case 2:
-                $equipement->setCasque($inventaire);
+                $armure = $inventaire->getArmure();
+                $inventaire->setArmure($equipement->getCasque());
+                $equipement->setCasque($armure);
                 break;
             case 3:
-                $equipement->setPlastron($inventaire);
+                $armure = $inventaire->getArmure();
+                $inventaire->setArmure($equipement->getPlastron());
+                $equipement->setPlastron($armure);
                 break;
             case 4:
-                $equipement->setJambieres($inventaire);
+                $armure = $inventaire->getArmure();
+                $inventaire->setArmure($equipement->getJambieres());
+                $equipement->setJambieres($armure);
                 break;
             case 5:
-                $equipement->setBottes($inventaire);
+                $armure = $inventaire->getArmure();
+                $inventaire->setArmure($equipement->getBottes());
+                $equipement->setBottes($armure);
                 break;
             case 6:
-                $equipement->setPotion($inventaire);
+                $potion = $inventaire->getPotion();
+                $inventaire->setPotion($equipement->getPotion());
+                $equipement->setPotion($potion);
                 break;
         }
         $entityManager->flush();

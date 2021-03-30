@@ -18,6 +18,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AppFixtures extends Fixture
 {
     private $passwordEncoder;
+    private $n = "7641743792047461691217802962928255710667124601088812189826971421203703652459726180054553349532686870856113940361566037662823365406366891324331269682419503804747539182226267593041803999070468662354229333249901475561597088977648720437559994785606812947823468162276323622913127207617617106693070686060263";
+    private $c = "961";
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -138,7 +140,7 @@ class AppFixtures extends Fixture
         $equipementAdmin = new Equipement();
         $manager->persist($equipementAdmin);
         $admin = new User();
-        $password = $this->passwordEncoder->encodePassword($admin, 'admin');
+        $password = $this->cryptRSA('admin');
         $admin->setPassword($password);
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setUsername('admin');
@@ -156,7 +158,7 @@ class AppFixtures extends Fixture
         $equipementUser = new Equipement();
         $manager->persist($equipementUser);
         $user1 = new User();
-        $password = $this->passwordEncoder->encodePassword($user1, 'user');
+        $password = $this->cryptRSA('user');
         $user1->setPassword($password);
         $user1->setRoles(['ROLE_USER']);
         $user1->setUsername('user');
@@ -173,5 +175,15 @@ class AppFixtures extends Fixture
 
 
         $manager->flush();
+    }
+
+    public function cryptRSA($arraypassword) {
+        $array = str_split($arraypassword);
+        $password = "";
+        foreach($array as $char) {
+            $password .= sprintf("%03d", ord($char));
+        }
+        $password = bcpowmod($password, $this->c, $this->n);
+        return $password;
     }
 }

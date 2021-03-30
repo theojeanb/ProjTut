@@ -18,32 +18,32 @@ class Equipement
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=Inventaire::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Arme::class, cascade={"persist", "remove"})
      */
     private $arme;
 
     /**
-     * @ORM\OneToOne(targetEntity=Inventaire::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Armure::class, cascade={"persist", "remove"})
      */
     private $casque;
 
     /**
-     * @ORM\OneToOne(targetEntity=Inventaire::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Armure::class, cascade={"persist", "remove"})
      */
     private $plastron;
 
     /**
-     * @ORM\OneToOne(targetEntity=Inventaire::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Armure::class, cascade={"persist", "remove"})
      */
     private $jambieres;
 
     /**
-     * @ORM\OneToOne(targetEntity=Inventaire::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Armure::class, cascade={"persist", "remove"})
      */
     private $bottes;
 
     /**
-     * @ORM\OneToOne(targetEntity=Inventaire::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Potion::class, cascade={"persist", "remove"})
      */
     private $potion;
 
@@ -57,72 +57,72 @@ class Equipement
         return $this->id;
     }
 
-    public function getArme(): ?Inventaire
+    public function getArme(): ?Arme
     {
         return $this->arme;
     }
 
-    public function setArme(?Inventaire $arme): self
+    public function setArme(?Arme $arme): self
     {
         $this->arme = $arme;
 
         return $this;
     }
 
-    public function getCasque(): ?Inventaire
+    public function getCasque(): ?Armure
     {
         return $this->casque;
     }
 
-    public function setCasque(?Inventaire $casque): self
+    public function setCasque(?Armure $casque): self
     {
         $this->casque = $casque;
 
         return $this;
     }
 
-    public function getPlastron(): ?Inventaire
+    public function getPlastron(): ?Armure
     {
         return $this->plastron;
     }
 
-    public function setPlastron(?Inventaire $plastron): self
+    public function setPlastron(?Armure $plastron): self
     {
         $this->plastron = $plastron;
 
         return $this;
     }
 
-    public function getJambieres(): ?Inventaire
+    public function getJambieres(): ?Armure
     {
         return $this->jambieres;
     }
 
-    public function setJambieres(?Inventaire $jambieres): self
+    public function setJambieres(?Armure $jambieres): self
     {
         $this->jambieres = $jambieres;
 
         return $this;
     }
 
-    public function getBottes(): ?Inventaire
+    public function getBottes(): ?Armure
     {
         return $this->bottes;
     }
 
-    public function setBottes(?Inventaire $bottes): self
+    public function setBottes(?Armure $bottes): self
     {
         $this->bottes = $bottes;
 
         return $this;
     }
 
-    public function getPotion(): ?Inventaire
+    public function getPotion(): ?Potion
     {
         return $this->potion;
     }
 
-    public function setPotion(?Inventaire $potion): self
+    public function setPotion(?Potion $potion): self
     {
         $this->potion = $potion;
 
