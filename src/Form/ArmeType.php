@@ -19,24 +19,7 @@ class ArmeType extends AbstractType
             ->add('nom')
             ->add('degats')
             ->add('rarete')
-            ->add('sprite', FileType::class, [
-                'label' => 'Sprite (PNG)',
-                'mapped' => false,
-                'attr' => array(
-                    'class' => 'form-control-file',
-                    'placeholder' => 'Choose file',
-                    'id'=> 'fileinput'
-                ),
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'image/*',
-                        ],
-                        'mimeTypesMessage' => 'Please upload a valid png document',
-                    ])
-                ],
-            ])
+            ->add('prix')
         ;
     }
 

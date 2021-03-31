@@ -18,22 +18,7 @@ class ArmureType extends AbstractType
             ->add('defense')
             ->add('rarete')
             ->add('type')
-            ->add('sprite', FileType::class, [
-                'label' => 'Sprite (PNG)',
-                'mapped' => false,
-                'attr' => array(
-                    'class' => 'form-control-file'
-                ),
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'image/*',
-                        ],
-                        'mimeTypesMessage' => 'Please upload a valid png document',
-                    ])
-                ],
-            ])
+            ->add('prix')
         ;
     }
 

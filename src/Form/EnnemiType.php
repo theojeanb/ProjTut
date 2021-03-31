@@ -17,24 +17,7 @@ class EnnemiType extends AbstractType
             ->add('nom')
             ->add('degats')
             ->add('pv')
-            ->add('sprite', FileType::class, [
-                'label' => 'Sprite (PNG)',
-                'mapped' => false,
-                'attr' => array(
-                    'id'=> 'fileinput',
-                    'placeholder' => 'Choose file',
-                    'class' => 'form-control-file'
-                ),
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'image/*',
-                        ],
-                        'mimeTypesMessage' => 'Please upload a valid png document',
-                    ])
-                ],
-            ])
+            ->add('prix')
         ;
     }
 
