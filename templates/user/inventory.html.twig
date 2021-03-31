@@ -13,59 +13,60 @@
         <br><br><br>
         <div class="container-xl" style="border-radius: 10px;border-style: solid">
             <br><h1 style="color:#78ade6">&nbsp;&nbsp;Votre Inventaire</h1><br><br>
-            <div class="row" id="inventaire">
-                <img style="width:275px;height:275px" src="{{asset('sprites/personnage/personnage.png')}}" alt="image du personnage">
-                <div class="container-xs col-sm-1" style="background-color: #cbb8ff;border-radius: 10px 0 0 10px;">
-                    <div>
-                        <br>
-                        <div id="drop1" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
-                            {% if equipement.casque %}
-                                <img id="armure{{ equipement.casque.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{equipement.casque.sprite}}" alt="sprite">
-                            {% endif %}
-                        </div>
-                        <div id="drop2" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
-                            {% if equipement.plastron %}
-                                <img id="armure{{ equipement.plastron.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{equipement.plastron.sprite}}" alt="sprite">
-                            {% endif %}
-                        </div>
-                        <div id="drop3" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
-                            {% if equipement.jambieres %}
-                                <img id="armure{{ equipement.jambieres.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{equipement.jambieres.sprite}}" alt="sprite">
-                            {% endif %}
-                        </div>
-                        <div id="drop4" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
-                            {% if equipement.bottes %}
-                                <img id="armure{{ equipement.bottes.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{equipement.bottes.sprite}}" alt="sprite">
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                <div class="container-xs col-sm-1" style="background-color: #cbb8ff;border-radius: 0 10px 10px 0;">
-                    <div>
-                        <br>
-                        <div id="drop5" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
-                            {% if equipement.arme %}
-                                <img id="arme{{ equipement.arme.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/')}}{{equipement.arme.sprite}}" alt="sprite" onclick="transferSword(event, '{{ equipement.arme.id }}')">
-                            {% endif %}
-                        </div>
-                        <div id="drop6" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
-                            {% if equipement.potion %}
-                                <img id="potion{{ equipement.potion.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/')}}{{equipement.potion.sprite}}" alt="sprite" onclick="transferPotion(event, '{{ equipement.potion.id }}')">
-                            {% endif %}
-                        </div>
-                        <div id="div-to-refresh">
-                            <h6>Argent : </h6>
-                            <div>{{ user.argent }} <img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="coin"></div><br>
-                            <h6>PV :</h6>
-                            <div>{{ user.pv }}/{{ user.pvMax }} <img style="width:20px;height:20px;" src="{{asset('images/heart.png')}}" alt="coin"></div>
+            {% if equipement is not empty %}
+                    <div class="row" id="inventaire">
+                    <img style="width:275px;height:275px" src="{{asset('sprites/personnage/personnage.png')}}" alt="image du personnage">
+                    <div class="container-xs col-sm-1" style="background-color: #cbb8ff;border-radius: 10px 0 0 10px;">
+                        <div>
+                            <br>
+                            <div id="drop1" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
+                                {% if equipement.casque %}
+                                    <img id="armure{{ equipement.casque.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{equipement.casque.sprite}}" alt="sprite">
+                                {% endif %}
+                            </div>
+                            <div id="drop2" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
+                                {% if equipement.plastron %}
+                                    <img id="armure{{ equipement.plastron.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{equipement.plastron.sprite}}" alt="sprite">
+                                {% endif %}
+                            </div>
+                            <div id="drop3" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
+                                {% if equipement.jambieres %}
+                                    <img id="armure{{ equipement.jambieres.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{equipement.jambieres.sprite}}" alt="sprite">
+                                {% endif %}
+                            </div>
+                            <div id="drop4" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
+                                {% if equipement.bottes %}
+                                    <img id="armure{{ equipement.bottes.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armures/')}}{{equipement.bottes.sprite}}" alt="sprite">
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="container-xs col-sm-1" style="background-color: #b8daff"></div>
-                <div class="container-xs col-sm-5" style="background-color: #ffd3b8;border-radius:10px;">
-                    <br><h4 style="text-align: center">Sac à dos</h4>
-                    <div id="sac" style="background-color: #ffd3b8;white-space: nowrap;overflow-x:hidden;overflow-y:scroll;border-radius: 10px;height: 225px;text-align: justify">
-                        <br>
+                    <div class="container-xs col-sm-1" style="background-color: #cbb8ff;border-radius: 0 10px 10px 0;">
+                        <div>
+                            <br>
+                            <div id="drop5" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
+                                {% if equipement.arme %}
+                                    <img id="arme{{ equipement.arme.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/')}}{{equipement.arme.sprite}}" alt="sprite" onclick="transferSword(event, '{{ equipement.arme.id }}')">
+                                {% endif %}
+                            </div>
+                            <div id="drop6" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
+                                {% if equipement.potion %}
+                                    <img id="potion{{ equipement.potion.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/')}}{{equipement.potion.sprite}}" alt="sprite" onclick="transferPotion(event, '{{ equipement.potion.id }}')">
+                                {% endif %}
+                            </div>
+                            <div id="div-to-refresh">
+                                <h6>Argent : </h6>
+                                <div>{{ user.argent }} <img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="coin"></div><br>
+                                <h6>PV :</h6>
+                                <div>{{ user.pv }}/{{ user.pvMax }} <img style="width:20px;height:20px;" src="{{asset('images/heart.png')}}" alt="coin"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-xs col-sm-1" style="background-color: #b8daff"></div>
+                    <div class="container-xs col-sm-5" style="background-color: #ffd3b8;border-radius:10px;">
+                        <br><h4 style="text-align: center">Sac à dos</h4>
+                        <div id="sac" style="background-color: #ffd3b8;white-space: nowrap;overflow-x:hidden;overflow-y:scroll;border-radius: 10px;height: 225px;text-align: justify">
+                            <br>
                             {% if armes is not empty %}
                                 {% for key, arme in armes %}
                                     {% if key != 0 and key%6 == 0 %}
@@ -100,10 +101,13 @@
                                     {% endif %}
                                 {% endfor %}
                             {% endif %}
-                        <br>
+                            <br>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% else %}
+                <div style="text-align: center">Veuillez lancer le jeu une première fois pour voir votre équipement</div><br>
+            {% endif %}
             <br><br><br>
         </div>
         <br>
