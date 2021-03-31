@@ -48,8 +48,8 @@ class MagasinController extends AbstractController
         $inventaires = $this->getDoctrine()->getRepository(Inventaire::class)->findAllInventaires($user->getId());
         $inventaire = null;
         foreach ($inventaires as $i) {
-            if ($i->getArme() == null) {
-                $inventaire = $i;
+            if ($i['arme'] == null) {
+                $inventaire = $this->getDoctrine()->getRepository(Inventaire::class)->find($i['id']);
                 break;
             }
         }
@@ -73,8 +73,8 @@ class MagasinController extends AbstractController
         $inventaires = $this->getDoctrine()->getRepository(Inventaire::class)->findAllInventaires($user->getId());
         $inventaire = null;
         foreach ($inventaires as $i) {
-            if ($i->getArmure() == null) {
-                $inventaire = $i;
+            if ($i['armure'] == null) {
+                $inventaire = $this->getDoctrine()->getRepository(Inventaire::class)->find($i['id']);
                 break;
             }
         }
@@ -98,8 +98,8 @@ class MagasinController extends AbstractController
         $inventaires = $this->getDoctrine()->getRepository(Inventaire::class)->findAllInventaires($user->getId());
         $inventaire = null;
         foreach ($inventaires as $i) {
-            if ($i->getPotion() == null) {
-                $inventaire = $i;
+            if ($i['potion'] == null) {
+                $inventaire = $this->getDoctrine()->getRepository(Inventaire::class)->find($i['id']);
                 break;
             }
         }

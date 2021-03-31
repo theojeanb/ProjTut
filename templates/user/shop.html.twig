@@ -47,7 +47,7 @@
                         {% endif %}
                         <hr>
                         <a href="{{ path('shop.buyArme', {id: item.id} )}}" class="btn btn-success
-                           {% if app.user.argent < item.prix or (inventory.armes is empty and inventory.armures is empty and inventory.potions is empty) %}disabled{% endif %}" >{{ item.prix }}<img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="gold"></a>
+                           {% if app.user.argent < item.prix or not verif %}disabled{% endif %}" >{{ item.prix }}<img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="gold"></a>
                     </div>
                 </div>
             {% endfor %}
@@ -69,7 +69,7 @@
                         {% endif %}
                         <hr>
                         <a href="{{ path('shop.buyArmure', {id: item.id} )}}" class="btn btn-success
-                           {% if app.user.argent < item.prix or (inventory.armes is empty and inventory.armures is empty and inventory.potions is empty) %}disabled{% endif %}" >{{ item.prix }}<img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="gold"></a>
+                           {% if app.user.argent < item.prix or not verif %}disabled{% endif %}" >{{ item.prix }}<img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="gold"></a>
                     </div>
                 </div>
             {% endfor %}
@@ -91,7 +91,7 @@
                         {% endif %}
                         <hr>
                         <a href="{{ path('shop.buyPotion', {id: item.id} )}}" class="btn btn-success
-                           {% if app.user.argent < item.prix or (inventory.armes is empty and inventory.armures is empty and inventory.potions is empty) %}disabled{% endif %}">{{ item.prix }}<img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="gold"></a>
+                           {% if app.user.argent < item.prix or not verif %}disabled{% endif %}">{{ item.prix }}<img style="width:20px;height:20px;" src="{{asset('images/coin.png')}}" alt="gold"></a>
                     </div>
                 </div>
             {% endfor %}

@@ -46,12 +46,12 @@
                             <br>
                             <div id="drop5" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
                                 {% if equipement.arme %}
-                                    <img id="arme{{ equipement.arme.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/')}}{{equipement.arme.sprite}}" alt="sprite" onclick="transferSword(event, '{{ equipement.arme.id }}')">
+                                    <img id="arme{{ equipement.arme.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/armes/')}}{{equipement.arme.sprite}}" alt="sprite">
                                 {% endif %}
                             </div>
                             <div id="drop6" style="width:55px;height:55px;margin-bottom: 14px;border: solid;">
                                 {% if equipement.potion %}
-                                    <img id="potion{{ equipement.potion.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/')}}{{equipement.potion.sprite}}" alt="sprite" onclick="transferPotion(event, '{{ equipement.potion.id }}')">
+                                    <img id="potion{{ equipement.potion.id }}" class="item" style="width:50px;height:50px;margin-right: 10px" src="{{asset('sprites/potions/')}}{{equipement.potion.sprite}}" alt="sprite">
                                 {% endif %}
                             </div>
                             <div id="div-to-refresh">

@@ -48,11 +48,6 @@ class Arme
     private $sprite;
 
     /**
-     * @ORM\OneToMany(targetEntity=Ennemi::class, mappedBy="arme")
-     */
-    private $ennemis;
-
-    /**
      * @ORM\OneToMany(targetEntity=Inventaire::class, mappedBy="arme")
      */
     private $inventaires;
@@ -119,36 +114,6 @@ class Arme
     public function setSprite(?string $sprite): self
     {
         $this->sprite = $sprite;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Ennemi[]
-     */
-    public function getEnnemis(): Collection
-    {
-        return $this->ennemis;
-    }
-
-    public function addEnnemi(Ennemi $ennemi): self
-    {
-        if (!$this->ennemis->contains($ennemi)) {
-            $this->ennemis[] = $ennemi;
-            $ennemi->setArme($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEnnemi(Ennemi $ennemi): self
-    {
-        if ($this->ennemis->removeElement($ennemi)) {
-            // set the owning side to null (unless already changed)
-            if ($ennemi->getArme() === $this) {
-                $ennemi->setArme(null);
-            }
-        }
 
         return $this;
     }

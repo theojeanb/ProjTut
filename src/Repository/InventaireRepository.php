@@ -23,10 +23,9 @@ class InventaireRepository extends ServiceEntityRepository
     {
         $query = $this->getEntityManager()
             ->createQuery('
-                    SELECT a.id,a.nom, a.degats, a.rarete, a.sprite, a.prix, i.id AS inventID
-                    FROM App:Arme a
-                    JOIN App:Inventaire i
-                    WHERE i.joueur =  '.$UserId);
+                    SELECT i.id, IDENTITY(i.arme) AS arme, IDENTITY(i.armure) AS armure, IDENTITY(i.potion) AS potion
+                    FROM App:Inventaire i
+                    WHERE IDENTITY(i.joueur) =  '.$UserId);
         return $query->getResult();
     }
 

@@ -58,11 +58,6 @@ class Potion
     private $sprite;
 
     /**
-     * @ORM\OneToMany(targetEntity=Ennemi::class, mappedBy="potion")
-     */
-    private $ennemis;
-
-    /**
      * @ORM\OneToMany(targetEntity=Inventaire::class, mappedBy="potion")
      */
     private $inventaires;
@@ -72,20 +67,9 @@ class Potion
      */
     private $prix;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $x;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $y;
-
     public function __construct()
     {
         $this->joueurs = new ArrayCollection();
-        $this->ennemis = new ArrayCollection();
         $this->inventaires = new ArrayCollection();
     }
 
@@ -150,36 +134,6 @@ class Potion
     public function setSprite(?string $sprite): self
     {
         $this->sprite = $sprite;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Ennemi[]
-     */
-    public function getEnnemis(): Collection
-    {
-        return $this->ennemis;
-    }
-
-    public function addEnnemi(Ennemi $ennemi): self
-    {
-        if (!$this->ennemis->contains($ennemi)) {
-            $this->ennemis[] = $ennemi;
-            $ennemi->setPotion($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEnnemi(Ennemi $ennemi): self
-    {
-        if ($this->ennemis->removeElement($ennemi)) {
-            // set the owning side to null (unless already changed)
-            if ($ennemi->getPotion() === $this) {
-                $ennemi->setPotion(null);
-            }
-        }
 
         return $this;
     }

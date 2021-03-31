@@ -197,7 +197,8 @@
       <workItem from="1617015383352" duration="13045000" />
       <workItem from="1617101637945" duration="5793000" />
       <workItem from="1617116267482" duration="5532000" />
-      <workItem from="1617174986314" duration="3069000" />
+      <workItem from="1617174986314" duration="5807000" />
+      <workItem from="1617190377188" duration="2625000" />
     </task>
     <task id="LOCAL-00001" summary="Début Affichage (login non fonctionnel)">
       <created>1608565457400</created>
@@ -410,10 +411,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="501" y="209" key="git4idea.merge.GitPullDialog/0.0.1536.834@0.0.1536.834" timestamp="1608646008883" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1617024987486">
+    <state x="616" y="240" key="run.anything.popup" timestamp="1617193542614">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1617024987486" />
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1617193542614" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1617175874011">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
