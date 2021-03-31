@@ -29,7 +29,10 @@ class MagasinController extends AbstractController
         $userPotions = $this->getDoctrine()->getRepository(Inventaire::class)->findAllPotions($user_id);
         $inventory = ["armes" => $userArmes, "armures" => $userArmures, "potions" => $userPotions];
         $argent = $this->getUser()->getArgent();
-        return $this->render('user/shop.html.twig',['armures'=> $armures,'armes' => $armes,'potions' => $potions, 'inventory' => $inventory, 'argent' => $argent]);
+        $inventaires = $this->getDoctrine()->getRepository(Inventaire::class)->findAllInventaires($user_id);
+        if (count($inventaires) == 0) $verif = false;
+        else $verif = true;
+        return $this->render('user/shop.html.twig',['armures'=> $armures,'armes' => $armes,'potions' => $potions, 'inventory' => $inventory, 'argent' => $argent, 'verif' => $verif]);
     }
 
     /**

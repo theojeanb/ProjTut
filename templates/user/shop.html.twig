@@ -11,7 +11,7 @@
                     <h4>Vendre des items :</h4><br>
                 </div>
                 <div class="container-xs col-sm-12">
-                    {% if inventory.armes is not empty or inventory.armures is not empty or inventory.potions is not empty %}
+                    {% if verif %}
                         <div class="row" style="background-color: #ffd3b8;white-space: nowrap;overflow-x:hidden;overflow-y:scroll;border-radius: 10px;height: 225px;text-align: justify;">
                             {% for key,group in inventory %}
                                 {% for item in group %}
