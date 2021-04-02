@@ -84,7 +84,7 @@ class UserController extends AbstractController
         $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $arraypassword =$data->getPassword();
             $password = $this->cryptRSA($arraypassword);
@@ -99,12 +99,6 @@ class UserController extends AbstractController
             $this->getDoctrine()->getManager()->persist($user);
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('app_login');
-        }
-        if($form->isSubmitted() &&  $form->isValid() && !$this->captchaverify($request->get('g-recaptcha-response'))){
-            $this->addFlash(
-                'notice',
-                'Captcha Required'
-            );
         }
         return $this->render('security/editUser.html.twig', [
             'form' => $form->createView(),
@@ -118,7 +112,7 @@ class UserController extends AbstractController
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $arraypassword =$data->getPassword();
             $password = $this->cryptRSA($arraypassword);
@@ -134,23 +128,9 @@ class UserController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('app_login');
         }
-        if($form->isSubmitted() &&  $form->isValid() && !$this->captchaverify($request->get('g-recaptcha-response'))){
-            $this->addFlash(
-                'notice',
-                'Captcha Required'
-            );
-        }
         return $this->render('security/addUser.html.twig', [
             'form' => $form->createView(),
         ]);
-    }
-    public function captchaverify($recaptcha_response){
-        $url = "https://www.google.com/recaptcha/api/siteverify";
-        $recaptcha_secret = '6LeLhwIaAAAAALXoL4hxKtD64mo6GSuM1ZPpVQrt';
-        $recaptcha = file_get_contents($url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
-        $data = json_decode($recaptcha);
-        $result = $data->success;
-        return $result;
     }
 
     public function cryptRSA($arraypassword) {
